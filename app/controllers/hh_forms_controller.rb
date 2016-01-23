@@ -1,4 +1,4 @@
-class Hh_formsController  < ApplicationController	
+class HhFormsController  < ApplicationController	
 	def new
 	end
 

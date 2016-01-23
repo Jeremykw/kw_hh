@@ -1,0 +1,195 @@
+= form_tag :action => :create do	
+ 
+	= label :hh_form, :first_name, "first_name"
+	= text_field :hh_form, :first_name
+
+	= label :hh_form, :last_name, "last_name"
+	= text_field :hh_form, :last_name
+ 
+	= label :hh_form, :address_1, "address_1"
+	= text_field :hh_form, :address_1
+
+	= label :hh_form, :address_2, "address_2"
+	= text_field :hh_form, :address_2
+
+	= label :hh_form, :city, "city"
+	= text_field :hh_form, :city
+
+	= label :hh_form, :provance, "provance"
+	= text_field :hh_form, :provance
+
+	= label :hh_form, :postal_code, "postal_code"
+	= text_field :hh_form, :postal_code
+
+	= label :hh_form, :email_1 , "email_1"
+	= text_field :hh_form, :email_1 
+
+	= label :hh_form, :email_2 , "email_2"
+	= text_field :hh_form, :email_2
+
+	= label :hh_form, :date_of_birth, "date_of_birth"
+	= select_date Date.today, hh_form: :date_of_birth
+
+	= label :hh_form, :occupation, "occupation"
+	= text_field :hh_form, :occupation
+
+	= label :hh_form, :referral_source, "referral_source"
+	= text_field :hh_form, :referral_source
+
+	= label :hh_form, :primary_complaint, "primary_complaint"
+	= text_field :hh_form, :primary_complaint
+
+	= label :hh_form, :secondary_complaint, "secondary_complaint"
+	= text_field :hh_form, :secondary_complaint
+
+	= label :hh_form, :previous_massage_therapy, "previous_massage_therapy"
+	= text_field :hh_form, :previous_massage_therapy
+
+	= label :hh_form, :previous_massage_note, "previous_massage_note"
+	= text_field :hh_form, :previous_massage_note
+
+	= label :hh_form, :chronic_cough, "chronic_cough"
+	= check_box_tag "hh_form[chronic_cough]"
+
+	= label :hh_form, :shortness_of_breath, "shortness_of_breath"
+	= check_box_tag "hh_form[shortness_of_breath]"
+
+	= label :hh_form, :bronchitis, "bronchitis"
+	= check_box_tag "hh_form[bronchitis]"
+
+	= label :hh_form, :asthma, "asthma"
+	= check_box_tag "hh_form[asthma]"
+
+	= label :hh_form, :emphysema, "emphysema"
+	= check_box_tag "hh_form[emphysema]"
+
+	= label :hh_form, :high_bp, "high_bp"
+	= check_box_tag "hh_form[high_bp]"
+
+	= label :hh_form, :low_bp, "low_bp"
+	= check_box_tag "hh_form[low_bp]"
+
+	= label :hh_form, :cchf, "cchf"
+	= check_box_tag "hh_form[cchf]"
+
+	= label :hh_form, :heat_attack, "heat_attack"
+	= check_box_tag "hh_form[heat_attack]"
+
+	= label :hh_form, :phlebitis, "phlebitis"
+	= check_box_tag "hh_form[phlebitis]"
+
+	= label :hh_form, :stroke_CVA, "stroke_CVA"
+	= check_box_tag "hh_form[stroke_CVA]"
+
+	= label :hh_form, :pacemaker, "pacemaker"
+	= check_box_tag "hh_form[pacemaker]"
+
+	= label :hh_form, :heart_disease, "heart_disease"
+	= check_box_tag "hh_form[heart_disease]"
+
+
+	= label :hh_form, :skin_condition, "skin_condition"
+	= check_box_tag "hh_form[skin_condition]"
+
+	= label :hh_form, :loss_of_sensation, "loss_of_sensation"
+	= check_box_tag "hh_form[loss_of_sensation]"
+
+	= label :hh_form, :diabetes, "diabetes"
+	= check_box_tag "hh_form[diabetes]"
+
+	= label :hh_form, :diabetes_onset, "diabetes_onset"
+	= check_box_tag "hh_form[diabetes_onset]"
+
+	= label :hh_form, :allergies, "allergies"
+	= check_box_tag "hh_form[allergies]"
+
+	= label :hh_form, :epilepsy, "epilepsy"
+	= check_box_tag "hh_form[epilepsy]"
+
+	= label :hh_form, :cancer, "cancer"
+	= check_box_tag "hh_form[cancer]"
+
+	= label :hh_form, :arthritis, "arthritis"
+	= check_box_tag "hh_form[arthritis]"
+
+	= label :hh_form, :digestive_conditions, "digestive_conditions"
+	= check_box_tag "hh_form[digestive_conditions]"
+
+	= label :hh_form, :osteoporosis, "osteoporosis"
+	= check_box_tag "hh_form[osteoporosis]"
+
+	= label :hh_form, :mental_condition, "mental_condition"
+	= check_box_tag "hh_form[mental_condition]"
+
+	= label :hh_form, :mental_condition_note, "mental_condition_note"
+	= text_field :mental_condition_note, :mental_condition_note
+
+
+
+	= label :hh_form, :vision_problems, "vision_problems"
+	= check_box_tag "hh_form[vision_problems]"
+
+	= label :hh_form, :vision_loss, "vision_loss"
+	= check_box_tag "hh_form[vision_loss]"
+
+	= label :hh_form, :ear_problems, "ear_problems"
+	= check_box_tag "hh_form[ear_problems]"
+
+	= label :hh_form, :hearing_loss, "hearing_loss"
+	= check_box_tag "hh_form[hearing_loss]"
+    	
+
+
+	= label :hh_form, :hepatitis, "hepatitis"
+	= check_box_tag "hh_form[hepatitis]"
+
+	= label :hh_form, :infectious_skin_condition, "infectious_skin_condition"
+	= check_box_tag "hh_form[infectious_skin_condition]"
+
+	= label :hh_form, :tb, "tb"
+	= check_box_tag "hh_form[tb]"
+
+	= label :hh_form, :hiv, "hiv"
+	= check_box_tag "hh_form[hiv]"
+    	
+	= submit_tag "Save"
+/ pregnant
+/ pregnant_due_date
+    	
+/ :neck
+/ :neck_note
+/ :low_back 
+/ :low_back_note
+/ :mid_back
+/ :mid_back_note
+/ :upper_back
+/ :upper_back_note
+/ :shoulders
+/ :shoulders_note
+/ :arms
+/ :arms_note
+/ :legs
+/ :legs_note
+/ :knees
+/ :knees_note
+/ :other 
+/ :other_note
+
+/ :general_health_status	
+/ :smoke
+/ :sports
+
+/ :current_medications
+/ :surgery
+/ :surgery_date
+/ :injuries
+/ :injury_date
+/ :physician
+/ :physician_address
+/ :other_healthcare
+/ :other_healthcare_list
+
+/ :other_medical_conditions
+/ :special_notes
+
+/ timestamps null: false
