@@ -8,8 +8,8 @@ class CreateHhForms < ActiveRecord::Migration
     	t.string :city
     	t.string :provance 
     	t.string :postal_code
-    	t.string :email_1 
-    	t.string :email_2 
+    	t.string :email 
+    	t.integer :phone
     	t.date 	 :date_of_birth
     	t.string :occupation
     	t.string :referral_source
