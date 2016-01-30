@@ -2,290 +2,258 @@
 	= form_for @hhform do |f|
 		-# name
 		.row
-			.col_one_third
-				= label :hhform, :first_name, "first_name"
-				= text_field :hhform, :first_name, :class => "form-control"
-			.col_one_third
-				= label :hhform, :last_name, "last_name"
-				= text_field :hhform, :last_name, :class => "form-control"
+			.col_one_third.testimonial
+				= f.label :first_name, "first_name"
+				= f.text_field :first_name, :class => "form-control"
+			.col_one_third.testimonial
+				= f.label :last_name, "last_name"
+				= f.text_field :last_name, :class => "form-control"
 		.row
 			-# address
-			.col_one_third	 
-				= label :hhform, :address_1, "address_1"
-				= text_field :hhform, :address_1, :class => "form-control"
+			.col_one_third.testimonial
+				= f.label :address_1, "address_1"
+				= f.text_field :address_1, :class => "form-control"
 
-				= label :hhform, :address_2, "address_2"
-				= text_field :hhform, :address_2, :class => "form-control"
+				= f.label :address_2, "address_2"
+				= f.text_field :address_2, :class => "form-control"
 
-				= label :hhform, :city, "city"
-				= text_field :hhform, :city, :class => "form-control"
+				= f.label :city, "city"
+				= f.text_field :city, :class => "form-control"
 
-				= label :hhform, :provance, "provance"
-				= text_field :hhform, :provance, :class => "form-control"
+				= f.label :provance, "provance"
+				= f.text_field :provance, :class => "form-control"
 
-				= label :hhform, :postal_code, "postal_code"
-				= text_field :hhform, :postal_code, :class => "form-control"
+				= f.label :postal_code, "postal_code"
+				= f.text_field :postal_code, :class => "form-control"
 			-# contact
-			.col_one_third
-				= label :hhform, :email , "email"
-				= text_field :hhform, :email , :class => "form-control"
+			.col_one_third.testimonial
+				= f.label :email , "email"
+				= f.text_field :email , :class => "form-control"
 
-				= label :hhform, :phone , "phone"
-				= text_field :hhform, :phone, :class => "form-control"
+				= f.label :phone , "phone"
+				= f.text_field :phone, :class => "form-control"
 
-				= label :hhform, :occupation, "occupation"
-				= text_field :hhform, :occupation, :class => "form-control"
+				= f.label :occupation, "occupation"
+				= f.text_field :occupation, :class => "form-control"
 
-				= label :hhform, :referral_source, "referral_source"
-				= text_field :hhform, :referral_source, :class => "form-control"
+				= f.label :referral_source, "referral_source"
+				= f.text_field :referral_source, :class => "form-control"
 				%br
-				= label :hhform, :date_of_birth, "date_of_birth "
-				= select_date Date.today, hhform: :date_of_birth, :class => "form-control"
+				= f.label :date_of_birth, "date_of_birth "
+				= f.date_select :date_of_birth, :start_year => 1925, :class => "form-control"
 
 		.row
 			-# complaints and massage history
-			.col_one_third
-				= label :hhform, :primary_complaint, "primary_complaint"
-				= text_field :hhform, :primary_complaint, :class => "form-control"
+			.col_one_third.testimonial
+				= f.label :primary_complaint, "primary_complaint"
+				= f.text_field :primary_complaint, :class => "form-control"
 
-				= label :hhform, :secondary_complaint, "secondary_complaint"
-				= text_field :hhform, :secondary_complaint, :class => "form-control"
+				= f.label :secondary_complaint, "secondary_complaint"
+				= f.text_field :secondary_complaint, :class => "form-control"
 
-				= label :hhform, :previous_massage_therapy, "previous_massage_therapy"
-				= text_field :hhform, :previous_massage_therapy, :class => "form-control"
+				= f.label :previous_massage_therapy, "previous_massage_therapy"
+				= f.text_field :previous_massage_therapy, :class => "form-control"
 
-				= label :hhform, :previous_massage_note, "previous_massage_note"
-				= text_area_tag :hhform, :previous_massage_note, :class => "form-control", :rows => "3"
+				= f.label :previous_massage_note, "previous_massage_note"
+				= f.text_area :previous_massage_note, :class => "form-control", :rows => "3", :placeholder => "Tell me about previous therapys"
 			-# general health
-			.col_one_third
-				= label :hhform, :sports, "sports"
-				= text_area_tag :hhform, :sports, :class => "form-control", :rows => "3"
-
-				= check_box_tag "hhform[smoke]"
-				= label :hhform, :smoke, "Do you smoke?"
+			.col_one_third.testimonial
+				= f.label :sports, "sports"
+				= f.text_area :sports, :class => "form-control", :rows => "3"
 				%br
-				= label :hhform, :general_health_status, "general_health_status"
-				= text_field :hhform, :general_health_status, :class => "form-control"
+				= f.check_box :smoke
+				= f.label :smoke, "Do you smoke?"
+				%br
+				= f.label :physician, "Physicians Name"
+				= text_field :hhform, :physician, :class => "form-control"
+				%br
+				= f.label :physician_address, "Physician Address"
+				= text_field :hhform, :physician_address, :class => "form-control", :class => "form-control"				
 
 		-# check boxes
 		.row
-			.col_one_fifth
+			.col_one_fifth.testimonial.test-wider
 				%h4 Respiratory
-				= check_box_tag "hhform[chronic_cough]", :class => "checkbox"
-				= label :hhform, :chronic_cough, "chronic_cough"
+				= f.check_box :chronic_cough
+				= f.label :chronic_cough, "chronic_cough"
 				%br
-				= check_box_tag "hhform[shortness_of_breath]", :class => "checkbox"
-				= label :hhform, :shortness_of_breath, "shortness_of_breath"
+				= f.check_box :shortness_of_breath
+				= f.label :shortness_of_breath, "shortness_of_breath"
 				%br
-				= check_box_tag "hhform[bronchitis]", :class => "checkbox"
-				= label :hhform, :bronchitis, "bronchitis"
+				= f.check_box :bronchitis
+				= f.label :bronchitis, "bronchitis"
 				%br
-				= check_box_tag "hhform[asthma]", :class => "checkbox"
-				= label :hhform, :asthma, "asthma"
+				= f.check_box :asthma
+				= f.label :asthma, "asthma"
 				%br
-				= check_box_tag "hhform[emphysema]"
-				= label :hhform, :emphysema, "emphysema"
+				= f.check_box :emphysema
+				= f.label :emphysema, "emphysema"
 				%br
 				%h4.topmargin-sm Skin
-				= check_box_tag "hhform[skin_condition]"
-				= label :hhform, :skin_condition, "skin_condition"
-			.col_one_fifth
+				= f.check_box :skin_condition
+				= f.label :skin_condition, "skin_condition"
+			.col_one_fifth.testimonial.test-wider
 				%h4 Cardiovascular
-				= check_box_tag "hhform[high_bp]"
-				= label :hhform, :high_bp, "high_bp"
+				= f.check_box :high_bp
+				= f.label :high_bp, "high_bp"
 				%br
-				= check_box_tag "hhform[low_bp]"
-				= label :hhform, :low_bp, "low_bp"
+				= f.check_box :low_bp
+				= f.label :low_bp, "low_bp"
 				%br
-				= check_box_tag "hhform[cchf]"
-				= label :hhform, :cchf, "cchf"
+				= f.check_box :cchf
+				= f.label :cchf, "cchf"
 				%br
-				= check_box_tag "hhform[heat_attack]"
-				= label :hhform, :heat_attack, "heat_attack"
+				= f.check_box :heat_attack
+				= f.label :heat_attack, "heat_attack"
 				%br
-				= check_box_tag "hhform[phlebitis]"
-				= label :hhform, :phlebitis, "phlebitis"
+				= f.check_box :phlebitis
+				= f.label :phlebitis, "phlebitis"
 				%br
-				= check_box_tag "hhform[stroke_CVA]"
-				= label :hhform, :stroke_CVA, "stroke_CVA"
+				= f.check_box :stroke_CVA
+				= f.label :stroke_CVA, "stroke_CVA"
 				%br
-				= check_box_tag "hhform[pacemaker]"
-				= label :hhform, :pacemaker, "pacemaker"
+				= f.check_box :pacemaker
+				= f.label :pacemaker, "pacemaker"
 				%br
-				= check_box_tag "hhform[heart_disease]"
-				= label :hhform, :heart_disease, "heart_disease"
+				= f.check_box :heart_disease
+				= f.label :heart_disease, "heart_disease"
 				%br
-			.col_one_fifth
+			.col_one_fifth.testimonial.test-wider
 				%h4 Other Conditions
-				= check_box_tag "hhform[loss_of_sensation]"
-				= label :hhform, :loss_of_sensation, "loss_of_sensation"
+				= f.check_box :loss_of_sensation
+				= f.label :loss_of_sensation, "loss_of_sensation"
 				%br
-				= check_box_tag "hhform[diabetes]"
-				= label :hhform, :diabetes, "diabetes"
+				= f.check_box :diabetes
+				= f.label :diabetes, "diabetes"
 				%br
-				= check_box_tag "hhform[diabetes_onset]"
-				= label :hhform, :diabetes_onset, "diabetes_onset"
+				= f.check_box :diabetes_onset
+				= f.label :diabetes_onset, "diabetes_onset"
 				%br
-				= check_box_tag "hhform[allergies]"
-				= label :hhform, :allergies, "allergies"
+				= f.check_box :allergies
+				= f.label :allergies, "allergies"
 				%br
-				= check_box_tag "hhform[epilepsy]"
-				= label :hhform, :epilepsy, "epilepsy"
+				= f.check_box :epilepsy
+				= f.label :epilepsy, "epilepsy"
 				%br
-				= check_box_tag "hhform[cancer]"
-				= label :hhform, :cancer, "cancer"
+				= f.check_box :cancer
+				= f.label :cancer, "cancer"
 				%br
-				= check_box_tag "hhform[arthritis]"
-				= label :hhform, :arthritis, "arthritis"
+				= f.check_box :arthritis
+				= f.label :arthritis, "arthritis"
 				%br
-				= check_box_tag "hhform[digestive_conditions]"
-				= label :hhform, :digestive_conditions, "digestive_conditions"
+				= f.check_box :digestive_conditions
+				= f.label :digestive_conditions, "digestive_conditions"
 				%br
-				= check_box_tag "hhform[osteoporosis]"
-				= label :hhform, :osteoporosis, "osteoporosis"
+				= f.check_box :osteoporosis
+				= f.label :osteoporosis, "osteoporosis"
 				%br
-		
+			
 
-		= check_box_tag "hhform[mental_condition]"
-		= label :hhform, :mental_condition, "mental_condition"
-
-		= text_field :mental_condition_note, :mental_condition_note
-		= label :hhform, :mental_condition_note, "mental_condition_note"
 
 		.row
-			.col_one_fifth
-				%h4 Head/Neck
-				= check_box_tag "hhform[vision_problems]"
-				= label :hhform, :vision_problems, "vision_problems"
+			.col_one_fifth.testimonial
+				%h4 HeaNeck
+				= f.check_box :vision_problems
+				= f.label :vision_problems, "vision_problems"
 				%br
-				= check_box_tag "hhform[vision_loss]"
-				= label :hhform, :vision_loss, "vision_loss"
+				= f.check_box :vision_loss
+				= f.label :vision_loss, "vision_loss"
 				%br
-				= check_box_tag "hhform[ear_problems]"
-				= label :hhform, :ear_problems, "ear_problems"
+				= f.check_box :ear_problems
+				= f.label :ear_problems, "ear_problems"
 				%br
-				= check_box_tag "hhform[hearing_loss]"
-				= label :hhform, :hearing_loss, "hearing_loss"
+				= f.check_box :hearing_loss
+				= f.label :hearing_loss, "hearing_loss"
 				%br	    	
-			.col_one_fifth
+			.col_one_fifth.testimonial
 				%h4 Infections
-				= check_box_tag "hhform[hepatitis]"
-				= label :hhform, :hepatitis, "hepatitis"
+				= f.check_box :hepatitis
+				= f.label :hepatitis, "hepatitis"
 				%br
-				= check_box_tag "hhform[infectious_skin_condition]"
-				= label :hhform, :infectious_skin_condition, "infectious_skin_condition"
+				= f.check_box :infectious_skin_condition
+				= f.label :infectious_skin_condition, "infectious_skin_condition"
 				%br
-				= check_box_tag "hhform[tb]"
-				= label :hhform, :tb, "tb"
+				= f.check_box :tb
+				= f.label :tb, "tb"
 				%br
-				= check_box_tag "hhform[hiv]"
-				= label :hhform, :hiv, "hiv"
+				= f.check_box :hiv
+				= f.label :hiv, "hiv"
 				%br	    	
-			.col_one_fifth
+			.col_one_fifth.testimonial
 				%h4 Women
-				= check_box_tag "hhform[pregnant]"
-				= label :hhform, :pregnant, "pregnant"
+				= f.check_box :pregnant
+				= f.label :pregnant, "pregnant"
 				%br
-				= label :hhform, :pregnant_due_date, "Due Date"
+				= f.label :pregnant_due_date, "Due Date"
 				%br
-				= select_date Date.today, hhform: :pregnant_due_date, :class => "form-control"
-		
+				= f.date_select :pregnant_due_date, :start_year => 2016, :class => "form-control"
 		-# Head Neck and shoulders
 		.row
-			.col_one_fifth
-				= check_box_tag "hhform[neck]"
-				= label :hhform, :neck, "neck"
+			.col_one_fifth.testimonial
+				= f.check_box :neck
+				= f.label :neck, "neck"
+				= f.text_area :neck_note, :class => "form-control", placeholder: "More Details about neck"
+
+				= f.check_box :low_back
+				= f.label :low_back, "low_back"	
+				= f.text_area :low_back_note, :class => "form-control", placeholder: "More Details about low back"
+
+				= f.check_box :mid_back
+				= f.label :mid_back, "mid_back"		
+				= f.text_area :mid_back_note, :class => "form-control", placeholder: "More Details about mid back"
+			.col_one_fifth.testimonial 	 
+				= f.check_box :upper_back
+				= f.label :upper_back, "upper_back"
+				= f.text_area :upper_back_note, :class => "form-control", placeholder: "More Details about upper back"
+
+				= f.check_box :shoulders
+				= f.label :shoulders, "shoulders"
+				= f.text_area :shoulders_note, :class => "form-control", placeholder: "More Details about shoulders"
+
+				= f.check_box :arms
+				= f.label :arms, "arms"
+				= f.text_area :arms_note, :class => "form-control", placeholder: "More Details about arms"
+			.col_one_fifth.testimonial
+				= f.check_box :legs
+				= f.label :legs, "legs"
+				= f.text_area :legs_note, :class => "form-control", placeholder: "More Details about legs"
+
+				= f.check_box :knees
+				= f.label :knees, "knees"
+				= f.text_area :knees_note, :class => "form-control", placeholder: "More Details about knees"
+
+				= f.check_box :other
+				= f.label :other, "other"
+				= f.text_area :other_note, :class => "form-control", placeholder: "More Details about other"
+
+
+
+
+		.row
+			.col_one_third.testimonial
+				= f.label :current_medications, "Current Medications"
+				= f.text_area :current_medications, :class => "form-control", :placeholder => "List current medications and what they treat"
 				%br
-				= text_area_tag :hhform, :neck_notes, :class => "form-control", placeholder: "More Details about neck"
-			 
-				= check_box_tag "hhform[low_back]"
-				= label :hhform, :low_back, "low_back"
-				%br				
-				= label :hhform, :low_back_note, "low_back_note"
-				= text_area_tag :hhform, :low_back_note, :class => "form-control"
-			 
-				= check_box_tag "hhform[mid_back]"
-				= label :hhform, :mid_back, "mid_back"
-				%br				
-				= label :hhform, :mid_back_note, "mid_back_note"
-				= text_area_tag :hhform, :mid_back_note, :class => "form-control"
-			.col_one_fifth 
-			 
-				= check_box_tag "hhform[upper_back]"
-				= label :hhform, :upper_back, "upper_back"
+				= f.label :surgery, "Surgeries"
+				= f.text_area :surgery, :class => "form-control", :placeholder => "Discribe any past surgeries and when they were preformed."
 				%br
-				= label :hhform, :upper_back_note, "upper_back_note"
-				= text_area_tag :hhform, :upper_back_note, :class => "form-control"
-			 
-				= check_box_tag "hhform[shoulders]"
-				= label :hhform, :shoulders, "shoulders"
+				= f.label :injuries, "Injuries"
+				= f.text_area :injuries, :class => "form-control", :placeholder => "Discribe any relevant injuries and when they happened"
+				%br
 
-				= label :hhform, :shoulders_note, "shoulders_note"
-				= text_area_tag :hhform, :shoulders_note, :class => "form-control"
-				
-				= check_box_tag "hhform[arms]"
-				= label :hhform, :arms, "arms"
-			.col_one_fifth
-				= label :hhform, :arms_note, "arms_note"
-				= text_area_tag :hhform, :arms_note, :class => "form-control"
-			 
-				= label :hhform, :legs, "legs"
-				= check_box_tag "hhform[legs]"
-
-				= label :hhform, :legs_note, "legs_note"
-				= text_area_tag :hhform, :legs_note, :class => "form-control"
-			 
-				= label :hhform, :knees, "knees"
-				= check_box_tag "hhform[knees]"
-
-				= label :hhform, :knees_note, "knees_note"
-				= text_area_tag :hhform, :knees_note, :class => "form-control"
-			 
-				= label :hhform, :other, "other"
-				= check_box_tag "hhform[other]"
-
-				= label :hhform, :other_note, "other_note"
-				= text_area_tag :hhform, :other_note, :class => "form-control"
-
-
-
-
-
-		= label :hhform, :current_medications, "current_medications"
-		= text_area_tag :hhform, :current_medications
-
-		= label :hhform, :surgery, "surgery"
-		= text_area_tag :hhform, :surgery
-
-		= label :hhform, :surgery_date, "surgery_date"
-		= select_date Date.today, hhform: :surgery_date
-
-		= label :hhform, :injuries, "injuries"
-		= text_area_tag :hhform, :injuries
-
-		= label :hhform, :injury_date, "injury_date"
-		= select_date Date.today, hhform: :injury_date
-
-		= label :hhform, :physician, "physician"
-		= text_field :hhform, :physician
-
-
-		= label :hhform, :physician_address, "physician_address"
-		= text_field :hhform, :physician_address
-
-
-		= label :hhform, :other_healthcare, "other_healthcare"
-		= check_box_tag "hhform[other_healthcare]"
-
-		= label :hhform, :other_healthcare_list, "other_healthcare_list"
-		= text_area_tag :hhform, :other_healthcare_list
-
-
-		= label :hhform, :other_medical_conditions, "other_medical_conditions"
-		= text_area_tag :hhform, :other_medical_conditions
-
-		= label :hhform, :special_notes, "special_notes"
-		= text_area_tag :hhform, :special_notes
-
+				= f.label :general_health_status, "general_health_status"
+				= f.text_field :general_health_status, :class => "form-control"
+			.col_one_third.testimonial
+				= f.label :other_healthcare_list, "Other Healthcare List"
+				= f.text_area :other_healthcare_list, :class => "form-control", :placeholder => "Discribe other healthcare services you are currently involved in."
+				%br
+				= f.label :other_medical_conditions, "Other Medical Conditions"
+				= f.text_area :other_medical_conditions, :class => "form-control", :placeholder => "List any other medical conditions you have."
+				%br
+				= f.label :special_notes, "Special Notes"
+				= f.text_area :special_notes, :class => "form-control", :placeholder => "Presence of internal pins, wires, artificial joints, special equipment..."
+				%br
+				= f.label :mental_condition_note, "Mental Conditions"
+				= f.text_field :mental_condition_note, :class => "form-control", :placeholder => "Discribe any mental conditions you might have."
 
 		= f.submit "Save"

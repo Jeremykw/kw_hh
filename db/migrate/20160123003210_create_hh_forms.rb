@@ -85,13 +85,10 @@ class CreateHhForms < ActiveRecord::Migration
 
     	t.text 	 :current_medications
     	t.text	 :surgery
-    	t.date 	 :surgery_date
     	t.text	 :injuries
-    	t.date 	 :injury_date
     	t.string :physician
     	t.string :physician_address
-    	t.boolean :other_healthcare
-    	t.text		:other_healthcare_list
+    	t.text	 :other_healthcare_list
 
     	t.text :other_medical_conditions
     	t.text :special_notes
