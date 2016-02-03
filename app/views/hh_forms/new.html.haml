@@ -118,8 +118,10 @@
 					= f.check_box :diabetes
 					= f.label :diabetes, "diabetes"
 					%br
-					= f.check_box :diabetes_onset
-					= f.label :diabetes_onset, "diabetes onset"
+					= f.label :diabetes_onset, "Diabetes onset"
+					%br
+					= f.date_select :diabetes_onset, :start_year => 1925, :html_options => {:class => "form-control"}					
+					%br
 					%br
 					= f.check_box :allergies
 					= f.label :allergies, "allergies"

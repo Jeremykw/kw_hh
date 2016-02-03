@@ -4,15 +4,41 @@
 		.col_two_third.testimonial
 			%h3 Health History Form
 	.row
-		.col_one_third.testimonial
-			%h4 Personal Informaton
-			- hh_form_fields(@hhform, "personal_info").each do |title, data|
-				%strong= title.humanize + ":"
-				= data
-				%br
-
-		.col_one_third.testimonial
-			- hh_form_fields(@hhform, "personal_info").each do |title, data|
-				%strong= title.humanize + ":"
-				= data
-				%br
+		.col_one_third
+			.testimonial
+				- if hh_form_fields(@hhform, :personal_info)
+					%h4 Personal Informaton
+					- hh_form_fields(@hhform, :personal_info).each do |title, data|
+						%strong= title.humanize + ":"
+						= data
+						%br
+			- if hh_form_fields(@hhform, :conditions)
+				.testimonial
+					%h4 Conditions
+					- hh_form_fields(@hhform, :conditions).each do |title, data|
+						- if title == "pregnant_due_date"
+							%strong Due Date: 
+							= data
+						- elsif title == "diabetes_onset"
+							%strong Onset of Diabetes: 
+							= time_tag(data)
+							%br
+						- elsif
+							%strong= title.humanize
+							%br
+		.col_one_third
+			- if hh_form_fields(@hhform, :complaint)
+				.testimonial
+					%h4 Complaints and Massage History
+					- hh_form_fields(@hhform, :complaint).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br
+			- if hh_form_fields(@hhform, :hns)
+				.testimonial
+					%h4 Pains and Discomforts
+					- hh_form_fields(@hhform, :hns).each do |title, data|
+						%strong= title.humanize
+						%br
+						= data
+						%br

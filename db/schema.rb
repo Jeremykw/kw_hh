@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20160123003210) do
 
   create_table "hh_forms", force: :cascade do |t|
+    #personal infor
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address_1"
@@ -26,10 +27,13 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.date     "date_of_birth"
     t.string   "occupation"
     t.string   "referral_source"
+    #complaints and massage history
     t.text     "primary_complaint"
     t.text     "secondary_complaint"
-    t.boolean  "previous_massage_therapy"
     t.text     "previous_massage_note"
+    t.text     "sports"
+    t.boolean  "smoke"
+    #conditions
     t.boolean  "chronic_cough"
     t.boolean  "shortness_of_breath"
     t.boolean  "bronchitis"
@@ -65,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "hiv"
     t.boolean  "pregnant"
     t.date     "pregnant_due_date"
+    #hns
     t.boolean  "neck"
     t.text     "neck_note"
     t.boolean  "low_back"
@@ -84,8 +89,6 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "other"
     t.text     "other_note"
     t.text     "general_health_status"
-    t.boolean  "smoke"
-    t.text     "sports"
     t.text     "current_medications"
     t.text     "surgery"
     t.text     "injuries"
