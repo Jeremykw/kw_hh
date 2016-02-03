@@ -1,0 +1,55 @@
+.container
+	.row
+		.col_two_third.testimonial
+			%h3 Health History
+	.row
+		.col_one_third
+			- if hh_form_fields(@hhform, :personal_info)
+				.testimonial
+					%h4 Personal Informaton
+					- hh_form_fields(@hhform, :personal_info).each do |title, data|
+						%strong= title.humanize + ":"
+						= data
+						%br
+			- if hh_form_fields(@hhform, :conditions)
+				.testimonial
+					%h4 Conditions
+					- hh_form_fields(@hhform, :conditions).each do |title, data|
+						- if title == "pregnant_due_date"
+							%strong Due Date: 
+							= data
+						- elsif title == "diabetes"
+							%strong Diabetes: 
+							= time_tag(@hhform[:diabetes_onset])
+							%br
+						- elsif
+							%strong= title.humanize
+							%br
+			- if hh_form_fields(@hhform, :injuries_mental_other_special)
+				.testimonial{:style => 'word-wrap: normal'}
+					- hh_form_fields(@hhform, :injuries_mental_other_special).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br
+
+		.col_one_third
+			- if hh_form_fields(@hhform, :complaint)
+				.testimonial
+					%h4 Complaints and Massage History
+					- hh_form_fields(@hhform, :complaint).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br
+			- if hh_form_fields(@hhform, :hns)
+				.testimonial{:style => 'word-wrap: normal'}
+					%h4 Pains and Discomforts
+					- hh_form_fields(@hhform, :hns).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br
+			- if hh_form_fields(@hhform, :medications_surgeries_general_other)
+				.testimonial{:style => 'word-wrap: normal'}
+					- hh_form_fields(@hhform, :medications_surgeries_general_other).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br

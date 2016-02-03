@@ -28,14 +28,12 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.string   "physician"
     t.string   "physician_address"
     t.date     "date_of_birth"
-
     t.text     "primary_complaint"
     t.text     "secondary_complaint"
     t.text     "sports"
     t.boolean  "previous_massage_therapy"
     t.text     "previous_massage_note"
     t.boolean  "smoke"
-
     t.boolean  "chronic_cough"
     t.boolean  "shortness_of_breath"
     t.boolean  "bronchitis"
@@ -69,7 +67,6 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "hiv"
     t.boolean  "pregnant"
     t.date     "pregnant_due_date"
-
     t.boolean  "neck"
     t.text     "neck_note"
     t.boolean  "low_back"
@@ -88,17 +85,17 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.text     "knees_note"
     t.boolean  "other"
     t.text     "other_note"
-
     t.text     "current_medications"
     t.text     "surgery"
     t.text     "general_health_status"
     t.text     "other_healthcare_list"
-
     t.text     "injuries"
     t.text     "mental_condition_note"
     t.text     "other_medical_conditions"
     t.text     "special_notes"
-    
+    t.boolean  "confirm"
+    t.string   "confirm_name"
+    t.string   "confirm_email"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

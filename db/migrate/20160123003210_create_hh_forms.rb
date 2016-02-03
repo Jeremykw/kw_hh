@@ -87,6 +87,10 @@ class CreateHhForms < ActiveRecord::Migration
     	t.text :other_medical_conditions
     	t.text :special_notes
 
+        t.boolean :confirm
+        t.string :confirm_name
+        t.string :confirm_email
+        
       t.timestamps null: false
     end
   end

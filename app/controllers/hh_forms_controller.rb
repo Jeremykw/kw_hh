@@ -5,6 +5,11 @@ class HhFormsController < ApplicationController
 	end
 
 	def create
+		@hhform = HhForm.new(hhform_params)
+		if !@hhform[:confirm]
+			render 'preview'
+			return
+		end
 		hhform = HhForm.create(hhform_params)
 		if hhform.invalid?
 			render hh_form_path(hhform_params)
@@ -15,6 +20,10 @@ class HhFormsController < ApplicationController
 
 	def show
 		@hhform = HhForm.find(id_params)
+	end
+
+	def preview
+		@hhform = HhForm.new(hhform_params)
 	end
 	###
 	# Strong Parameters

@@ -36,7 +36,7 @@ module HhFormsHelper
 			end
 			break if field == "date_of_birth"
 		end
-		form_section
+		return_form_unless_nil(form_section)
 	end
 	def complaint(hhform)
 		form_section = []
@@ -45,7 +45,7 @@ module HhFormsHelper
 		form_section <<  ["Previous Massage Note: ", hhform[:previous_massage_note]] if hhform[:previous_massage_note] != ""
 		form_section <<  ["Sports: ", hhform[:sports]] if hhform[:sports] != ""
 		form_section <<  ["Smokes Cigarettes", ""] if hhform[:smoke] == true
-		# form_section << 
+		return_form_unless_nil(form_section) 
 	end
 	def conditions(hhform)
 		count = 0
@@ -58,7 +58,7 @@ module HhFormsHelper
 			end
 		count += 1
 		end
-		form_section
+		return_form_unless_nil(form_section)
 	end
 	def hns(hhform)
 		form_section = []
@@ -71,23 +71,23 @@ module HhFormsHelper
 		form_section << ["Legs: ", hhform[:legs_note]] if hhform[:legs]
 		form_section << ["Knees: ", hhform[:knees_note]] if hhform[:knees]
 		form_section << ["Other: ", hhform[:other_note]] if hhform[:other]
-		return form_section
+		return_form_unless_nil(form_section)
 	end
 	def medications_surgeries_general_other(hhform)
 		form_section = []
-		form_section << ["Current Medications: ", hhform[:current_medications]] if hhform[:current_medications]
-		form_section << ["Surgery: ", hhform[:surgery]] if hhform[:surgery]
-		form_section << ["General Health Status: ", hhform[:general_health_status]] if hhform[:general_health_status]
-		form_section << ["Other Healthcare List: ", hhform[:other_healthcare_list]] if hhform[:other_healthcare_list]
-		return form_section
+		form_section << ["Current Medications: ", hhform[:current_medications]] if field_data_is_true(hhform[:current_medications])
+		form_section << ["Surgery: ", hhform[:surgery]] if field_data_is_true(hhform[:surgery])
+		form_section << ["General Health Status: ", hhform[:general_health_status]] if field_data_is_true(hhform[:general_health_status])
+		form_section << ["Other Healthcare List: ", hhform[:other_healthcare_list]] if field_data_is_true(hhform[:other_healthcare_list])
+		return_form_unless_nil(form_section)
 	end
 	def injuries_mental_other_special(hhform)
 		form_section = []
-		form_section << ["Injuries: ", hhform[:injuries]] if hhform[:injuries]
-		form_section << ["Mental Condition: ", hhform[:mental_condition_note]] if hhform[:mental_condition_note]
-		form_section << ["Other Medical Conditions: ", hhform[:other_medical_conditions]] if hhform[:other_medical_conditions]
-		form_section << ["Special Notes: ", hhform[:special_notes]] if hhform[:special_notes]
-		return form_section
+		form_section << ["Injuries: ", hhform[:injuries]] if field_data_is_true(hhform[:injuries])
+		form_section << ["Mental Condition: ", hhform[:mental_condition_note]] if field_data_is_true(hhform[:mental_condition_note])
+		form_section << ["Other Medical Conditions: ", hhform[:other_medical_conditions]] if field_data_is_true(hhform[:other_medical_conditions])
+		form_section << ["Special Notes: ", hhform[:special_notes]] if field_data_is_true(hhform[:special_notes])
+		return_form_unless_nil(form_section)
 	end
 
 
@@ -109,6 +109,8 @@ module HhFormsHelper
 	def field_data_is_true(data)
 		if data != false && data != "0" && data != "" && data != nil
 			true
+		else
+			false
 		end
 	end
 	def title_should_be_shown(title, pregnant)
@@ -119,18 +121,11 @@ module HhFormsHelper
 	end
 	### end field_had_data
 
-	def div_word_wrap(text, width)
-		count = 1
-		spot = 0
-		text.split("").each do |letter|
-			spot += 1
-			if count > width
-				text.insert(spot, "\b\r").strip
-				count = 0
-			else
-				count += 1
-			end
+	def return_form_unless_nil(form)
+		if form == []
+			return nil
+		else
+			return form
 		end
-		text
 	end
 end
