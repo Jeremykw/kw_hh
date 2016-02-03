@@ -5,20 +5,29 @@ class HhFormsController < ApplicationController
 	end
 
 	def create
-		if HhForm.create(hhform_params).invalid?
-			redirect_to hh_form_path(hhform_params)
+		hhform = HhForm.create(hhform_params)
+		if hhform.invalid?
+			render hh_form_path(hhform_params)
 		else
-			redirect_to conformaton_path
+			redirect_to hh_form_path(hhform)
 		end
 	end
 
+	def show
+		@hhform = HhForm.find(id_params)
+	end
 	###
 	# Strong Parameters
 	###
 
 	def hhform_params
-		if params[:hhform]
-			params.require(:hhform).permit!
+		if params[:hh_form]
+			params.require(:hh_form).permit!
+		end
+	end
+	def id_params
+		if params[:id]
+			params.require(:id)
 		end
 	end
 end

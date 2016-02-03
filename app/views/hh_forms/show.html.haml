@@ -1,0 +1,8 @@
+.container
+	.row
+		.col_one_third.testimonial
+			- @hhform.attributes.each do |title, data|
+				- if field_has_data(title, data, @hhform[:pregnant])
+					%strong= title.humanize + ":"
+					= data
+					%br

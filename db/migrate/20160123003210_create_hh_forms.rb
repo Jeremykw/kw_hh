@@ -9,14 +9,14 @@ class CreateHhForms < ActiveRecord::Migration
     	t.string :provance 
     	t.string :postal_code
     	t.string :email 
-    	t.integer :phone
+    	t.string :phone
     	t.date 	 :date_of_birth
     	t.string :occupation
     	t.string :referral_source
     	t.text	 :primary_complaint
     	t.text	 :secondary_complaint
     	t.boolean :previous_massage_therapy
-    	t.text		:previous_massage_note
+    	t.text	 :previous_massage_note
 
 
     	t.boolean :chronic_cough
