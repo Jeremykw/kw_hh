@@ -1,8 +1,23 @@
 .container
 	.row
+
+		.col_two_third.testimonial
+			%h3 Health History Form
+	.row
 		.col_one_third.testimonial
+			%h4 Personal Informaton
 			- @hhform.attributes.each do |title, data|
 				- if field_has_data(title, data, @hhform[:pregnant])
+					%strong= title.humanize + ":"
+					= data
+					%br
+				-if title == 'date_of_birth'
+					- break
+		.col_one_third.testimonial
+			- past_dob = false
+			- @hhform.attributes.each do |title, data|
+				- past_dob = true if title == 'occupation'
+				- if field_has_data(title, data, @hhform[:pregnant]) && past_dob == true
 					%strong= title.humanize + ":"
 					= data
 					%br

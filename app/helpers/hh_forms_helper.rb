@@ -1,5 +1,7 @@
 module HhFormsHelper
-	
+	###
+	# => Filters out feilds that should not be displayed in show
+	###
 	def field_has_data(title, field, pregnant)
 		if field_data_is_true(field) && title_should_be_shown(title, pregnant)
 			
@@ -11,24 +13,16 @@ module HhFormsHelper
 			true			
 		end
 	end
-
 	def field_data_is_true(data)
 		if data != false && data != "0" && data != "" && data != nil
 			true
 		end
 	end
-
 	def title_should_be_shown(title, pregnant)
 
 		if title != "id" && title != "created_at" && title != "updated_at"
 			true
 		end
 	end
-
-	# def is_pregnant(hhform)
-	# 	if hhform[:pregnant] == true
-	# 		true
-	# 	end
-	# end
-
+	### end field_had_data
 end
