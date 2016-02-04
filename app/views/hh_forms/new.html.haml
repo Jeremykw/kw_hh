@@ -273,4 +273,22 @@
 				%p.nobottommargin (presence of internal pins, wires, artificial joints, special equipment)
 				= f.text_area :special_notes, :class => "form-control"
 		
-		= f.submit "Save and Continue", class: "btn btn-danger"
+		.row
+			.col_two_third.testimonial
+				%h5 Informed Concent for Massage Tharapy:
+				%p I understand that the Registered Massage Therapist is providing massage therapy services within their scope of practice as defined by the College of Massage Therapists of Ontario (CMTO). 
+				%p I hereby consent for my therapist to treat me with massage therapy for the above noted purposes including such assessments, examinations and techniques, which may be recommended, by my therapist.
+				%p I acknowledge that the therapist is not a physician and does not diagnose illness or disease or any other physical or mental disorder. I clearly understand that massage therapy is not a substitute for a medical examination. It is recommended that I attend my personal physician for any ailments that I may be experiencing. I acknowledge that no assurance or guarantee has been provided to me as to the  esults of the treatment. I acknowledge that with any treatment there can be risks and those risks have been explained to me and I assume those risks.
+				%p I acknowledge and understand that the therapist must be fully aware of my existing medical conditions. I have completed my medical history form as provided by my therapist and disclosed to the therapist all of those medical conditions affecting me. The information I have provided is true and complete to the best of my knowledge.
+				%p I have read the above noted consent and I will question my therapist on the contents and my therapy. By signing this form, I confirm my consent to treatment and intend this consent to cover the treatment discussed with me and such additional treatment as proposed by my therapist from time to time, to deal with my physical condition and for which I have sought treatment. I understand that at any time I may withdraw my consent and treatment will be stopped. 
+				%p I understand the cancellation policy, and that I must provide at least 24 hours notice of cancellation of an appointment. I understand that I may be charged the full fee for a missed appointment if proper cancellation notification is not provided to the clinic. 
+				.col_two_fifth
+					= f.label :confirm_name, "Name"
+					= f.text_field :confirm_name, :class => "form-control"
+					= f.label :confirm_email, "email"
+					= f.text_field :confirm_email, :class => "form-control"
+					%br
+					= f.submit "Submit Form", class: "btn btn-danger"
+				.col_one_third
+					%br
+					%strong Please enter your name and email address that you used in the form to confirm you have read, understand and agree to the above statments.

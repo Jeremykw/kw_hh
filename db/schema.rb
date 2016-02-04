@@ -94,8 +94,6 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.text     "other_medical_conditions"
     t.text     "special_notes"
     t.boolean  "confirm"
-    t.string   "confirm_name"
-    t.string   "confirm_email"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
