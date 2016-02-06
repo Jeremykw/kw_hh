@@ -35,10 +35,9 @@
 						= data
 						%br
 			- if hh_form_fields(@hhform, :hns)
-				.testimonial
+				.testimonial{:style => 'word-wrap: normal'}
 					%h4 Pains and Discomforts
 					- hh_form_fields(@hhform, :hns).each do |title, data|
 						%strong= title.humanize
-						%br
 						= data
 						%br

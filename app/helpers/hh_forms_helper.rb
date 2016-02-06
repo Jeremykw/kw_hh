@@ -60,7 +60,16 @@ module HhFormsHelper
 	end
 	def hns(hhform)
 		form_section = []
-		form_section << ["Neck: ", div_word_wrap(hhform[:neck_note], 40)] if hhform[:neck]
+		form_section << ["Neck: ", hhform[:neck_note]] if hhform[:neck]
+		form_section << ["Low Back: ", hhform[:low_back_note]] if hhform[:low_back]
+		form_section << ["Mid Back: ", hhform[:mid_back_note]] if hhform[:mid_back]
+		form_section << ["Upper Back: ", hhform[:upper_back_note]] if hhform[:upper_back]
+		form_section << ["Shoulders: ", hhform[:shoulders_note]] if hhform[:shoulders]
+		form_section << ["Arms: ", hhform[:arms_note]] if hhform[:arms]
+		form_section << ["Legs: ", hhform[:legs_note]] if hhform[:legs]
+		form_section << ["Knees: ", hhform[:knees_note]] if hhform[:knees]
+		form_section << ["Other: ", hhform[:other_note]] if hhform[:other]
+		return form_section
 	end
 	###
 	# => set of methods that help determin if
@@ -91,16 +100,16 @@ module HhFormsHelper
 	### end field_had_data
 
 	def div_word_wrap(text, width)
-		count = 0
+		count = 1
 		spot = 0
 		text.split("").each do |letter|
-			if count == width
-				text.insert(spot, raw("\b\r"))
+			spot += 1
+			if count > width
+				text.insert(spot, "\b\r").strip
 				count = 0
 			else
 				count += 1
 			end
-			spot += 1
 		end
 		text
 	end

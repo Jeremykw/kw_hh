@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.text     "knees_note"
     t.boolean  "other"
     t.text     "other_note"
+    #inguries and general health
     t.text     "general_health_status"
     t.text     "current_medications"
     t.text     "surgery"
