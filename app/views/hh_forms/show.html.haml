@@ -19,13 +19,20 @@
 						- if title == "pregnant_due_date"
 							%strong Due Date: 
 							= data
-						- elsif title == "diabetes_onset"
-							%strong Onset of Diabetes: 
-							= time_tag(data)
+						- elsif title == "diabetes"
+							%strong Diabetes: 
+							= time_tag(@hhform[:diabetes_onset])
 							%br
 						- elsif
 							%strong= title.humanize
 							%br
+			- if hh_form_fields(@hhform, :injuries_mental_other_special)
+				.testimonial{:style => 'word-wrap: normal'}
+					- hh_form_fields(@hhform, :injuries_mental_other_special).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br
+
 		.col_one_third
 			- if hh_form_fields(@hhform, :complaint)
 				.testimonial
@@ -38,6 +45,12 @@
 				.testimonial{:style => 'word-wrap: normal'}
 					%h4 Pains and Discomforts
 					- hh_form_fields(@hhform, :hns).each do |title, data|
+						%strong= title.humanize
+						= data
+						%br
+			- if hh_form_fields(@hhform, :medications_surgeries_general_other)
+				.testimonial{:style => 'word-wrap: normal'}
+					- hh_form_fields(@hhform, :medications_surgeries_general_other).each do |title, data|
 						%strong= title.humanize
 						= data
 						%br

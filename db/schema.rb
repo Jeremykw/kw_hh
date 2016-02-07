@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(version: 20160123003210) do
 
   create_table "hh_forms", force: :cascade do |t|
-    #personal infor
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address_1"
@@ -24,16 +23,19 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.string   "postal_code"
     t.string   "email"
     t.string   "phone"
-    t.date     "date_of_birth"
     t.string   "occupation"
     t.string   "referral_source"
-    #complaints and massage history
+    t.string   "physician"
+    t.string   "physician_address"
+    t.date     "date_of_birth"
+
     t.text     "primary_complaint"
     t.text     "secondary_complaint"
-    t.text     "previous_massage_note"
     t.text     "sports"
+    t.boolean  "previous_massage_therapy"
+    t.text     "previous_massage_note"
     t.boolean  "smoke"
-    #conditions
+
     t.boolean  "chronic_cough"
     t.boolean  "shortness_of_breath"
     t.boolean  "bronchitis"
@@ -57,8 +59,6 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "arthritis"
     t.boolean  "digestive_conditions"
     t.boolean  "osteoporosis"
-    t.boolean  "mental_condition"
-    t.text     "mental_condition_note"
     t.boolean  "vision_problems"
     t.boolean  "vision_loss"
     t.boolean  "ear_problems"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "hiv"
     t.boolean  "pregnant"
     t.date     "pregnant_due_date"
-    #hns
+
     t.boolean  "neck"
     t.text     "neck_note"
     t.boolean  "low_back"
@@ -88,16 +88,17 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.text     "knees_note"
     t.boolean  "other"
     t.text     "other_note"
-    #inguries and general health
-    t.text     "general_health_status"
+
     t.text     "current_medications"
     t.text     "surgery"
-    t.text     "injuries"
-    t.string   "physician"
-    t.string   "physician_address"
+    t.text     "general_health_status"
     t.text     "other_healthcare_list"
+
+    t.text     "injuries"
+    t.text     "mental_condition_note"
     t.text     "other_medical_conditions"
     t.text     "special_notes"
+    
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

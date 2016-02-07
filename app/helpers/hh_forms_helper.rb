@@ -13,6 +13,10 @@ module HhFormsHelper
 			conditions(hhform)
 		when :hns
 			hns(hhform)
+		when :medications_surgeries_general_other
+			medications_surgeries_general_other(hhform)
+		when :injuries_mental_other_special
+			injuries_mental_other_special(hhform)
 		end
 	end
 	###
@@ -47,10 +51,8 @@ module HhFormsHelper
 		count = 0
 		form_section = []
 		hhform.attributes.each do |field, data|
-			if count > 15 && count < 55 && field_has_data(field, data, hhform[:pregnant])
-				if field == "diabetes_onset"
-					form_section << [field, data] if hhform[:diabetes] == true
-				else	
+			if count > 15 && count < 54 && field_has_data(field, data, hhform[:pregnant])
+				unless field == "diabetes_onset"	
 					form_section << [field, data]
 				end
 			end
@@ -71,6 +73,24 @@ module HhFormsHelper
 		form_section << ["Other: ", hhform[:other_note]] if hhform[:other]
 		return form_section
 	end
+	def medications_surgeries_general_other(hhform)
+		form_section = []
+		form_section << ["Current Medications: ", hhform[:current_medications]] if hhform[:current_medications]
+		form_section << ["Surgery: ", hhform[:surgery]] if hhform[:surgery]
+		form_section << ["General Health Status: ", hhform[:general_health_status]] if hhform[:general_health_status]
+		form_section << ["Other Healthcare List: ", hhform[:other_healthcare_list]] if hhform[:other_healthcare_list]
+		return form_section
+	end
+	def injuries_mental_other_special(hhform)
+		form_section = []
+		form_section << ["Injuries: ", hhform[:injuries]] if hhform[:injuries]
+		form_section << ["Mental Condition: ", hhform[:mental_condition_note]] if hhform[:mental_condition_note]
+		form_section << ["Other Medical Conditions: ", hhform[:other_medical_conditions]] if hhform[:other_medical_conditions]
+		form_section << ["Special Notes: ", hhform[:special_notes]] if hhform[:special_notes]
+		return form_section
+	end
+
+
 	###
 	# => set of methods that help determin if
 	# a field has data and should be displayed
