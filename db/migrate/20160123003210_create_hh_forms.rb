@@ -37,7 +37,7 @@ class CreateHhForms < ActiveRecord::Migration
         t.boolean :stroke_CVA
         t.boolean :pacemaker
         t.boolean :heart_disease
-        t.string  :skin_condition
+        t.text  :skin_condition
         t.text    :loss_of_sensation
         t.boolean :diabetes
         t.date    :diabetes_onset
