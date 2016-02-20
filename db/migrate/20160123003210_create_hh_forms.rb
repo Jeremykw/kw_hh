@@ -88,8 +88,8 @@ class CreateHhForms < ActiveRecord::Migration
     	t.text :special_notes
 
         t.boolean :confirm
-        # t.string :confirm_name
-        # t.string :confirm_email
+        t.string :confirm_name
+        t.string :confirm_email
         
       t.timestamps null: false
     end
