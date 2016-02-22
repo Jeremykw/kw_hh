@@ -1,10 +1,39 @@
 class HhForm < ActiveRecord::Base
-
-	validates :mandatory_fields, :presence => true, :length => { :maximum => 25 }
+	
 	validates_date :date_of_birth, :presence => true, :on_or_before => lambda { Date.current }
-	validates boolean_feilds, :allow_blank => true, :inclusion => {:in => [true, false]}
-	validates string_fields, :allow_blank => true, :length => { :maximum => 25 }
-	validates text_fields, :allow_blank => true, :length => { :maximum => 500 }
+    validates_date :diabetes_onset, :allow_blank => true, :on_or_before => lambda { Date.current }
+    validates_date :pregnant_due_date, :allow_blank => true, :on_or_before => lambda { Date.current }
+
+	validate :validate_mandatory_fields, :validate_boolean_fields, :validate_concent_name, :validate_concent_email, :validate_concent
+
+    def validate_concent_name
+    	name = self.first_name + " " + self.last_name
+    	if name != self.confirm_name
+    		errors.add(:confirm_name, "Be sure to give you concent by entering your First and last name exactly as you did above.")
+    	else 
+    		return true
+    	end
+    end
+
+    def validate_concent_email
+    	if self.email != self.confirm_email
+    		errors.add(:confirm_email, "Be sure to give your concent by entering your email exactly as you did above.")
+    	else 
+    		return true
+    	end
+    end
+
+    def validate_concent
+    	if validate_concent_email && validate_concent_name
+    		self.confirm = true
+    		return true
+    	end
+	end
+
+
+    # t.boolean  "confirm"
+    # t.string   "phone"
+
 	# validates :item_id, :presence => true, :numericality => { :only_integer => true, :greater_then_or_equal_to => 1, :less_than_or_equal_to => 212 }
 	# validates :description, :allow_blank => true, :length => { :maximum => 250 }
 	# validates :character_id, :presence => true, :numericality => { :only_integer => true }
@@ -12,16 +41,52 @@ class HhForm < ActiveRecord::Base
 	# stats = :str, :dex, :con, :int, :wis, :char
 	# validates_presence_of stats
 	# validates_numericality_of stats, only_integer: true, greater_than: 2, less_than: 21
-    t.boolean  "confirm"
+	
+	###
+	# => validates each member of group of fields 
+	###
+	def validate_mandatory_fields
+		mandatory_fields.each do |field|
+			if !field
+				error.add(field, "You forgot to enter your #{field.humanize}.")
+			elsif field.length > 25
+				error.add(field, "Your #{field.humanize} should be less than 25 characters.")		
+			end
+		end
+	end
 
-    t.string   "phone"
+	def validate_boolean_fields
+		boolean_fields.each do |field|
+			unless field == nil || field == true || field == false
+				errors.add(field, "Don't be an asshole!")
+			end
+		end
+	end
 
+	def validate_string_fields
+		string_fields.each do |field|
+			unless field == nil || field.length < 25
+				errors.add(field, "Your #{field.humanize} should be less than 25 characters.")
+			end
+		end
+	end
 
+	def validate_text_fields
+		text_fields.each do |field|
+			unless field == nil || field.length < 500
+				error.add(field, "Your #{field.humanize} should be less than 250 characters.")
+			end
+		end
+	end
+
+	###
+	# => Arrays of fields to be validated
+	###
 	def mandatory_fields
 		[ :first_name, :last_name, :email, :confirm_name, :confirm_email ]
 	end
 
-	def boolean_feilds
+	def boolean_fields
 		[:smoke,
 		:chronic_cough,
 		:shortness_of_breath,
@@ -72,7 +137,9 @@ class HhForm < ActiveRecord::Base
 		:occupation,
 		:referral_source,
 		:physician,
-		:physician_address]
+		:physician_address,
+	    :confirm_name,
+    	:confirm_email]
 	end
 
 	def text_fields
@@ -101,9 +168,5 @@ class HhForm < ActiveRecord::Base
 		:other_medical_conditions,
 		:special_notes]
 	end
-    
-    def date_fields
-    	[:diabetes_onset, :pregnant_due_date]
-    end
 
 end

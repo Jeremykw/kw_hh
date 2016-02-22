@@ -1,11 +1,16 @@
 .container
+	= @hhform.inspect
 	= form_for @hhform do |f|
 		.row
 			.col_two_third.testimonial
 				%h3 Health History Form
 				%strong For your information:
 				%p An accurate health history is important to ensure that it is safe for you to receive a massage treatment. If your health status changes in the future, please let me know. All information gathered for this treatment is confidential except as required or allowed by law or except to facilitate diagnosis (assessment) or treatment. You will be asked to provide written authorization for release of any information.
-
+				- if flash[:notice]
+					= @hhform[:smoke]
+					#notice.message= flash[:notice]
+				- if flash[:warning]
+					#warning.message= flash[:warning]
 
 		-# name
 		.row
