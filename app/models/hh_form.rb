@@ -1,15 +1,20 @@
 class HhForm < ActiveRecord::Base
-	
+	before_save :upcase_postal_code
 	validates_date :date_of_birth, :presence => true, :on_or_before => lambda { Date.current }
     validates_date :diabetes_onset, :allow_blank => true, :on_or_before => lambda { Date.current }
     validates_date :pregnant_due_date, :allow_blank => true, :on_or_before => lambda { Date.current }
     validates_format_of :email, :with => /.+@.+\..+/i
+	validates_format_of :postal_code, 
+		:with => /[a-z, A-Z][0-9][a-z, A-Z]\ ?[0-9][a-z, A-Z][0-9]/,
+		:message => "must be in the H0H 0H0 format"
 	validates_format_of :phone,
 		:with => /\(?[0-9]{3}\)?-[0-9]{3}-[0-9]{4}/,
 		:message => "numbers must be in xxx-xxx-xxxx format."
 	validate :validate_mandatory_fields, :validate_boolean_fields, :validate_string_fields, :validate_text_fields, :validate_concent
 	
-
+	###
+	# => concent validations
+	###
     def validate_concent_name
     	name = self.first_name + " " + self.last_name
     	if name.downcase != self.confirm_name.downcase
@@ -54,16 +59,27 @@ class HhForm < ActiveRecord::Base
 
 	def validate_string_fields
 		string_fields.each do |field|
-			errors.add(field, "should be less than 25 characters.") unless self[field].length < 25
+			unless self[field] == nil or self[field] == ""
+				errors.add(field, "should be less than 25 characters.") unless self[field].length < 25
+			end
 		end
 	end
 
 	def validate_text_fields
 		text_fields.each do |field|
-			error.add(field, "should be less than 250 characters.") unless field.length < 500
+			unless self[field] == nil or self[field] == ""
+				error.add(field, "should be less than 250 characters.") unless field.length < 500
+			end
 		end
 	end
 
+	def upcase_postal_code
+		postal_code = self.postal_code.upcase
+		if postal_code.length < 7
+			postal_code.insert(3, " ")
+		end
+		self.postal_code = postal_code
+	end
 	###
 	# => Arrays of fields to be validated
 	###
