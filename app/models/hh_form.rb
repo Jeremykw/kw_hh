@@ -3,21 +3,25 @@ class HhForm < ActiveRecord::Base
 	validates_date :date_of_birth, :presence => true, :on_or_before => lambda { Date.current }
     validates_date :diabetes_onset, :allow_blank => true, :on_or_before => lambda { Date.current }
     validates_date :pregnant_due_date, :allow_blank => true, :on_or_before => lambda { Date.current }
-
-	validate :validate_mandatory_fields, :validate_boolean_fields, :validate_concent_name, :validate_concent_email, :validate_concent
+    validates_format_of :email, :with => /.+@.+\..+/i
+	validates_format_of :phone,
+		:with => /\(?[0-9]{3}\)?-[0-9]{3}-[0-9]{4}/,
+		:message => "numbers must be in xxx-xxx-xxxx format."
+	validate :validate_mandatory_fields, :validate_boolean_fields, :validate_string_fields, :validate_text_fields, :validate_concent
+	
 
     def validate_concent_name
     	name = self.first_name + " " + self.last_name
-    	if name != self.confirm_name
-    		errors.add(:confirm_name, "Be sure to give you concent by entering your First and last name exactly as you did above.")
+    	if name.downcase != self.confirm_name.downcase
+    		errors.add(:confirm_name, "should match your first and last name separated by one space.")
     	else 
     		return true
     	end
     end
 
     def validate_concent_email
-    	if self.email != self.confirm_email
-    		errors.add(:confirm_email, "Be sure to give your concent by entering your email exactly as you did above.")
+    	if self.email.downcase != self.confirm_email.downcase
+    		errors.add(:confirm_email, "should match your email address.")
     	else 
     		return true
     	end
@@ -30,34 +34,19 @@ class HhForm < ActiveRecord::Base
     	end
 	end
 
-
-    # t.boolean  "confirm"
-    # t.string   "phone"
-
-	# validates :item_id, :presence => true, :numericality => { :only_integer => true, :greater_then_or_equal_to => 1, :less_than_or_equal_to => 212 }
-	# validates :description, :allow_blank => true, :length => { :maximum => 250 }
-	# validates :character_id, :presence => true, :numericality => { :only_integer => true }
-	# validates :quantity, :allow_blank => true, :numericality => { :only_integer => true, :greater_then_or_equal_to => 1, :less_than_or_equal_to => 100 }
-	# stats = :str, :dex, :con, :int, :wis, :char
-	# validates_presence_of stats
-	# validates_numericality_of stats, only_integer: true, greater_than: 2, less_than: 21
-	
 	###
 	# => validates each member of group of fields 
 	###
 	def validate_mandatory_fields
-		mandatory_fields.each do |field|
-			if !field
-				error.add(field, "You forgot to enter your #{field.humanize}.")
-			elsif field.length > 25
-				error.add(field, "Your #{field.humanize} should be less than 25 characters.")		
-			end
+		mandatory_fields.each do |field|			
+			errors.add(field, "can't be blank.") if self[field] == ""
+			errors.add(field, "should be less than 25 characters.") if self[field].length > 25			
 		end
 	end
 
 	def validate_boolean_fields
 		boolean_fields.each do |field|
-			unless field == nil || field == true || field == false
+			unless self[field] == nil || self[field] == true || self[field] == false ||self[field] == 0
 				errors.add(field, "Don't be an asshole!")
 			end
 		end
@@ -65,17 +54,13 @@ class HhForm < ActiveRecord::Base
 
 	def validate_string_fields
 		string_fields.each do |field|
-			unless field == nil || field.length < 25
-				errors.add(field, "Your #{field.humanize} should be less than 25 characters.")
-			end
+			errors.add(field, "should be less than 25 characters.") unless self[field].length < 25
 		end
 	end
 
 	def validate_text_fields
 		text_fields.each do |field|
-			unless field == nil || field.length < 500
-				error.add(field, "Your #{field.humanize} should be less than 250 characters.")
-			end
+			error.add(field, "should be less than 250 characters.") unless field.length < 500
 		end
 	end
 
@@ -83,7 +68,7 @@ class HhForm < ActiveRecord::Base
 	# => Arrays of fields to be validated
 	###
 	def mandatory_fields
-		[ :first_name, :last_name, :email, :confirm_name, :confirm_email ]
+		[ :first_name, :last_name, :email, :phone, :confirm_name, :confirm_email ]
 	end
 
 	def boolean_fields

@@ -3,16 +3,18 @@ class HhFormsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	
 	def new
-		@hhform ||= HhForm.new(hhform_params)
+		@hhform = HhForm.new(hhform_params)
+		logger.debug "#{@hhform.inspect}"
 	end
 
 	def create
 		@hhform = HhForm.new(hhform_params)
 		if @hhform.save
-			redirect_to hh_form_path(hhform)
+			redirect_to hh_form_path(@hhform)
 		else
-			flash[:notice] = @hhform.errors		
-			@hhform = reduce_params(@hhform)
+			flash[:notice] = @hhform.errors.full_messages	
+			@hhform = HhForm.new(hhform_params)
+			params[:hh_form] = []
 			render :new
 		end
 	end
@@ -46,6 +48,6 @@ class HhFormsController < ApplicationController
 				param < {field => data}
 			end
 		end
-		HhForm.new(param)
+		param
 	end
 end
