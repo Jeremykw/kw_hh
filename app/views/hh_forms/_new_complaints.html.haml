@@ -1,0 +1,22 @@
+.row
+	-# complaints and massage history
+	.col_one_third.testimonial
+		= f.label :primary_complaint, "Primary Complaint", class: 'nobottommargin'
+		%p.nobottommargin (Reason for seeking massage as a treatment)
+		= f.text_field :primary_complaint, :class => "form-control"
+
+		= f.label :secondary_complaint, "Secondary Complaint"
+		= f.text_field :secondary_complaint, :class => "form-control"
+
+		= f.label :sports, "Sports", class: 'nobottommargin'
+		%p.nobottommargin (What physical activities are you involved in?)			
+		= f.text_area :sports, :class => "form-control", :rows => "3"
+		%br
+	-# general health
+	.col_one_third.testimonial
+		= f.label :previous_massage_note, "Previous Massage Treatments", class: 'nobottommargin'
+		%p.nobottommargin (Discribe previous massage treatments, if any)
+		= f.text_area :previous_massage_note, :class => "form-control", :rows => "3"
+		%br
+		= f.check_box :smoke
+		= f.label :smoke, "Do you smoke?"

@@ -1,5 +1,5 @@
 class HhForm < ActiveRecord::Base
-	before_save :upcase_postal_code
+	before_save :format_mandatory_fields
 	validates_date :date_of_birth, :presence => true, :on_or_before => lambda { Date.current }
     validates_date :diabetes_onset, :allow_blank => true, :on_or_before => lambda { Date.current }
     validates_date :pregnant_due_date, :allow_blank => true, :on_or_before => lambda { Date.current }
@@ -73,12 +73,24 @@ class HhForm < ActiveRecord::Base
 		end
 	end
 
-	def upcase_postal_code
+	def format_mandatory_fields
+		format_postal_code
+		format_name
+	end
+
+	def format_postal_code
 		postal_code = self.postal_code.upcase
 		if postal_code.length < 7
 			postal_code.insert(3, " ")
 		end
 		self.postal_code = postal_code
+	end
+
+	def format_name
+		first = self.first_name.capitalize
+		last = self.last_name.capitalize
+		self.first_name = first
+		self.last_name = last
 	end
 	###
 	# => Arrays of fields to be validated

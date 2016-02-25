@@ -1,0 +1,46 @@
+.row{:id => 'contact'}
+	.col_one_third.testimonial
+		= f.label :first_name, "First Name"
+		= f.text_field :first_name, :class => "form-control"
+		%br
+		= f.label :last_name, "Last Name"
+		= f.text_field :last_name, :class => "form-control"
+		%br
+		= f.label :address_1, "Address 1"
+		= f.text_field :address_1, :class => "form-control"
+		%br
+		= f.label :address_2, "Address 2"
+		= f.text_field :address_2, :class => "form-control"
+		%br
+		= f.label :city, "City"
+		= f.text_field :city, :class => "form-control"
+		%br
+		= f.label :provance, "Provance"
+		= f.text_field :provance, :class => "form-control"
+		%br
+		= f.label :postal_code, "Postal Code"
+		= f.text_field :postal_code, :class => "form-control"
+	.col_one_third.testimonial
+		= f.label :email, "Email"
+		= f.text_field :email , :class => "form-control"
+		%br
+		= f.label :phone, "Phone"
+		= f.text_field :phone, :class => "form-control"
+		%br
+		= f.label :occupation, "Occupation"
+		= f.text_field :occupation, :class => "form-control"
+		%br
+		= f.label :referral_source, "Who Reffered You?"
+		= f.text_field :referral_source, :class => "form-control"
+		%br
+		= f.label :physician, "Physicians Name"
+		= text_field :hhform, :physician, :class => "form-control"
+		%br
+		= f.label :physician_address, "Physician Address"
+		= text_field :hhform, :physician_address, :class => "form-control", :class => "form-control"				
+		%br				
+		= f.label :date_of_birth, "Date of Birth"
+		%br
+		= f.date_select :date_of_birth, :start_year => 1925, :html_options => {:class => "form-control"}
+		%br
+		= link_to 'Continue', update_hh_form_path, remote: true

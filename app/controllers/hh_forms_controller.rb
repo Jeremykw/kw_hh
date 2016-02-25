@@ -1,10 +1,15 @@
 class HhFormsController < ApplicationController
 	
-	skip_before_action :verify_authenticity_token
+	# skip_before_action :verify_authenticity_token
 	
 	def new
-		@hhform = HhForm.new(hhform_params)
-		logger.debug "#{@hhform.inspect}"
+		@hhform = HhForm.new
+
+		# respond_to :html, :js
+	end
+
+	def update
+		
 	end
 
 	def create
