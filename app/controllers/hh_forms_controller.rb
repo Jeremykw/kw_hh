@@ -5,11 +5,14 @@ class HhFormsController < ApplicationController
 	def new
 		@hhform = HhForm.new
 
-		# respond_to :html, :js
+		respond_to do |format|
+			format.html
+			format.js {render 'new.js.haml'}
+		end
 	end
 
 	def update
-		
+
 	end
 
 	def create
