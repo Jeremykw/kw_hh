@@ -1,118 +1,119 @@
-.row
-	.col_two_third.testimonial
-		%h4.nobottommargin Please indicate conditions you are or have experienced:
-.row
-	.col_one_third
-		.testimonial
-			%h4 Respiratory
-			= f.check_box :chronic_cough
-			= f.label :chronic_cough, "chronic cough"
-			%br
-			= f.check_box :shortness_of_breath
-			= f.label :shortness_of_breath, "shortness of breath"
-			%br
-			= f.check_box :bronchitis
-			= f.label :bronchitis, "bronchitis"
-			%br
-			= f.check_box :asthma
-			= f.label :asthma, "asthma"
-			%br
-			= f.check_box :emphysema
-			= f.label :emphysema, "emphysema"
-		.testimonial
-			%h4 Infections
-			= f.check_box :hepatitis
-			= f.label :hepatitis, "hepatitis"
-			%br
-			= f.check_box :infectious_skin_condition
-			= f.label :infectious_skin_condition, "infectious skin condition"
-			%br
-			= f.check_box :tb
-			= f.label :tb, "tb"
-			%br
-			= f.check_box :hiv
-			= f.label :hiv, "hiv"
-		.testimonial	
-			%h4 Other Conditions
-			= f.check_box :loss_of_sensation
-			= f.label :loss_of_sensation, "loss of sensation"
-			%br
-			= f.check_box :diabetes
-			= f.label :diabetes, "diabetes"
-			%br
-			= f.label :diabetes_onset, "Diabetes onset"
-			%br
-			= f.date_select :diabetes_onset, :start_year => 1925, :html_options => {:class => "form-control"}					
-			%br
-			%br
-			= f.check_box :allergies
-			= f.label :allergies, "allergies"
-			%br
-			= f.check_box :epilepsy
-			= f.label :epilepsy, "epilepsy"
-			%br
-			= f.check_box :cancer
-			= f.label :cancer, "cancer"
-			%br
-			= f.check_box :arthritis
-			= f.label :arthritis, "arthritis"
-			%br
-			= f.check_box :digestive_conditions
-			= f.label :digestive_conditions, "digestive conditions"
-			%br
-			= f.check_box :osteoporosis
-			= f.label :osteoporosis, "osteoporosis"
-			%br
-	.col_one_third.col_last
-		.testimonial
-			%h4 Cardiovascular
-			= f.check_box :high_bp
-			= f.label :high_bp, "high blood pressure"
-			%br
-			= f.check_box :low_bp
-			= f.label :low_bp, "low blood pressure"
-			%br
-			= f.check_box :cchf
-			= f.label :cchf, "cchf"
-			%br
-			= f.check_box :heat_attack
-			= f.label :heat_attack, "heat attack"
-			%br
-			= f.check_box :phlebitis
-			= f.label :phlebitis, "phlebitis"
-			%br
-			= f.check_box :stroke_CVA
-			= f.label :stroke_CVA, "stroke CVA"
-			%br
-			= f.check_box :pacemaker
-			= f.label :pacemaker, "pacemaker"
-			%br
-			= f.check_box :heart_disease
-			= f.label :heart_disease, "heart disease"
-			%br
-		.testimonial
-			%h4 Head and Neck
-			= f.check_box :vision_problems
-			= f.label :vision_problems, "vision problems"
-			%br
-			= f.check_box :vision_loss
-			= f.label :vision_loss, "vision loss"
-			%br
-			= f.check_box :ear_problems
-			= f.label :ear_problems, "ear problems"
-			%br
-			= f.check_box :hearing_loss
-			= f.label :hearing_loss, "hearing loss"
-			%br
-		.testimonial
-			%h4.nobottommargin Skin
-			= f.check_box :skin_condition
-			= f.label :skin_condition, "skin condition"					
-		.testimonial
-			%h4 Women
-			= f.check_box :pregnant
-			= f.label :pregnant, "pregnant"
-			%br
-			= f.label :pregnant_due_date, "Due Date"
-			%br
-			= f.date_select :pregnant_due_date, :start_year => 2016, :class => "form-control"
+#checkboxes
+	.row
+		.col_two_third.testimonial
+			%h4.nobottommargin Please indicate conditions you are or have experienced:
+	.row
+		.col_one_third
+			.testimonial
+				%h4 Respiratory
+				= f.check_box :chronic_cough
+				= f.label :chronic_cough, "chronic cough"
+				%br
+				= f.check_box :shortness_of_breath
+				= f.label :shortness_of_breath, "shortness of breath"
+				%br
+				= f.check_box :bronchitis
+				= f.label :bronchitis, "bronchitis"
+				%br
+				= f.check_box :asthma
+				= f.label :asthma, "asthma"
+				%br
+				= f.check_box :emphysema
+				= f.label :emphysema, "emphysema"
+			.testimonial
+				%h4 Infections
+				= f.check_box :hepatitis
+				= f.label :hepatitis, "hepatitis"
+				%br
+				= f.check_box :infectious_skin_condition
+				= f.label :infectious_skin_condition, "infectious skin condition"
+				%br
+				= f.check_box :tb
+				= f.label :tb, "tb"
+				%br
+				= f.check_box :hiv
+				= f.label :hiv, "hiv"
+			.testimonial	
+				%h4 Other Conditions
+				= f.check_box :loss_of_sensation
+				= f.label :loss_of_sensation, "loss of sensation"
+				%br
+				= f.check_box :diabetes
+				= f.label :diabetes, "diabetes"
+				%br
+				= f.label :diabetes_onset, "Diabetes onset"
+				%br
+				= f.date_select :diabetes_onset, :start_year => 1925, :html_options => {:class => "form-control"}					
+				%br
+				%br
+				= f.check_box :allergies
+				= f.label :allergies, "allergies"
+				%br
+				= f.check_box :epilepsy
+				= f.label :epilepsy, "epilepsy"
+				%br
+				= f.check_box :cancer
+				= f.label :cancer, "cancer"
+				%br
+				= f.check_box :arthritis
+				= f.label :arthritis, "arthritis"
+				%br
+				= f.check_box :digestive_conditions
+				= f.label :digestive_conditions, "digestive conditions"
+				%br
+				= f.check_box :osteoporosis
+				= f.label :osteoporosis, "osteoporosis"
+				%br
+		.col_one_third.col_last
+			.testimonial
+				%h4 Cardiovascular
+				= f.check_box :high_bp
+				= f.label :high_bp, "high blood pressure"
+				%br
+				= f.check_box :low_bp
+				= f.label :low_bp, "low blood pressure"
+				%br
+				= f.check_box :cchf
+				= f.label :cchf, "cchf"
+				%br
+				= f.check_box :heat_attack
+				= f.label :heat_attack, "heat attack"
+				%br
+				= f.check_box :phlebitis
+				= f.label :phlebitis, "phlebitis"
+				%br
+				= f.check_box :stroke_CVA
+				= f.label :stroke_CVA, "stroke CVA"
+				%br
+				= f.check_box :pacemaker
+				= f.label :pacemaker, "pacemaker"
+				%br
+				= f.check_box :heart_disease
+				= f.label :heart_disease, "heart disease"
+				%br
+			.testimonial
+				%h4 Head and Neck
+				= f.check_box :vision_problems
+				= f.label :vision_problems, "vision problems"
+				%br
+				= f.check_box :vision_loss
+				= f.label :vision_loss, "vision loss"
+				%br
+				= f.check_box :ear_problems
+				= f.label :ear_problems, "ear problems"
+				%br
+				= f.check_box :hearing_loss
+				= f.label :hearing_loss, "hearing loss"
+				%br
+			.testimonial
+				%h4.nobottommargin Skin
+				= f.check_box :skin_condition
+				= f.label :skin_condition, "skin condition"					
+			.testimonial
+				%h4 Women
+				= f.check_box :pregnant
+				= f.label :pregnant, "pregnant"
+				%br
+				= f.label :pregnant_due_date, "Due Date"
+				%br
+				= f.date_select :pregnant_due_date, :start_year => 2016, :class => "form-control"

@@ -1,34 +1,35 @@
-.row
-	.col_two_third.testimonial
-		%h4 Please fill out any other relevant health information you can:
-.row
-	.col_one_third.testimonial
-		= f.label :current_medications, "Current Medications", class: 'nobottommargin'
-		%p.nobottommargin (List any medications you are currently taking and what they are used for)
-		= f.text_area :current_medications, :class => "form-control"
-		%br
-		= f.label :surgery, "Surgeries", class: 'nobottommargin'
-		%p.nobottommargin (Discribe any relevant surgies including dates)
-		= f.text_area :surgery, :class => "form-control"
-		%br
-		= f.label :general_health_status, "General Health Status"
-		= f.text_field :general_health_status, :class => "form-control"
-		%br
-		= f.label :other_healthcare_list, "Other Healthcare", class: 'nobottommargin'
-		%p.nobottommargin (Discribe healthcare you are curently involved in or have tried in the past, e.g. Chiropratic, Physiotherapy, Accupuncture...)
-		= f.text_area :other_healthcare_list, :class => "form-control"
-	.col_one_third.testimonial
-		= f.label :injuries, "Injuries", class: 'nobottommargin'
-		%p.nobottommargin (Discribe any relevant injuries including dates)
-		= f.text_area :injuries, :class => "form-control"
-		%br
-		= f.label :mental_condition_note, "Mental Conditions"
-		= f.text_field :mental_condition_note, :class => "form-control"
-		%br
-		= f.label :other_medical_conditions, "Other Medical Conditions", class: 'nobottommargin'
-		%p.nobottommargin (e.g. digestive conditions, gynaecological conditions, hemophilia, etc.)
-		= f.text_area :other_medical_conditions, :class => "form-control"
-		%br
-		= f.label :special_notes, "Special Notes", class: 'nobottommargin'
-		%p.nobottommargin (presence of internal pins, wires, artificial joints, special equipment)
-		= f.text_area :special_notes, :class => "form-control"
+#other
+	.row
+		.col_two_third.testimonial
+			%h4 Please fill out any other relevant health information you can:
+	.row
+		.col_one_third.testimonial
+			= f.label :current_medications, "Current Medications", class: 'nobottommargin'
+			%p.nobottommargin (List any medications you are currently taking and what they are used for)
+			= f.text_area :current_medications, :class => "form-control"
+			%br
+			= f.label :surgery, "Surgeries", class: 'nobottommargin'
+			%p.nobottommargin (Discribe any relevant surgies including dates)
+			= f.text_area :surgery, :class => "form-control"
+			%br
+			= f.label :general_health_status, "General Health Status"
+			= f.text_field :general_health_status, :class => "form-control"
+			%br
+			= f.label :other_healthcare_list, "Other Healthcare", class: 'nobottommargin'
+			%p.nobottommargin (Discribe healthcare you are curently involved in or have tried in the past, e.g. Chiropratic, Physiotherapy, Accupuncture...)
+			= f.text_area :other_healthcare_list, :class => "form-control"
+		.col_one_third.testimonial
+			= f.label :injuries, "Injuries", class: 'nobottommargin'
+			%p.nobottommargin (Discribe any relevant injuries including dates)
+			= f.text_area :injuries, :class => "form-control"
+			%br
+			= f.label :mental_condition_note, "Mental Conditions"
+			= f.text_field :mental_condition_note, :class => "form-control"
+			%br
+			= f.label :other_medical_conditions, "Other Medical Conditions", class: 'nobottommargin'
+			%p.nobottommargin (e.g. digestive conditions, gynaecological conditions, hemophilia, etc.)
+			= f.text_area :other_medical_conditions, :class => "form-control"
+			%br
+			= f.label :special_notes, "Special Notes", class: 'nobottommargin'
+			%p.nobottommargin (presence of internal pins, wires, artificial joints, special equipment)
+			= f.text_area :special_notes, :class => "form-control"
