@@ -2,57 +2,64 @@ window.onload = init;
 function init(){
 	var isNewPage = document.getElementById("contact");
 	if (isNewPage) {
-		hhForm();
+		hhForm(null, null, getFullForm());
+
+	};
+	function getFullForm(){
+		complaints: document.getElementById("concent");
+		complaints: document.getElementById("complaints");
+		checkboxes: document.getElementById("checkboxes");
+		pains: document.getElementById("pains");
+		other: document.getElementById("other");
+		concent: document.getElementById("concent");
 	};
 };
 
-function hhForm(currentState, action){
-	var state = getState(currentState);
-	visabilityFilter(state);
+function hhForm(currentState, action, fullForm){
+	var state = getState(currentState, fullForm);
+	visabilityFilter(state, null, fullForm);
+	return state;
 	// debugger
-	function getState(currentState){
-		var newState = new Object
-		if(typeof currentState === 'undefined'){
+	function getState(currentState, form){
+		var newState = new Object;
+		newState.fullForm = form;
+		if(currentState === null){
 				newState.page = 0;
-				newState.formInfo =  [];
-				addButton(newState);
+				newState.formData =  [];
 			}else{
 				newState.page = currentState.page + 1;
-				newState.formInfo = [];
-				addButton(newState);
+				newState.formData = [];
 		};
 		return newState;
 
 	};
 
-	function visabilityFilter(currentState){
+	function visabilityFilter(currentState, action, fullForm){
 		if(currentState.page === 0){
 			document.getElementById("complaints").remove();
 			document.getElementById("checkboxes").remove();
 			document.getElementById("concent").remove();
 			document.getElementById("pains").remove();
 			document.getElementById("other").remove();
+			addButton(currentState, action, fullForm);
 
 		}else if(currentState.page === 1){
 			document.getElementById("contact").remove();
-			document.getElementById("checkboxes").remove();
-			document.getElementById("concent").remove();
-			document.getElementById("pains").remove();
-			document.getElementById("other").remove();
+			document.getElementById("complaints").add();
 		};
 
 	};
 
-	function addButton(state){
-		
-	    var element = document.createElement("button");
+	function addButton(state, action, fullForm){
+		var button = document.getElementById("put_contact_button_here")
+	    var element = document.createElement("input");
 	    element.type = "button";
-	    element.class = "btn btn-danger";
-	    element.value = "Save and Contunue";
-	    element.name = "button";
-	    element.onclick = "hhForm(state, 1)";
-	    debugger
-	    document.getElementById("contact").appendChild(element);
+	    element.setAttribute( 'value', 'Save and Contunue');
+	    element.setAttribute('class', "btn btn-danger topmargin-sm");
+	    element.setAttribute('onclick', 'hhForm(state, null, fullForm)');
+	    // debugger
+
+	    button.appendChild(element)
 
 	};
 };
