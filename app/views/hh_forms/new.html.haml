@@ -1,4 +1,4 @@
-.container
+.container{:id => 'hh_form'}
 	= form_for @hhform, :remote => true do |f|
 		=render partial: 'new_title', locals: {f: f}
 		=render partial: 'new_contact', locals: {f: f}
@@ -7,3 +7,4 @@
 		=render partial: 'new_pains', locals: {f: f}
 		=render partial: 'new_other', locals: {f: f}
 		=render partial: 'new_concent', locals: {f: f}
+}
