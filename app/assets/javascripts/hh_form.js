@@ -1,119 +1,124 @@
-window.onload = (function(){
+window.onload = init;
+function init(){
+	var isNewHhForm = document.getElementById("hh_form");
+	if (isNewHhForm) {
+		this.fullForm = getFullForm();
+		this.formState = hhForm.init();
+		this.formAction = 'init';
+		hhDispatch(this.formState, this.formAction);
+
+	};
+
+};
+
+function hhDispatch(formState, formAction){
+	var newState;
+	if (formAction === 'init'){
+		newState = formState;
 	
-	var HhForm = {
+	}else{
 
-		init: function(){
-			this.fullForm = this.getFullForm;
-			this.state = {
-				page: 0,
-				formDate: []
-			};
-			this.nextAction = 'init';
-			this.visabilityFilter(this.state, this.fullForm)
-		},
+		newState = hhForm.getState(formState, formAction);
+	debugger
 
-		visabilityFilter: function(currentState, fullForm){
-			if(currentState.page === 0){
-				
-				document.getElementById("complaints").remove();
-				document.getElementById("checkboxes").remove();
-				document.getElementById("concent").remove();
-				document.getElementById("pains").remove();
-				document.getElementById("other").remove();
-				this.addButton(currentState, 'next', fullForm);
-
-			}else if(currentState.page === 1){
-				document.getElementById("contact").remove();
-				document.getElementById("complaints").add();
-			};
-
-		},
-
-		getFullForm: {
-				concent: document.getElementById("concent"),
-				complaints: document.getElementById("complaints"),
-				checkboxes: document.getElementById("checkboxes"),
-				pains: 		document.getElementById("pains"),
-				other: 		document.getElementById("other"),
-				concent: 	document.getElementById("concent")
-		},
-
-
-		addButton: function(state, action, fullForm){
-			var button = document.getElementById("put_contact_button_here")
-		    var element = document.createElement("input");
-		    element.type = "button";
-		    element.setAttribute( 'value', 'Save and Contunue');
-		    element.setAttribute('class', "btn btn-danger topmargin-sm");
-		    element.setAttribute('onclick', '(this.state, action, this.fullForm)');
-		    // debugger
-
-		    button.appendChild(element);
-
-		},
-
-
+		// this.state = this.newState;
 	}
-	HhForm.init();
-});
+	
+	return hhForm.visabilityFilter(newState, fullForm);
+		
 
-
-// function initHhForm(){
-// 	var isNewHhForm = document.getElementById("hh_form");
-// 	if (isNewHhForm) {
-// 		var fullForm = getFullForm();
-// 		var state = initState();
-// 		var action = 'init';
-// 		dispatch(state, action, fullForm);
-
-// 	};
+};
 
 
 
 
+var hhForm = {
 
-// 		function dispatch (state, action, fullForm){
-// 			var newState;
-// 			if (action === 'init'){
-// 				newState = state
-// 			}else{
-// 				newState = getState(state, action)
-// 			}
-// 			return visabilityFilter(newState, fullForm)
-// 			// switch(state){
-// 			// 	case 'init':
-// 			// 		visabilityFilter.init()
-// 			// 		break
-// 			// 	case 'forware':
-// 			// 		//
-// 			// 		break
-// 			// 	case 'back':
-// 			// 		//
-// 			// 		break
-// 			// 	default:
-// 		};
+	init: function(){
+		var initialState = {
+			page: 0,
+			formData: []
+		};
+		return initialState;
+
+	},
+
+	getState: function(formState, formAction){
+
+		if( formAction === 'next' ){
+			formState = {
+				page: formState.page + 1,
+				formData: []
+			}
+
+		}else if( formAction === 'back' ){
+			formState = {
+				page: formState.page - 1,
+				formData: []
+
+			}
+			
+		};
+
+		return formState;
+
+	},
+
+	visabilityFilter: function(formState, fullForm){
+		if(formState.page === 0){
+			document.getElementById("complaints").remove();
+			document.getElementById("checkboxes").remove();
+			document.getElementById("concent").remove();
+			document.getElementById("pains").remove();
+			document.getElementById("other").remove();
+			this.addNextButton(formState, fullForm);
+
+		}else if(formState.page === 1){
+			document.getElementById("contact").remove();
+			var complaintsForm = fullForm.complaints;
+			var form = document.getElementById('hh_form');
+			form.appendChild(complaintsForm);
+			this.addNextButton(formState, fullForm);	
+			this.addBackButton(formState, fullForm);
+		};
+
+	},
+
+	addNextButton: function(formState, fullForm){
+
+		var button = document.getElementById("put_contact_button_here")
+	    var element = document.createElement("input");
+	    element.type = "button";
+	    element.setAttribute( 'value', 'Save and Contunue');
+	    element.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
+	    element.setAttribute('onclick', 'hhDispatch(formState, "next")');
+	    
+	    button.appendChild(element);
+	},
+
+	addBackButton: function(formState, fullForm){
+
+		var button = document.getElementById("put_contact_button_here")
+	    var element = document.createElement("input");
+	    element.type = "button";
+	    element.setAttribute( 'value', 'Back');
+	    element.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
+	    element.setAttribute('onclick', 'hhDispatch(formState, "Back")');
+	    
+	    button.appendChild(element);
+	},
+
+};
 
 
-// 		function getState(currentState, action){
-// 			var newState = new Object;
-// 			if(currentState.page === []){
-// 					// removed init state
-// 				}else{
-// 					newState.page = currentState.page + 1;
-// 					newState.formData = [];
-// 			};
-// 			return newState;
-
-// 		};
-
-
-
-// 		function initState(){
-// 			var initialState = {
-// 				page: 0,
-// 				formData: []
-// 			};
-// 			return initialState;
-// 		};
-
-// };
+function getFullForm() {
+	var f = {
+	concent: document.getElementById("concent"),
+	complaints: document.getElementById("complaints"),
+	checkboxes: document.getElementById("checkboxes"),
+	pains: 		document.getElementById("pains"),
+	other: 		document.getElementById("other"),
+	concent: 	document.getElementById("concent")
+	};
+	return f;	
+};
