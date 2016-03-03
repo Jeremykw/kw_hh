@@ -32,23 +32,40 @@ function getFullForm(){
 	return initFullForm;
 };
 
-function hhForm(oldForm, action) {
+function hhForm(lastForm, action) {
 	this.page = setPageNumber(action);
-	this.formDate = [];
+	this.formData = (function(){
+		if (lastForm){
+			return getFormDate(lastForm);
+		}else{
+			return [];
+		}
+	})()
 
+
+	function getFormDate(lastForm){
+		var formData = [];
+		var lastFormDate = lastForm.formdata;
+		var newFormData = (function(){
+			var formPartial = document.getElementById("form_partials");
+			var formfields = document.getElementById('hh_form_first_name');
+			debugger
+		})()
+		return [];
+	}
 	function setPageNumber(action){
 		var newPageNumber;
 		if( action === "init" ){
 			newPageNumber = 0;
 
 		}else if( action === "next" ){
-			newPageNumber = oldForm.page + 1;
+			newPageNumber = lastForm.page + 1;
 		}else if( action == "back"){
-			newPageNumber = oldForm.page -1;
-		};
+			newPageNumber = lastForm.page -1;
+		}
 		return newPageNumber;
-	};
-};
+	}
+}
 function hhVisabilityFilter(hhForm, fullForm){
 
 	(function(){
@@ -62,7 +79,7 @@ function hhVisabilityFilter(hhForm, fullForm){
 			var form = document.getElementById('form_partials');
 			form.appendChild(formSection);
 		    var buttonPlaceHolder = document.getElementById("put_button_here")
-		    if ( buttonPlaceHolder.hasChildNodes ){		
+		    if ( buttonPlaceHolder.children.length < 1 ){		
 				if ( hhForm.page === 0 ){
 					addButton("next");				
 				}else if ( hhForm.page === 5 ){
@@ -70,11 +87,11 @@ function hhVisabilityFilter(hhForm, fullForm){
 				}else {
 					addButton("back");
 					addButton("next");				
-				};
-			};
-		})();
-
-	})();
+				}
+			}
+		})()
+		document.getElementById("hh_form").scrollIntoView();
+	})()
 
 	function addButton(nextAction){
 
