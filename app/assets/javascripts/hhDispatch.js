@@ -38,21 +38,31 @@ function hhForm(lastForm, action) {
 		if (lastForm){
 			return getFormDate(lastForm);
 		}else{
-			return [];
+			return {};
 		}
 	})()
 
 
 	function getFormDate(lastForm){
-		var formData = [];
+		var formData = {};
 		var lastFormDate = lastForm.formdata;
 		var newFormData = (function(){
+			var newDataHash = {};
 			var formPartial = document.getElementById("form_partials");
-			var formfields = document.getElementById('hh_form_first_name');
-			debugger
+			var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
+			for (i = 0; i < formFields.length; i ++){
+				newDataHash[formFields[i].id] = formFields[i].value; 
+			}
+			return newDataHash;
 		})()
-		return [];
+		function(lastFormDate, newFormData){
+		    for (var attrname in lastFormDate)  { formData[attrname] = lastFormDate[ attrname]; }
+		    for (var attrname in newFormData) { formData[attrname] = newFormData[attrname]; }
+		}()
+		debugger
+		return formData;
 	}
+
 	function setPageNumber(action){
 		var newPageNumber;
 		if( action === "init" ){
