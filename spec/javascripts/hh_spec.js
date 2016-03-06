@@ -25,12 +25,17 @@ describe("HealthHistoryForm", function() {
       action: "next", 
       newFormData: { hh_form_primary_complaint: "itchy ass", hh_form_secondary_complaint: "" }
     }
-    var currentForm = new hhForm({page: 1, formData:  {} }, { action: "next",  newFormData: {hh_form_first_name: "jeremy", hh_form_last_name: "Bissonnette" } });
+    var currentForm = {page: 1, formData: {hh_form_first_name: "jeremy", hh_form_last_name: "Bissonnette" } };
     var newForm = new hhForm(currentForm, action);
 
     expect(newForm.formData).toEqual({ hh_form_first_name: "jeremy", hh_form_last_name: "Bissonnette", hh_form_primary_complaint: "itchy ass", hh_form_secondary_complaint: "" });
   });
   
+});
+
+
+
+
   // it("validates based on mod 10", function() {
   //   expect(CreditCard.validNumber("4111 1111-11111111")).toBeTruthy();
   //   expect(CreditCard.validNumber("4111111111111121")).toBeFalsy();
@@ -46,4 +51,3 @@ describe("HealthHistoryForm", function() {
   //   $("#card_number").blur();
   //   expect($("#card_number_error")).toHaveText("");
   // });
-});

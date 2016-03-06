@@ -1,16 +1,10 @@
 function hhForm(lastForm, action) {
 	this.page = setPageNumber(action);
-	this.formData = getFormData(lastForm, action);
+	this.formData = getFormData(lastForm, action) || {};
 
 
-	function getFormData(lastForm, action){
-		var lastFormData = (function(){
-			if (!lastForm.formdata){
-				return {};
-			}else{
-				return lastForm.formData;
-			}
-		})()
+	function getFormData(oldForm, action){
+		var lastFormData = oldForm.formData
 		
 		var newFormData = action.newFormData
 		var newForm =(function(){
@@ -24,7 +18,7 @@ function hhForm(lastForm, action) {
 			return formHash;
 		})()
 
-		return newForm;
+		return lastFormData;
 	}
 
 	function setPageNumber(action){
