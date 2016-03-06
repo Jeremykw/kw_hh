@@ -23,7 +23,7 @@ function hhForm(lastForm, action) {
 			}
 			return formHash;
 		})()
-		debugger
+
 		return newForm;
 	}
 
