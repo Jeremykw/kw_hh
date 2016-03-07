@@ -1,6 +1,19 @@
 function hhForm(lastForm, action) {
 	this.page = setPageNumber(action);
 	this.formData = getFormData(lastForm, action) || {};
+	this.isValid = validation(this.page, this.formData);
+
+
+	function validation(page, form){
+		switch(page) {
+	    case 0:
+	        validatePageOne(form)
+		}
+	}
+
+	function validatePageOne(form){
+		return true;
+	}
 
 
 	function getFormData(oldForm, action){
@@ -13,11 +26,9 @@ function hhForm(lastForm, action) {
 			for (var i in newFormData){
 				// formHash[newFormData[i].key] = newFormData[i];
 				formHash[i] = newFormData[i];
-
 			}
 			return formHash;
 		})()
-
 		return lastFormData;
 	}
 
@@ -25,7 +36,6 @@ function hhForm(lastForm, action) {
 		var newPageNumber;
 		if( action.action === "init" ){
 			newPageNumber = 0;
-
 		}else if( action.action === "next" ){
 			newPageNumber = lastForm.page + 1;
 		}else if( action.action == "back"){
@@ -33,4 +43,5 @@ function hhForm(lastForm, action) {
 		}
 		return newPageNumber;
 	}
+
 }
