@@ -1,6 +1,9 @@
 function hhVisabilityFilter(hhForm, fullForm){
 
-	(function(){
+	newFormSection();
+	
+	function newFormSection(){
+
 		var formPartials = document.getElementById("form_partials");
 		while (formPartials.firstChild) { // remove all form fields
 		    formPartials.removeChild(formPartials.firstChild);
@@ -8,8 +11,9 @@ function hhVisabilityFilter(hhForm, fullForm){
 
 		(function(){
 			var formSection = fullForm[hhForm.page]; // form section that needs to be shown
-			var form = document.getElementById('form_partials'); // section to inserct section above
+			var form = document.getElementById('form_partials'); // section to insert section above
 			form.appendChild(formSection); 
+
 		    var buttonPlaceHolder = document.getElementById("put_button_here")
 		    if ( buttonPlaceHolder.children.length < 1 ){		
 				if ( hhForm.page === 0 ){
@@ -23,7 +27,7 @@ function hhVisabilityFilter(hhForm, fullForm){
 			}
 		})()
 		document.getElementById("hh_form").scrollIntoView();
-	})()
+	}
 
 	function addButton(nextAction){
 
@@ -37,7 +41,7 @@ function hhVisabilityFilter(hhForm, fullForm){
 	    };
 	    element.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
 	    element.addEventListener('click', function(){
-	   //
+	   		// gets form data
 			nextAction["newFormData"] = (function(){
 				var newDataHash = {};
 				var formPartial = document.getElementById("form_partials");
@@ -47,7 +51,7 @@ function hhVisabilityFilter(hhForm, fullForm){
 				}
 				return newDataHash;
 			})()
-	   // 	
+	   		// 	
 	    	dispatch(hhForm, nextAction, fullForm)
 	    });
 	    button.appendChild(element);

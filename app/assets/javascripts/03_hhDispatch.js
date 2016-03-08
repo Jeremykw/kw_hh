@@ -1,15 +1,19 @@
-// window.onload = init;
-// function init(){
-// 	var isNewHhForm = document.getElementById("hh_form");
-// 	if (isNewHhForm) {
-// 		dispatch({}, {action: "init"}, getFullForm());
+window.onload = init;
+function init(){
+	var isNewHhForm = document.getElementById("hh_form");
+	if (isNewHhForm) {
+		dispatch({}, {action: "init"}, getFullForm());
 
-// 	};
+	};
 
-// };
+};
 
 function dispatch(currentForm, action, fullForm){
 	var newForm = new hhForm(currentForm, action);
+	if ( !newForm.isValid.valid && action.action != "init" ){
+		if ( newForm.errorMessages ){ currentForm.errorMessages = newForm.errorMessages };
+		newForm = currentForm;
+	};
 	hhVisabilityFilter(newForm, fullForm);
 };
 
