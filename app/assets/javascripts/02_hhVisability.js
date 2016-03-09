@@ -1,14 +1,15 @@
 function hhVisabilityFilter(hhForm, fullForm){
 
 	newFormSection();
-	
-	function newFormSection(){
 
+	function newFormSection(){
+		// remove all form fields
 		var formPartials = document.getElementById("form_partials");
-		while (formPartials.firstChild) { // remove all form fields
+		while (formPartials.firstChild) { 
 		    formPartials.removeChild(formPartials.firstChild);
 		}
 
+		// add form section corresponding to page number
 		(function(){
 			var formSection = fullForm[hhForm.page]; // form section that needs to be shown
 			var form = document.getElementById('form_partials'); // section to insert section above
@@ -25,8 +26,15 @@ function hhVisabilityFilter(hhForm, fullForm){
 					addButton({action: "next"});				
 				}
 			}
+			if (!hhForm.isValid){
+				addErrorMessages(hhform, formSection)
+			}
 		})()
 		document.getElementById("hh_form").scrollIntoView();
+	}
+
+	function addErrorMessages(hhForm, formSection){	
+		formSection.createTextNode(hhForm.isValid);
 	}
 
 	function addButton(nextAction){
