@@ -1,9 +1,18 @@
 function hhForm(lastForm, action) {
-	this.page = setPageNumber(action);
 	this.formData = getFormData(lastForm, action) || {};
-	this.isValid = validate(lastForm.page, this.formData);
+	this.errorMessages = errorMessageList(lastForm.page, this.formData);
+	this.isValid = validate(this.errorMessages);
+	this.page = setPageNumber(action, this.isValid);
 
-	function validate(page, form){
+	function validate(errorMessages){
+		if ( Object.keys(errorMessages).length === 0 ){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function errorMessageList(page, form){
 		switch(page) {
 	    case 0:
 	        return validatePageZero(form);
@@ -23,45 +32,41 @@ function hhForm(lastForm, action) {
 	}
 
 	function validatePageZero(form){
-		var errorMessages = { valid: true };
+		var errorMessages = {};
 		if (!form.hh_form_first_name){
 			errorMessages["hh_form_first_name"] = "First Name Must Be Present";
-			errorMessages["valid"] = false;
 		}else if(!form.hh_form_last_name){
 			errorMessages["hh_form_last_name"] = "Last Name Must Be Present";
-			errorMessages["valid"] = false;
 		}else if(!form.hh_form_email){
 			errorMessages["hh_form_email"] = "Email Must Be Present";
-			errorMessages["valid"] = false;
 		}else if(!form.hh_form_phone){
 			errorMessages["hh_form_phone"] = "Phone Must Be Present";
-			errorMessages["valid"] = false;
 		}
 		return errorMessages;
 	}
 
 	function validatePageOne(form){
-		var errorMessages = { valid: true };
+		var errorMessages = {};
 		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageTwo(form){
-		var errorMessages = { valid: true };
+		var errorMessages = {};
 		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageThree(form){
-		var errorMessages = { valid: true };
+		var errorMessages = {};
 		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageFour(form){
-		var errorMessages = { valid: true };
+		var errorMessages = {};
 		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageFive(form){
-		var errorMessages = { valid: true };
+		var errorMessages = {};
 		errorMessages["valid"] = true;
 		return errorMessages;
 	}
@@ -83,10 +88,12 @@ function hhForm(lastForm, action) {
 		return lastFormData;
 	}
 
-	function setPageNumber(action){
+	function setPageNumber(action, isValid){
 		var newPageNumber;
 		if( action.action === "init" ){
 			newPageNumber = 0;
+		}else if( isValid === false ){
+			newPageNumber = lastForm.page;
 		}else if( action.action === "next" ){
 			newPageNumber = lastForm.page + 1;
 		}else if( action.action == "back"){

@@ -26,15 +26,21 @@ function hhVisabilityFilter(hhForm, fullForm){
 					addButton({action: "next"});				
 				}
 			}
-			if (!hhForm.isValid){
-				addErrorMessages(hhform, formSection)
-			}
+			// if (!hhForm.isValid.valid){
+			// 	addErrorMessages(hhForm, formSection)
+			// }
 		})()
 		document.getElementById("hh_form").scrollIntoView();
 	}
 
-	function addErrorMessages(hhForm, formSection){	
-		formSection.createTextNode(hhForm.isValid);
+	// function addErrorMessages(hhForm){
+	// 	var errorPlaceHolder = document.getElementById("put_error_messages_here");
+	// 	var message = document.createTextNode("eatMe")
+	// 	// for( i = 0; i< hhForm.isValid.length; i++ ){
+	// 	// 	errorPlaceHolder.createTextNode(hhForm.isValid[i])
+	// 	// }
+	// 	errorPlaceHolder.appendChild(message)
+
 	}
 
 	function addButton(nextAction){
@@ -54,7 +60,7 @@ function hhVisabilityFilter(hhForm, fullForm){
 				var newDataHash = {};
 				var formPartial = document.getElementById("form_partials");
 				var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
-				for (i = 0; i < formFields.length; i ++){
+				for (i  = 0; i < formFields.length; i ++ ){
 					newDataHash[formFields[i].id] = formFields[i].value; 
 				}
 				return newDataHash;
