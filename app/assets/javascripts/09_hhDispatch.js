@@ -9,9 +9,9 @@
 // };
 
 function dispatch(currentForm, action, fullForm){
-	
+	var validAction = new actionValidation(currentForm, action);
 	var newForm = new hhForm(currentForm, action);
-	hhVisabilityFilter(newForm, fullForm);
+	hhVisabilityFilter(newForm, valid, fullForm);
 };
 
 function getFullForm(){
