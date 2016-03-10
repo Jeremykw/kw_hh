@@ -2,10 +2,13 @@ function actionValidation(hhForm, action){
 	this.errorMessages = errorMessageList(hhForm.page, action.newFormData);
 	this.isValid = validate(this.errorMessages);
 
+	
 	function validate(errorMessages){
-		if (Object.keys(errorMessages).length > 0 ){
+		if ( action.action === "init"){
+			return true;
+		}else if (Object.keys(errorMessages).length > 0 ){
 			return false;
-		}else{
+		}else {
 			return true;
 		}
 	}
@@ -45,27 +48,22 @@ function actionValidation(hhForm, action){
 
 	function validatePageOne(form){
 		var errorMessages = {};
-		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageTwo(form){
 		var errorMessages = {};
-		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageThree(form){
 		var errorMessages = {};
-		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageFour(form){
 		var errorMessages = {};
-		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 	function validatePageFive(form){
 		var errorMessages = {};
-		errorMessages["valid"] = true;
 		return errorMessages;
 	}
 

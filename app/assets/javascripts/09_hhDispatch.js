@@ -11,7 +11,13 @@
 function dispatch(currentForm, action, fullForm){
 	var validAction = new actionValidation(currentForm, action);
 	var newForm = new hhForm(currentForm, action);
-	hhVisabilityFilter(newForm, valid, fullForm);
+	if ( !validAction.isValid ){ 
+		newForm.page = currentForm.page;
+		newForm.errormessages = validAction.errormessages;
+
+	}
+	// hhVisabilityFilter(newForm, fullForm);
+	return newForm;
 };
 
 function getFullForm(){

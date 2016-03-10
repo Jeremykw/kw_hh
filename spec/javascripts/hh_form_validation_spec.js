@@ -72,18 +72,33 @@ describe("validateAction Form Zero", function() {
 	})
 
 
-	// it("should not change page number if not isValid === false", function() {
- //    	var action = {
- //    		action: "next", 
- //      		newFormData: {hh_form_first_name: "Jeremy", 
- //                    hh_form_last_name: "Bissonnette",
- //                    hh_form_email: "jeremy@kwmassage",
- //                    hh_form_phone: "" }
-	//     }
-	//     currentPageForm = new hhForm(initForm, action);
-	//     expect(currentPageForm.page).toEqual(0);
+	it("should not change page number if not actionValidation === false", function() {
+    	var action = {
+    		action: "next", 
+      		newFormData: {hh_form_first_name: "Jeremy", 
+                    hh_form_last_name: "Bissonnette",
+                    hh_form_email: "jeremy@kwmassage",
+                    hh_form_phone: "" }
+	    }
+	    // currentPageForm = new hhForm(initForm, action);
+	    var dis = dispatch(initForm, action, {});
+	    expect(dis.page).toEqual(0);
 
-	// })
+	})
+
+	it("should add errorMessages to newform if actionValidation === false", function() {
+    	var action = {
+    		action: "next", 
+      		newFormData: {hh_form_first_name: "Jeremy", 
+                    hh_form_last_name: "Bissonnette",
+                    hh_form_email: "jeremy@kwmassage",
+                    hh_form_phone: "" }
+	    }
+	    // currentPageForm = new hhForm(initForm, action);
+	    var dis = dispatch(initForm, action, {});
+	    expect(dis.errorMessages.hh_form_phone).toEqual("Phone Must Be Present");
+
+	})
 
 
 })

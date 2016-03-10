@@ -10,26 +10,26 @@ function hhVisabilityFilter(hhForm, fullForm){
 		}
 
 		// add form section corresponding to page number
-		(function(){
-			var formSection = fullForm[hhForm.page]; // form section that needs to be shown
-			var form = document.getElementById('form_partials'); // section to insert section above
-			form.appendChild(formSection); 
 
-		    var buttonPlaceHolder = document.getElementById("put_button_here")
-		    if ( buttonPlaceHolder.children.length < 1 ){		
-				if ( hhForm.page === 0 ){
-					addButton({action: "next"});				
-				}else if ( hhForm.page === 5 ){
-					addButton({action: "back"});
-				}else {
-					addButton({action: "back"});
-					addButton({action: "next"});				
-				}
+debugger
+		var formSection = fullForm[hhForm.page]; // form section that needs to be shown
+		var form = document.getElementById('form_partials'); // section to insert section above
+		form.appendChild(formSection); 
+	    var buttonPlaceHolder = document.getElementById("put_button_here")
+	    if ( buttonPlaceHolder.children.length < 1 ){		
+			if ( hhForm.page === 0 ){
+				addButton({action: "next"});				
+			}else if ( hhForm.page === 5 ){
+				addButton({action: "back"});
+			}else {
+				addButton({action: "back"});
+				addButton({action: "next"});				
 			}
-			// if (!hhForm.isValid.valid){
-			// 	addErrorMessages(hhForm, formSection)
-			// }
-		})()
+		}
+		// if (!hhForm.isValid.valid){
+		// 	addErrorMessages(hhForm, formSection)
+		// }
+
 		document.getElementById("hh_form").scrollIntoView();
 	}
 
@@ -40,8 +40,6 @@ function hhVisabilityFilter(hhForm, fullForm){
 	// 	// 	errorPlaceHolder.createTextNode(hhForm.isValid[i])
 	// 	// }
 	// 	errorPlaceHolder.appendChild(message)
-
-	}
 
 	function addButton(nextAction){
 
