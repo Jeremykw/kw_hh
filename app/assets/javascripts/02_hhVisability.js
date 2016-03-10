@@ -1,17 +1,13 @@
 function hhVisabilityFilter(hhForm, fullForm){
 
-	newFormSection();
 
-	function newFormSection(){
+
+	(function newFormSection(){
 		// remove all form fields
-		var formPartials = document.getElementById("form_partials");
-		while (formPartials.firstChild) { 
-		    formPartials.removeChild(formPartials.firstChild);
-		}
+		emptyFormSection("form_partials");
+		
 
 		// add form section corresponding to page number
-
-debugger
 		var formSection = fullForm[hhForm.page]; // form section that needs to be shown
 		var form = document.getElementById('form_partials'); // section to insert section above
 		form.appendChild(formSection); 
@@ -26,20 +22,43 @@ debugger
 				addButton({action: "next"});				
 			}
 		}
-		// if (!hhForm.isValid.valid){
-		// 	addErrorMessages(hhForm, formSection)
-		// }
-
+		if ( hhForm.errorMessages ){
+			addErrorMessagesToForm()
+		}
 		document.getElementById("hh_form").scrollIntoView();
+	})()
+
+	function addErrorMessagesToForm(){
+		emptyFormSection("hh_error_message_place_holder")
+		var errorPlaceHolder = document.getElementById("hh_error_message_place_holder");
+		var p = document.createElement("p");
+		p.setAttribute( "class", "t600 color center" )		
+		var br = document.createElement("br")
+		var i = 1;
+		
+		for ( e in hhForm.errorMessages ){
+			var seperation;
+			if ( Object.keys(hhForm.errorMessages).length > 1 ){
+				seperation = " | ";
+			}else{
+				seperation = "";
+			}
+			if ( i === Object.keys(hhForm.errorMessages).length ){ seperation = ""};
+			
+			var error = document.createTextNode(hhForm.errorMessages[e] + seperation );
+			p.appendChild(error);
+			i++;
+		}
+
+		errorPlaceHolder.appendChild(p);
 	}
 
-	// function addErrorMessages(hhForm){
-	// 	var errorPlaceHolder = document.getElementById("put_error_messages_here");
-	// 	var message = document.createTextNode("eatMe")
-	// 	// for( i = 0; i< hhForm.isValid.length; i++ ){
-	// 	// 	errorPlaceHolder.createTextNode(hhForm.isValid[i])
-	// 	// }
-	// 	errorPlaceHolder.appendChild(message)
+	function emptyFormSection(section){
+		var formPartials = document.getElementById(section);
+		while (formPartials.firstChild) { 
+		    formPartials.removeChild(formPartials.firstChild);
+		}
+	}
 
 	function addButton(nextAction){
 

@@ -36,11 +36,14 @@ function actionValidation(hhForm, action){
 		var errorMessages = {};
 		if (!form.hh_form_first_name){
 			errorMessages["hh_form_first_name"] = "First Name Must Be Present";
-		}else if(!form.hh_form_last_name){
+		}
+		if(!form.hh_form_last_name){
 			errorMessages["hh_form_last_name"] = "Last Name Must Be Present";
-		}else if(!form.hh_form_email){
+		}
+		if(!form.hh_form_email){
 			errorMessages["hh_form_email"] = "Email Must Be Present";
-		}else if(!form.hh_form_phone){
+		}
+		if(!form.hh_form_phone){
 			errorMessages["hh_form_phone"] = "Phone Must Be Present";
 		}
 		return errorMessages;

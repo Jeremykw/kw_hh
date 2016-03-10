@@ -1,22 +1,22 @@
-// window.onload = init;
-// function init(){
-// 	var isNewHhForm = document.getElementById("hh_form");
-// 	if (isNewHhForm) {
-// 		dispatch({}, {action: "init"}, getFullForm());
+window.onload = init;
+function init(){
+	var isNewHhForm = document.getElementById("hh_form");
+	if (isNewHhForm) {
+		dispatch({}, {action: "init"}, getFullForm());
 
-// 	};
+	};
 
-// };
+};
 
 function dispatch(currentForm, action, fullForm){
 	var validAction = new actionValidation(currentForm, action);
 	var newForm = new hhForm(currentForm, action);
 	if ( !validAction.isValid ){ 
 		newForm.page = currentForm.page;
-		newForm.errormessages = validAction.errormessages;
+		newForm["errorMessages"] = validAction.errorMessages;
 
 	}
-	// hhVisabilityFilter(newForm, fullForm);
+	hhVisabilityFilter(newForm, fullForm);
 	return newForm;
 };
 

@@ -86,7 +86,7 @@ describe("validateAction Form Zero", function() {
 
 	})
 
-	it("should add errorMessages to newform if actionValidation === false", function() {
+	it("should add errorMessages.phone to newform if actionValidation === false", function() {
     	var action = {
     		action: "next", 
       		newFormData: {hh_form_first_name: "Jeremy", 
@@ -97,6 +97,36 @@ describe("validateAction Form Zero", function() {
 	    // currentPageForm = new hhForm(initForm, action);
 	    var dis = dispatch(initForm, action, {});
 	    expect(dis.errorMessages.hh_form_phone).toEqual("Phone Must Be Present");
+
+	})
+
+
+	it("should add errorMessages.phone and first_name to newform if actionValidation === false", function() {
+    	var action = {
+    		action: "next", 
+      		newFormData: {hh_form_first_name: "", 
+                    hh_form_last_name: "Bissonnette",
+                    hh_form_email: "jeremy@kwmassage",
+                    hh_form_phone: "" }
+	    }
+	    // currentPageForm = new hhForm(initForm, action);
+	    var dis = dispatch(initForm, action, {});
+	    expect(dis.errorMessages.hh_form_first_name).toEqual("First Name Must Be Present");
+	    expect(dis.errorMessages.hh_form_phone).toEqual("Phone Must Be Present");
+
+	})
+
+	it("should add errorMessages.first_name to newform if actionValidation === false", function() {
+    	var action = {
+    		action: "next", 
+      		newFormData: {hh_form_first_name: "", 
+                    hh_form_last_name: "Bissonnette",
+                    hh_form_email: "jeremy@kwmassage",
+                    hh_form_phone: "5197454112" }
+	    }
+	    // currentPageForm = new hhForm(initForm, action);
+	    var dis = dispatch(initForm, action, {});
+	    expect(dis.errorMessages.hh_form_first_name).toEqual("First Name Must Be Present");
 
 	})
 

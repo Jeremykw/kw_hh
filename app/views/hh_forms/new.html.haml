@@ -1,5 +1,4 @@
 .container{:id => 'hh_form'}
-	#put_error_messages_here
 	= form_for @hhform, :remote => true do |f|
 		#form_partials
 			=render partial: 'new_contact', locals: {f: f}
