@@ -33,24 +33,15 @@ function actionValidation(hhForm, action){
 	}
 
 	function validatePageZero(form){
-		var errorMessages = {};
-		if (!form.hh_form_first_name){
-			errorMessages["hh_form_first_name"] = "First Name Must Be Present";
-		}
-		if(!form.hh_form_last_name){
-			errorMessages["hh_form_last_name"] = "Last Name Must Be Present";
-		}
-		if(!form.hh_form_email){
-			errorMessages["hh_form_email"] = "Email Must Be Present";
-		}
-		if(!form.hh_form_phone){
-			errorMessages["hh_form_phone"] = "Phone Must Be Present";
-		}
+		var errorMessages = validatePresenceOf(["first_name", "last_name", "email", "phone"], form);
 		return errorMessages;
 	}
 
 	function validatePageOne(form){
-		var errorMessages = {};
+		var errorMessages = validatePresenceOf(["primary_complaint"], form);
+		if (form.hh_form_primary_complaint.length > 25){
+			errorMessages["hh_form_primary_complaint"] = "Primary Complaint feild Should be less than 25 Characters";
+		}
 		return errorMessages;
 	}
 	function validatePageTwo(form){
@@ -70,5 +61,18 @@ function actionValidation(hhForm, action){
 		return errorMessages;
 	}
 
-
+	function validatePresenceOf(fieldsArray, form){
+		var presanceErrors = {};
+		for (var field in fieldsArray) {
+			var testField = "hh_form_" + fieldsArray[field];
+			if ( !form[testField] ){
+				presanceErrors["hh_form_" + fieldsArray[field]] = fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + " Must Be Present";
+			}
+		}
+		return presanceErrors;
+	}
+	
+	String.prototype.capitalize = function(){
+       return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
+    };
 }

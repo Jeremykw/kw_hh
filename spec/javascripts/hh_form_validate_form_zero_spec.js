@@ -1,7 +1,7 @@
-describe("validateAction Form Zero", function() {
+describe("validateAction Form ZERO", function() {
   
 	var initForm = new hhForm({}, {action: "init"});
-	var currentPageForm, lastPageForm, valid;
+	// var currentPageForm, lastPageForm, valid;
   
 	it("should return false and add error message if hh_form_first_name is blank", function() {
 		var action = {

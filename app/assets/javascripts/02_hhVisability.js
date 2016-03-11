@@ -35,7 +35,6 @@ function hhVisabilityFilter(hhForm, fullForm){
 		p.setAttribute( "class", "t600 color center" )		
 		var br = document.createElement("br")
 		var i = 1;
-		
 		for ( e in hhForm.errorMessages ){
 			var seperation;
 			if ( Object.keys(hhForm.errorMessages).length > 1 ){
@@ -49,7 +48,6 @@ function hhVisabilityFilter(hhForm, fullForm){
 			p.appendChild(error);
 			i++;
 		}
-
 		errorPlaceHolder.appendChild(p);
 	}
 
