@@ -33,8 +33,8 @@ function actionValidation(hhForm, action){
 	}
 
 	function validatePageZero(form){
-		var errorMessages = validatePresenceOf(["first_name", "last_name", "email", "phone"], form);
-		return errorMessages;
+		return validatePresenceOf(["first_name", "last_name", "email", "phone"], form);
+		
 	}
 
 	function validatePageOne(form){
@@ -80,7 +80,7 @@ function actionValidation(hhForm, action){
 		var lengthErrors = {};
 		for (var field in fieldsArray) {
 			var testField = "hh_form_" + fieldsArray[field];
-			if ( form[testField] ){
+			if ( form[testField].length > 25 ){
 				lengthErrors["hh_form_" + fieldsArray[field]] = 
 					fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + 
 					" must be less than " + maxLength + 
