@@ -21,7 +21,7 @@ describe("validateAction Form ONE", function() {
 		    }
 		validAction = new actionValidation(pageZero, action)
 		expect(validAction.isValid).toEqual(false);
-		expect(validAction.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint feild Should be less than 25 Characters");
+		expect(validAction.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint must be less than 25 characters");
 
 	})
 
@@ -37,6 +37,10 @@ describe("validateAction Form ONE", function() {
 		expect(validAction.isValid).toEqual(false);
 		expect(validAction.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint Must Be Present");
 
+		// var errorObjectOne = {pantsAreToTight: "true", firstName: "TightPants"};
+		// var errorObjectTwo = {pantsAreToLose: "false", lastName: "DillyDally"};
+		// var newObject = validAction.errorMerge(errorObjectOne, errorObjectTwo);
+		// expect(newObject).toEqual({pantsAreToTight: "true", firstName: "TightPants", pantsAreToLose: "false", lastName: "DillyDally"});
 	})
 
 

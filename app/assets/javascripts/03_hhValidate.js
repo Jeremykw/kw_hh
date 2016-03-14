@@ -38,11 +38,13 @@ function actionValidation(hhForm, action){
 	}
 
 	function validatePageOne(form){
-		var errorMessages = validatePresenceOf(["primary_complaint"], form);
-		if (form.hh_form_primary_complaint.length > 25){
-			errorMessages["hh_form_primary_complaint"] = "Primary Complaint feild Should be less than 25 Characters";
-		}
-		return errorMessages;
+		// if (form.hh_form_primary_complaint.length > 25){
+		// 	errorMessages["hh_form_primary_complaint"] = "Primary Complaint feild Should be less than 25 Characters";
+		// }
+		return mergeErrors(
+			validateLengthOf(["primary_complaint"], 25, form),
+			validatePresenceOf(["primary_complaint", "secondary_complaint"], form)
+			);
 	}
 	function validatePageTwo(form){
 		var errorMessages = {};
@@ -66,12 +68,38 @@ function actionValidation(hhForm, action){
 		for (var field in fieldsArray) {
 			var testField = "hh_form_" + fieldsArray[field];
 			if ( !form[testField] ){
-				presanceErrors["hh_form_" + fieldsArray[field]] = fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + " Must Be Present";
+				presanceErrors["hh_form_" + fieldsArray[field]] = 
+					fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + 
+					" Must Be Present";
 			}
 		}
 		return presanceErrors;
 	}
 	
+	function validateLengthOf(fieldsArray, maxLength, form){
+		var lengthErrors = {};
+		for (var field in fieldsArray) {
+			var testField = "hh_form_" + fieldsArray[field];
+			if ( form[testField] ){
+				lengthErrors["hh_form_" + fieldsArray[field]] = 
+					fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + 
+					" must be less than " + maxLength + 
+					" characters";
+			}
+		}
+		return lengthErrors;
+	}
+
+	function mergeErrors(){
+		var errors = {};
+		for ( i = 0; i < arguments.length; i ++){
+			for ( errorr in arguments[i]){
+				errors[errorr] = arguments[i][errorr];
+			}
+		}
+		return errors;
+	}
+
 	String.prototype.capitalize = function(){
        return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
     };
