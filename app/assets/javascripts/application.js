@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+// window.onload = init;
+// function init(){
+// 	var isNewHhForm = document.getElementById("hh_form");
+// 	if (isNewHhForm) {
+// 		dispatch({}, {action: "init"}, getFullForm());
+
+// 	};
+
+// };

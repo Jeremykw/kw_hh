@@ -33,10 +33,26 @@ function actionValidation(hhForm, action){
 	}
 
 	function validatePageZero(form){
-		return validatePresenceOf(["first_name", "last_name", "email", "phone"], form);
-		
+		return mergeErrors(
+			validateLengthOf([
+					"first_name",
+					"last_name",
+					"address_1",
+					"address_2",
+					"city",
+					"provance",
+					"postal_code",
+					"email",
+					"phone",
+					"occupation",
+					"referral_source",
+					"physician",
+					"physician_address"
+				], 
+				25, form),
+			validatePresenceOf(["first_name", "last_name", "email", "phone"], form)
+			)
 	}
-
 	function validatePageOne(form){
 		// if (form.hh_form_primary_complaint.length > 25){
 		// 	errorMessages["hh_form_primary_complaint"] = "Primary Complaint feild Should be less than 25 Characters";
@@ -44,7 +60,7 @@ function actionValidation(hhForm, action){
 		return mergeErrors(
 			validateLengthOf(["primary_complaint"], 25, form),
 			validatePresenceOf(["primary_complaint", "secondary_complaint"], form)
-			);
+			)
 	}
 	function validatePageTwo(form){
 		var errorMessages = {};
@@ -82,7 +98,7 @@ function actionValidation(hhForm, action){
 			var testField = "hh_form_" + fieldsArray[field];
 			if ( form[testField].length > 25 ){
 				lengthErrors["hh_form_" + fieldsArray[field]] = 
-					fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + 
+					fieldsArray[field].replace(/_/g, ' ') + // capitalization needs to be fixed
 					" must be less than " + maxLength + 
 					" characters";
 			}
