@@ -1,15 +1,3 @@
-function dispatch(currentForm, action, fullForm){
-	var validAction = new actionValidation(currentForm, action);
-	var newForm = new hhForm(currentForm, action);
-	if ( !validAction.isValid ){ 
-		newForm.page = currentForm.page;
-		newForm["errorMessages"] = validAction.errorMessages;
-
-	}
-	hhVisabilityFilter(newForm, fullForm);
-	return newForm;
-};
-
 function getFullForm(){
 	var initFullForm = {
 		0: document.getElementById("contact"),

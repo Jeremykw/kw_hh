@@ -15,22 +15,17 @@
 //= require turbolinks
 //= require_tree .
 
-
 window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
-		runHh({}, {action: "init"}, getFullForm());
+		hHrun({}, {action: "init"}, getFullForm());
 	}
 }
 
-function runHh(){
-	state = hhState(state, action, fullForm)
-	renderForm()
+function hHrun(state, action, fullForm){
+	newState = new hhState(state, action);
+	hhRenderForm(newState, fullForm);
+	return newState;
 }
 
-function hhState(){
-	this.lastPage;
-	this.currentPage
-	this.validPages = {};
-}
