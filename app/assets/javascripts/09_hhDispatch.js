@@ -6,7 +6,7 @@ function dispatch(currentForm, action, fullForm){
 		newForm["errorMessages"] = validAction.errorMessages;
 
 	}
-	// hhVisabilityFilter(newForm, fullForm);
+	hhVisabilityFilter(newForm, fullForm);
 	return newForm;
 };
 

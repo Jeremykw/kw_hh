@@ -54,9 +54,6 @@ function actionValidation(hhForm, action){
 			)
 	}
 	function validatePageOne(form){
-		// if (form.hh_form_primary_complaint.length > 25){
-		// 	errorMessages["hh_form_primary_complaint"] = "Primary Complaint feild Should be less than 25 Characters";
-		// }
 		return mergeErrors(
 			validateLengthOf(["primary_complaint"], 25, form),
 			validatePresenceOf(["primary_complaint", "secondary_complaint"], form)
