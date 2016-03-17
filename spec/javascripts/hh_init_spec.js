@@ -5,10 +5,11 @@ describe("init state", function() {
 
   it("should set lastPage to 0 on init", function() {
     expect(initState.lastPage).toEqual(0);
+    expect(initState.currentPage).toEqual(0);
   })
   
   it("should respond with {} to hhform.formData", function() {
-    expect(initState.form).toEqual({});
+    expect(initState.formData).toEqual({});
   })
   
  })

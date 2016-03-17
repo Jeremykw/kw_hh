@@ -1,8 +1,19 @@
 function hhState(state, action){
 	this.lastPage = pastPage(state, action);
-	this.currentPage = thisPage(state, action)
-	this.currentForm = {};
-	this.newFormDate;
+	this.currentPage = thisPage(state, action);
+	this.formData = createNewForm(this.currentPage, this.lastPage, action);
+
+	function createNewForm(page, lastPage, action){
+		var newForm;
+		var form = "hhForm" + page.toString();
+		// newForm = new window[form](state, action);
+		if ( lastPage === 0 && page === 0 ){
+			return {};
+		}else {
+			var form = new hhForm(action, lastPage);
+			return  form
+		}
+	}
 
 	function pastPage(){
 		if ( action.action === "init" ){
@@ -17,6 +28,8 @@ function hhState(state, action){
 			return 0;
 		}else if( action.action === "next" ){
 			return state.currentPage + 1;
+		}else if ( action.action === "back"){
+			return state.currentPage - 1;
 		}
 	}
 }
