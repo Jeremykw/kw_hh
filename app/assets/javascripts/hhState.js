@@ -7,12 +7,16 @@ function hhState(state, action){
 	function pastPage(){
 		if ( action.action === "init" ){
 			return 0;
+		}else{
+			return state.currentPage;
 		}
 	}
 
 	function thisPage(state, action){
 		if ( action.action === "init" ){
 			return 0;
+		}else if( action.action === "next" ){
+			return state.currentPage + 1;
 		}
 	}
 }

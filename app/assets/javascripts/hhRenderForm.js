@@ -17,22 +17,22 @@ function hhRenderForm(state, fullForm){
 		var formSection = fullForm[page.currentPage]; // form section that needs to be shown
 		var form = document.getElementById('form_partials'); // section to insert section above
 		form.appendChild(formSection); 
-	    var button = document.getElementById("put_button_here")
+	    var buttonPlaceHolder = document.getElementById("put_button_here");
 	    if ( buttonPlaceHolder.children.length < 1 ){		
 			if ( state.page === 0 ){
-				addButton({state, "next"});				
+				addButton(state, "next");				
 			}else if ( state.page === 5 ){
-				addButton({state, "back"});
+				addButton(state, "back");
 			}else {
-				addButton({state, "back"});
-				addButton({state, "next"});				
+				addButton(state, "back");
+				addButton(state, "next");				
 			}
 		}
 	}
 
 	function addButton(state, action){
 
-		var buttonHole = document.getElementById("put_button_here"); // this is where buttons go
+		var buttonPlaceHolder = document.getElementById("put_button_here"); // this is where buttons go
 	    var element = document.createElement("input"); // create button (type: input)
 	    element.type = "button";
 	    if ( action === "back" ){
@@ -54,8 +54,8 @@ function hhRenderForm(state, fullForm){
 			})()
 	   		// 	
 	    	hHrun(state, action, fullForm);
-	    });
-	    button.appendChild(element);
+	    })
+	    buttonPlaceHolder.appendChild(element);
     	
 	}
 

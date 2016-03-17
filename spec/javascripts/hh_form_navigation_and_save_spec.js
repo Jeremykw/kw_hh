@@ -2,10 +2,6 @@
   
 //   var initForm = new hhForm({}, {action: "init"});
 //   var currentPageForm, lastPageForm;
-
-//   it("should set page to 0 on init action", function() {
-//     expect(initForm.page).toEqual(0);
-//   });
   
 //   it("should respond with {} to hhform.formData", function() {
 //     expect(initForm.formData).toEqual({});
@@ -134,4 +130,4 @@
 //   //   $("#card_number").val("4111 1111-11111111");
 //   //   $("#card_number").blur();
 //   //   expect($("#card_number_error")).toHaveText("");
-//   // });
+})

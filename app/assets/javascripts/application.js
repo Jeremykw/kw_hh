@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-window.onload = init;
+// window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
@@ -25,7 +25,7 @@ function init(){
 
 function hHrun(state, action, fullForm){
 	newState = new hhState(state, action);
-	hhRenderForm(newState, fullForm);
+	// hhRenderForm(newState, fullForm);
 	return newState;
 }
 
