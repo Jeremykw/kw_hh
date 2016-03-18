@@ -1,31 +1,21 @@
-function hhForm(action, lastPage){
-	this.form = function(action, lastPage){ 
-		switch(lastPage) {
-	    case 0:
-	        return hhFormZero(action.newFormData);
-	    case 1:
-	        return hhFormOne(action.newFormData);
-	    case 2:
-	        return hhFormTwo(action.newFormData);
-	    case 3:
-	        return hhFormThree(action.newFormData);
-	    case 4:
-	        return hhFormFour(action.newFormData);
-	    case 5:
-	        return hhFormFive(action.newFormData);
-	    default:
-	    	return "Page Does Not Exist"
-		}
-	}()
-
-}
-
-function hhFormZero(data){
-	return data;
+function createContactForm(state, action){
+	if ( action.action === "init" ){
+		return {};
+	}else{
+		return action.newFormData;
+	}
 }
 
 function hhFormOne(){
 	return "one"
+}
+
+function hhFormTwo(){
+	return "two"
+}
+
+function hhFormThree(){
+	return "three"
 }
 // function hhForm(lastForm, action) {
 // 	this.page = setPageNumber(action);

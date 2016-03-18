@@ -1,19 +1,20 @@
 function hhState(state, action){
 	this.lastPage = pastPage(state, action);
 	this.currentPage = thisPage(state, action);
-	this.formData = createNewForm(this.currentPage, this.lastPage, action);
+	// this.formData = createNewForm(this.lastPage, this.currentPage, action);
+	this.contactForm = contactForm(state, action);
+	// function createNewForm(lastPage, currentPage, action){
+	// 	var newForm;
+	// 	// var form = "hhForm" + state.currentPage.toString();
+	// 	// newForm = new window[form](state, action);
+	// 	// if ( action.action === "init" ){
+	// 	// 	return {};
+	// 	// }else {
+	// 	// 	newForm = new hhForm(lastPage, action);
+	// 	// 	return newForm;
+	// 	// }
 
-	function createNewForm(page, lastPage, action){
-		var newForm;
-		var form = "hhForm" + page.toString();
-		// newForm = new window[form](state, action);
-		if ( lastPage === 0 && page === 0 ){
-			return {};
-		}else {
-			var form = new hhForm(action, lastPage);
-			return  form
-		}
-	}
+	// }
 
 	function pastPage(){
 		if ( action.action === "init" ){

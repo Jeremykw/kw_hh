@@ -19,14 +19,15 @@ describe("Health History Form Create Form 0", function() {
 			hh_form_physician: "",
 			hh_form_physician_address: "",
 		}
-	});  
+	})  
 
 	it("creates form zero", function() {
-		var action = {action: "next",
-				newFormDate: actionSetUp
-			}
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
 		currentState = new hHrun(initState, action);
-		expect(currentState).toEqual(0);
+		expect(currentState.contactForm).toEqual(actionSetUp);
 	})
 
 })

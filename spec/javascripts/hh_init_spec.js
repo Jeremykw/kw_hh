@@ -9,7 +9,7 @@ describe("init state", function() {
   })
   
   it("should respond with {} to hhform.formData", function() {
-    expect(initState.formData).toEqual({});
+    expect(initState.contactForm).toEqual({});
   })
   
  })
