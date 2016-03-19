@@ -6,17 +6,26 @@ function createContactForm(state, action){
 	}
 }
 
-function hhFormOne(){
-	return "one"
+function createComplaintsFrom(state, action){
+	return action.newFormData;
 }
 
-function hhFormTwo(){
-	return "two"
+function createCheckboxesFrom(state, action){
+	return action.newFormData;
 }
 
-function hhFormThree(){
-	return "three"
+function createPainsFrom(state, action){
+	return action.newFormData;
 }
+
+function createOtherFrom(state, action){
+	return action.newFormData;
+}
+
+function createConcentFrom(state, action){
+	return action.newFormData;
+}
+
 // function hhForm(lastForm, action) {
 // 	this.page = setPageNumber(action);
 // 	this.formData = getFormData(lastForm, action) || {};

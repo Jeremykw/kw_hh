@@ -2,7 +2,12 @@ function hhState(state, action){
 	this.lastPage = pastPage(state, action);
 	this.currentPage = thisPage(state, action);
 	// this.formData = createNewForm(this.lastPage, this.currentPage, action);
-	this.contactForm = contactForm(state, action);
+	this.contactForm = createContactForm(state, action) || {};
+	this.complaintsForm = createComplaintsFrom(state, action) || {};
+	this.checkboxesForm = createCheckboxesFrom(state, action) || {};
+	this.painsForm = createPainsFrom(state, action) || {};
+	this.otherForm = createOtherFrom(state, action) || {};
+	this.concentForm = createConcentFrom(state, action) || {};
 	// function createNewForm(lastPage, currentPage, action){
 	// 	var newForm;
 	// 	// var form = "hhForm" + state.currentPage.toString();
