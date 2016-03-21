@@ -12,4 +12,4 @@ describe("init state", function() {
     expect(initState.contactForm).toEqual({});
   })
   
- })
+})

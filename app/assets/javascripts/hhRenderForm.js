@@ -11,39 +11,40 @@ function hhRenderForm(state, fullForm){
 
 	document.getElementById("hh_form").scrollIntoView();
 
-	function renderNewForm(page, fullForm){
+	function renderNewForm(state, fullForm){
 		emptyFormSection("form_partials");
-		// add form section corresponding to page number
-		var formSection = fullForm[page.currentPage]; // form section that needs to be shown
+		// add form section corresponding to state number
+		var formSection = fullForm[state.currentPage]; // form section that needs to be shown
 		var form = document.getElementById('form_partials'); // section to insert section above
+		debugger
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
 	    if ( buttonPlaceHolder.children.length < 1 ){		
-			if ( state.page === 0 ){
-				addButton(state, "next");				
-			}else if ( state.page === 5 ){
-				addButton(state, "back");
+			if ( state.currentPage === 0 ){
+				addButton(state, "next", fullForm);				
+			}else if ( state.currentPage === 5 ){
+				addButton(state, "back", fullForm);
 			}else {
-				addButton(state, "back");
-				addButton(state, "next");				
+				addButton(state, "back", fullForm);
+				addButton(state, "next", fullForm);				
 			}
 		}
 	}
 
-	function addButton(state, action){
+	function addButton(state, action, fullForm){
 
 		var buttonPlaceHolder = document.getElementById("put_button_here"); // this is where buttons go
-	    var element = document.createElement("input"); // create button (type: input)
-	    element.type = "button";
+	    var button = document.createElement("input"); // create button (type: input)
+	    button.type = "button";
 	    if ( action === "back" ){
-	    	element.setAttribute( 'value', 'Back');
+	    	button.setAttribute( 'value', 'Back');
 	    }else if( action === "next" ){
-	    	element.setAttribute( 'value', 'Save and Contunue');
+	    	button.setAttribute( 'value', 'Save and Contunue');
 	    }
-	    element.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
-	    element.addEventListener('click', function(){
+	    button.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
+	    button.addEventListener('click', function(){
 	   		// gets form data
-			state.newFormData = (function(){
+			action.newFormData = (function(){
 				var newDataHash = {};
 				var formPartial = document.getElementById("form_partials");
 				var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
@@ -55,7 +56,7 @@ function hhRenderForm(state, fullForm){
 	   		// 	
 	    	hHrun(state, action, fullForm);
 	    })
-	    buttonPlaceHolder.appendChild(element);
+	    buttonPlaceHolder.appendChild(button);
     	
 	}
 

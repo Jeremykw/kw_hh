@@ -1,41 +1,29 @@
-function hhState(state, action){
-	this.lastPage = pastPage(state, action);
-	this.currentPage = thisPage(state, action);
+function hhState(lastState, action){
+	this.lastPage = pastPage(lastState, action);
+	this.currentPage = thisPage(lastState, action);
 	// this.formData = createNewForm(this.lastPage, this.currentPage, action);
-	this.contactForm = createContactForm(state, action);
-	this.complaintsForm = createComplaintsFrom(state, action);
-	this.checkboxesForm = createCheckboxesFrom(state, action);
-	this.painsForm = createPainsFrom(state, action);
-	this.otherForm = createOtherFrom(state, action);
-	this.concentForm = createConcentFrom(state, action);
-	// function createNewForm(lastPage, currentPage, action){
-	// 	var newForm;
-	// 	// var form = "hhForm" + state.currentPage.toString();
-	// 	// newForm = new window[form](state, action);
-	// 	// if ( action.action === "init" ){
-	// 	// 	return {};
-	// 	// }else {
-	// 	// 	newForm = new hhForm(lastPage, action);
-	// 	// 	return newForm;
-	// 	// }
-
-	// }
+	this.contactForm = createContactForm(lastState, action);
+	this.complaintsForm = createComplaintsForm(lastState, action);
+	this.checkboxesForm = createCheckboxesForm(lastState, action);
+	this.painsForm = createPainsForm(lastState, action);
+	this.otherForm = createOtherForm(lastState, action);
+	this.concentForm = createConcentForm(lastState, action);
 
 	function pastPage(){
 		if ( action.action === "init" ){
 			return 0;
 		}else{
-			return state.currentPage;
+			return lastState.currentPage;
 		}
 	}
 
-	function thisPage(state, action){
+	function thisPage(lastState, action){
 		if ( action.action === "init" ){
 			return 0;
 		}else if( action.action === "next" ){
-			return state.currentPage + 1;
+			return lastState.currentPage + 1;
 		}else if ( action.action === "back"){
-			return state.currentPage - 1;
+			return lastState.currentPage - 1;
 		}
 	}
 }

@@ -1,29 +1,62 @@
 function createContactForm(state, action){
 	if ( action.action === "init" ){
 		return {};
+	}else if ( state.currentPage === 0 ){
+		return action.newFormData
 	}else{
-		return action.newFormData;
+		return state.contactForm;
 	}
 }
 
-function createComplaintsFrom(state, action){
-	return "action.newFormData";
+function createComplaintsForm(state, action){
+	if ( action.action  === "init" ){
+		return {};
+	}else if (state.currentPage === 1 ){
+		return action.newFormData;
+	}else{
+		return state.complaintsForm;
+	}
+	// return "createComplaintsFrom"
 }
 
-function createCheckboxesFrom(state, action){
-	return action.newFormData;
+function createCheckboxesForm(state, action){
+	if ( action.action  === "init" ){
+		return {};
+	}else if (state.currentPage === 2 ){
+		return action.newFormData;
+	}else{
+		return state.checkboxesForm
+	}
 }
 
-function createPainsFrom(state, action){
-	return action.newFormData;
+function createPainsForm(state, action){
+	if ( action.action  === "init" ){
+		return {};
+	}else if (state.currentPage === 3 ){
+		return action.newFormData;
+	}else{
+		return state.complaintsForm
+	}
 }
 
-function createOtherFrom(state, action){
-	return action.newFormData;
+function createOtherForm(state, action){
+	if ( action.action  === "init" ){
+		return {};
+	}else if (state.currentPage === 4 ){
+		return action.newFormData;
+	}else{
+		return state.complaintsForm
+	}
 }
 
-function createConcentFrom(state, action){
-	return action.newFormData;
+function createConcentForm(state, action){
+	if ( action.action  === "init" ){
+		return {};
+	}else if (state.currentPage === 5 ){
+		return action.newFormData;
+	}else{
+		return state.complaintsForm
+	}
 }
 
 // function hhForm(lastForm, action) {

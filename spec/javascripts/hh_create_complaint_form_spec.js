@@ -1,6 +1,6 @@
-describe("Health History Create Complaint Form", function() {
-	var initState = new hHrun({lastPage: 0, thisPage: 1}, {action: "next"});
-	var currentState, lastState;
+describe("Health History Form Complaint", function() {
+	var lastComplaintState = new hHrun({lastPage: 0, currentPage: 0}, {action: "next"});
+	var currentComplaintState, lastComplaintState;
     
     var actionSetUp;
     beforeEach(function() {
@@ -13,13 +13,13 @@ describe("Health History Create Complaint Form", function() {
 		}
 	})  
 
-	it("creates Complaint Form", function() {
+	it("Create Form", function() {
 		var action = {
 			action: "next",
 			newFormData: actionSetUp
 		}
-		currentState = new hHrun(initState, action);
-		expect(currentState).toEqual(actionSetUp);
+		currentComplaintState = new hHrun(lastComplaintState, action);
+		expect(currentComplaintState.complaintsForm).toEqual(actionSetUp);
 	})
 
 })

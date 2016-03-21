@@ -1,7 +1,6 @@
-describe("Health History Form Create Contact Form", function() {
-	var initState = new hHrun({}, {action: "init"});
-	var currentState, lastState;
-    
+describe("Health History Form Contact", function() {
+	var initContactState = new hHrun({}, {action: "init"});
+	var currentContactState, lastContactState;	
     var actionSetUp;
     beforeEach(function() {
 		actionSetUp = {
@@ -21,29 +20,13 @@ describe("Health History Form Create Contact Form", function() {
 		}
 	})  
 
-	it("creates Contact form", function() {
+	it("Create form", function() {
 		var action = {
 			action: "next",
 			newFormData: actionSetUp
 		}
-		currentState = new hHrun(initState, action);
-		expect(currentState.contactForm).toEqual(actionSetUp);
-	})
-
-
-	it("retains Contact form after Complaints form is created", function() {
-		var action = {
-			action: "next",
-			newFormData: {
-				hh_form_primary_complaint: "itchy ass", 
-				hh_form_secondary_complaint: "Bees flying around rectum",
-				hh_form_sports: "climbing", 
-				hh_form_previous_massage_note: "Yes", 
-				hh_form_smoke: false, 
-			}
-		}
-		currentState = new hHrun(initState, action);
-		expect(currentState.contactForm).toEqual(actionSetUp);
+		currentContactState = new hHrun(initContactState, action);
+		expect(currentContactState.contactForm).toEqual(actionSetUp);
 	})
 
 })
