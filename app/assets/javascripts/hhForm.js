@@ -7,7 +7,7 @@ function createContactForm(state, action){
 }
 
 function createComplaintsFrom(state, action){
-	return action.newFormData;
+	return "action.newFormData";
 }
 
 function createCheckboxesFrom(state, action){
