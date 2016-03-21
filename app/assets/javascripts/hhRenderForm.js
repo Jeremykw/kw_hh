@@ -32,7 +32,7 @@ function hhRenderForm(state, fullForm){
 	}
 
 	function addButton(state, action, fullForm){
-
+		var nextAction.action = action;
 		var buttonPlaceHolder = document.getElementById("put_button_here"); // this is where buttons go
 	    var button = document.createElement("input"); // create button (type: input)
 	    button.type = "button";
@@ -44,7 +44,7 @@ function hhRenderForm(state, fullForm){
 	    button.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
 	    button.addEventListener('click', function(){
 	   		// gets form data
-			action.newFormData = (function(){
+			nextAction.newFormData = (function(){
 				var newDataHash = {};
 				var formPartial = document.getElementById("form_partials");
 				var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
@@ -54,7 +54,7 @@ function hhRenderForm(state, fullForm){
 				return newDataHash;
 			})()
 	   		// 	
-	    	hHrun(state, action, fullForm);
+	    	hHrun(state, nextAction, fullForm);
 	    })
 	    buttonPlaceHolder.appendChild(button);
     	

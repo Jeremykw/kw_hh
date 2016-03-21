@@ -24,7 +24,7 @@ function init(){
 }
 
 function hHrun(state, action, fullForm){
-	newState = new hhState(state, action);
+	var newState = new hhState(state, action);
 	hhRenderForm(newState, fullForm);
 	// return newState;
 }
