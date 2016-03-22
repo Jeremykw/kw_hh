@@ -25,6 +25,7 @@ function init(){
 
 function hHrun(state, action, fullForm){
 	var newState = new hhState(state, action);
+	debugger
 	hhRenderForm(newState, fullForm);
 	// return newState;
 }

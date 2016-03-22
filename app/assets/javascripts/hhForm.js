@@ -35,7 +35,7 @@ function createPainsForm(state, action){
 	}else if (state.currentPage === 3 ){
 		return action.newFormData;
 	}else{
-		return state.complaintsForm
+		return state.painsForm
 	}
 }
 
@@ -45,7 +45,7 @@ function createOtherForm(state, action){
 	}else if (state.currentPage === 4 ){
 		return action.newFormData;
 	}else{
-		return state.complaintsForm
+		return state.otherForm
 	}
 }
 
@@ -55,7 +55,7 @@ function createConcentForm(state, action){
 	}else if (state.currentPage === 5 ){
 		return action.newFormData;
 	}else{
-		return state.complaintsForm
+		return state.concentForm
 	}
 }
 

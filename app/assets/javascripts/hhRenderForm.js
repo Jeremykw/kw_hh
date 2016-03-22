@@ -16,7 +16,6 @@ function hhRenderForm(state, fullForm){
 		// add form section corresponding to state number
 		var formSection = fullForm[state.currentPage]; // form section that needs to be shown
 		var form = document.getElementById('form_partials'); // section to insert section above
-		debugger
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
 	    if ( buttonPlaceHolder.children.length < 1 ){		
@@ -32,7 +31,8 @@ function hhRenderForm(state, fullForm){
 	}
 
 	function addButton(state, action, fullForm){
-		var nextAction.action = action;
+		var nextAction = {};
+		nextAction.action = action;
 		var buttonPlaceHolder = document.getElementById("put_button_here"); // this is where buttons go
 	    var button = document.createElement("input"); // create button (type: input)
 	    button.type = "button";
