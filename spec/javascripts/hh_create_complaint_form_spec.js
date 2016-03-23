@@ -1,5 +1,5 @@
 describe("Health History Form Complaint", function() {
-	var lastComplaintState = new hHrun({lastPage: 0, currentPage: 0}, {action: "next"});
+	var lastComplaintState = new kwMassageHealthHistory.hHrun({lastPage: 0, currentPage: 0}, {action: "next"});
 	var currentComplaintState, lastComplaintState;
     
     var actionSetUp;
@@ -18,7 +18,7 @@ describe("Health History Form Complaint", function() {
 			action: "next",
 			newFormData: actionSetUp
 		}
-		currentComplaintState = new hHrun(lastComplaintState, action);
+		currentComplaintState = new kwMassageHealthHistory.hHrun(lastComplaintState, action);
 		expect(currentComplaintState.complaintsForm).toEqual(actionSetUp);
 	})
 

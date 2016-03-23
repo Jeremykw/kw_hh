@@ -1,5 +1,6 @@
-function hhRenderForm(state, fullForm){
+var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
+kwMassageHealthHistory.hhRenderForm = function(state, fullForm){
 
 	if ( state.lastPage !== state.currentPage ){
 		renderNewForm(state, fullForm);
@@ -54,7 +55,7 @@ function hhRenderForm(state, fullForm){
 				return newDataHash;
 			})()
 	   		// 	
-	    	hHrun(state, nextAction, fullForm);
+	    	kwMassageHealthHistory.hHrun(state, nextAction, fullForm);
 	    })
 	    buttonPlaceHolder.appendChild(button);
     	

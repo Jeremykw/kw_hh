@@ -15,18 +15,17 @@
 //= require turbolinks
 //= require_tree .
 
-window.onload = init;
+// window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
-		hHrun({}, {action: "init"}, getFullForm());
+		kwMassageHealthHistory.hHrun({}, {action: "init"}, getFullForm());
 	}
 }
+var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
-function hHrun(state, action, fullForm){
-	var newState = new hhState(state, action);
-	debugger
-	hhRenderForm(newState, fullForm);
-	// return newState;
+kwMassageHealthHistory.hHrun = function(state, action, fullForm){
+	var newState = new kwMassageHealthHistory.hhState(state, action);
+	// this.hhRenderForm(newState, fullForm);
+	return newState;
 }
-
