@@ -3,7 +3,7 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.createContactForm = function(state, action){
 	return (function(){
 		if ( action.action === "init" ){
-			return {};
+			return { isValid: true };
 		}else if ( state.currentPage === 0 ){
 			if ( action.newFormData ){
 				var form = action.newFormData;
@@ -40,7 +40,7 @@ kwMassageHealthHistory.createContactForm = function(state, action){
 
 kwMassageHealthHistory.createComplaintsForm = function(state, action){
 	if ( action.action  === "init" ){
-		return {};
+		return { isValid: true };
 	}else if (state.currentPage === 1 ){
 		return action.newFormData;
 	}else{
@@ -51,7 +51,7 @@ kwMassageHealthHistory.createComplaintsForm = function(state, action){
 
 kwMassageHealthHistory.createCheckboxesForm = function(state, action){
 	if ( action.action  === "init" ){
-		return {};
+		return { isValid: true };
 	}else if (state.currentPage === 2 ){
 		return action.newFormData;
 	}else{
@@ -61,7 +61,7 @@ kwMassageHealthHistory.createCheckboxesForm = function(state, action){
 
 kwMassageHealthHistory.createPainsForm = function(state, action){
 	if ( action.action  === "init" ){
-		return {};
+		return { isValid: true };
 	}else if (state.currentPage === 3 ){
 		return action.newFormData;
 	}else{
@@ -71,7 +71,7 @@ kwMassageHealthHistory.createPainsForm = function(state, action){
 
 kwMassageHealthHistory.createOtherForm = function(state, action){
 	if ( action.action  === "init" ){
-		return {};
+		return { isValid: true };
 	}else if (state.currentPage === 4 ){
 		return action.newFormData;
 	}else{
@@ -81,7 +81,7 @@ kwMassageHealthHistory.createOtherForm = function(state, action){
 
 kwMassageHealthHistory.createConcentForm = function(state, action){
 	if ( action.action  === "init" ){
-		return {};
+		return { isValid: true };
 	}else if (state.currentPage === 5 ){
 		return action.newFormData;
 	}else{

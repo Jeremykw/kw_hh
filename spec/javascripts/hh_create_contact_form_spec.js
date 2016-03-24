@@ -101,7 +101,7 @@ describe("Health History Form Contact", function() {
 		expect(currentContactState.contactForm.errors.hh_form_last_name).toEqual("Last Name must be less than 50 characters");
 	})
 
-	it("State.isValid should return false is their is and error", function() {
-		expect(currentContactState.isValid).toEqual(false);
+	it("State.isStateValid should return false if their is and error", function() {
+		expect(currentContactState.isStateValid).toEqual(false);
 	})	
 })

@@ -9,12 +9,12 @@ describe("init state", function() {
   })
   
   it("should respond with {} to all form calls", function() {
-    expect(initState.contactForm).toEqual({});
-    expect(initState.complaintsForm).toEqual({});
-    expect(initState.checkboxesForm).toEqual({});
-    expect(initState.painsForm).toEqual({});
-    expect(initState.otherForm).toEqual({});
-    expect(initState.concentForm).toEqual({});
+    expect(initState.contactForm).toEqual({ isValid: true });
+    expect(initState.complaintsForm).toEqual({ isValid: true });
+    expect(initState.checkboxesForm).toEqual({ isValid: true });
+    expect(initState.painsForm).toEqual({ isValid: true });
+    expect(initState.otherForm).toEqual({ isValid: true });
+    expect(initState.concentForm).toEqual({ isValid: true });
   })
 
   it("should respond with true to isValid", function() {
