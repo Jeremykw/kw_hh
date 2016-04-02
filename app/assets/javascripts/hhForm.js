@@ -1,57 +1,73 @@
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
-kwMassageHealthHistory.formPrototype = {
-	isValid: true,
-	data: {}
-
+kwMassageHealthHistory.formData = function(state, action){
+	if ( action.action === "init" ){
+		return {};
+	}else if( state.currentPage === page ){
+		return action.newFormData;
+	}else{
+		switch ( page ){
+			case 0:
+				return state.contactForm;
+			case 1:
+				return state.complaintsForm;
+			case 2:
+				return state.checkboxesForm;
+			case 3:
+				return state.painsForm;
+			case 4:
+				return state.otherForm;
+			case 5:
+				return state.concentForm;
+		}
+	}
 }
 
-// kwMassageHealthHistory.createContactForm(state, action) = kwMassageHealthHistory.formPrototype;
-// kwMassageHealthHistory.createContactForm(state, action).isValid = function(){
-// 	if ( action.action === "init" ){
-// 		return true;
-// 	}else{
-// 		return 
-// 	}
-// }
+kwMassageHealthHistory.createContactForm = function(state, action){
+	this.data = kwMassageHealthHistory.formData(state, action);
+	this.isValid = valid(this.data);
 
-// kwMassageHealthHistory.createContactForm = function(state, action){
-// 	return (function(){
-// 		if ( action.action === "init" ){
-// 			return { isValid: true };
-// 		}else if ( state.currentPage === 0 ){
-// 			if ( action.newFormData ){
-// 				var form = action.newFormData;
-// 				form.errors = contactFormErrors(form);
-// 				form.isValid = kwMassageHealthHistory.validate.isFormValid(form.errors);
-// 			}
-// 			return form;
-// 		}else{
-// 			return state.contactForm;
-// 		}
-// 	})()
-// 	function contactFormErrors(form){
-// 		return kwMassageHealthHistory.validate.mergeErrors(
-// 			kwMassageHealthHistory.validate.validateLengthOf([
-// 					"first_name",
-// 					"last_name",
-// 					"address_1",
-// 					"address_2",
-// 					"city",
-// 					"provance",
-// 					"postal_code",
-// 					"email",
-// 					"phone",
-// 					"occupation",
-// 					"referral_source",
-// 					"physician",
-// 					"physician_address"
-// 				], 
-// 				50, form),
-// 			kwMassageHealthHistory.validate.validatePresenceOf(["first_name", "last_name", "email", "phone"], form)
-// 			)
-// 	}
-// }
+	function valid(data){
+		return true
+	}
+
+
+	// return (function(){
+	// 	if ( action.action === "init" ){
+	// 		return { isValid: true };
+	// 	}else if ( state.currentPage === 0 ){
+	// 		if ( action.newFormData ){
+	// 			var form = action.newFormData;
+	// 			form.errors = contactFormErrors(form);
+	// 			form.isValid = kwMassageHealthHistory.validate.isFormValid(form.errors);
+	// 		}
+	// 		return form;
+	// 	}else{
+	// 		return state.contactForm;
+	// 	}
+	// })()
+	// function contactFormErrors(form){
+	// 	return kwMassageHealthHistory.validate.mergeErrors(
+	// 		kwMassageHealthHistory.validate.validateLengthOf([
+	// 				"first_name",
+	// 				"last_name",
+	// 				"address_1",
+	// 				"address_2",
+	// 				"city",
+	// 				"provance",
+	// 				"postal_code",
+	// 				"email",
+	// 				"phone",
+	// 				"occupation",
+	// 				"referral_source",
+	// 				"physician",
+	// 				"physician_address"
+	// 			], 
+	// 			50, form),
+	// 		kwMassageHealthHistory.validate.validatePresenceOf(["first_name", "last_name", "email", "phone"], form)
+	// 		)
+	// }
+}
 
 // kwMassageHealthHistory.createComplaintsForm = function(state, action){
 // 	if ( action.action  === "init" ){

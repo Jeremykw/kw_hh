@@ -3,7 +3,7 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.hhState = function(lastState, action){
 
-	this.contactForm	= Object.create(kwMassageHealthHistory.formPrototype);
+	this.contactForm	= new kwMassageHealthHistory.createContactForm(lastState, action);
 	this.complaintsForm	= Object.create(kwMassageHealthHistory.formPrototype);
 	this.checkboxesForm	= Object.create(kwMassageHealthHistory.formPrototype);
 	this.painsForm		= Object.create(kwMassageHealthHistory.formPrototype);
@@ -14,20 +14,21 @@ kwMassageHealthHistory.hhState = function(lastState, action){
 	this.lastPage = pastPage(lastState, action);
 	this.currentPage = thisPage(lastState, action);
 
-	// this.isStateValid = checkStateValidity(this, lastState, action);
+	this.isStateValid = checkStateValidity(this, lastState, action);
 
-	// function checkStateValidity(state, lastState, action){
-	// 	if ( action.action === "init" ){
-	// 		return true;
-	// 	}else{
-	// 		switch ( state.lastPage ){
-	// 			case 0:
-	// 				return form.contact.isValid;					
-	// 			default:
-	// 				return true;
-	// 		}
-	// 	}
-	// }
+	function checkStateValidity(state, lastState, action){
+		if ( action.action === "init" ){
+			return true;
+		}
+		// else{
+		// 	switch ( state.lastPage ){
+		// 		case 0:
+		// 			return form.contact.isValid;					
+		// 		default:
+		// 			return true;
+		// 	}
+		// }
+	}
 
 	function pastPage(){
 		if ( action.action === "init" ){

@@ -9,17 +9,17 @@ describe("init state", function() {
   })
   
   it("should respond with {} to all form calls", function() {
-    expect(initState.contactForm.isValid).toEqual(true);
-    expect(initState.complaintsForm.isValid).toEqual(true);
-    expect(initState.checkboxesForm.isValid).toEqual(true);
-    expect(initState.painsForm.isValid).toEqual(true);
-    expect(initState.otherForm.isValid).toEqual(true);
-    expect(initState.concentForm.isValid).toEqual(true);
+    expect(initState.contactForm).toEqual({});
+    expect(initState.complaintsForm).toEqual({});
+    expect(initState.checkboxesForm).toEqual({});
+    expect(initState.painsForm).toEqual({});
+    expect(initState.otherForm).toEqual({});
+    expect(initState.concentForm).toEqual({});
   })
 
-  // it("should respond with true to isValid", function() {
-  //   expect(initState.isStateValid).toEqual(true);
-  // })
+  it("should respond with true to isValid", function() {
+    expect(initState.isStateValid).toEqual(true);
+  })
   
 
 })

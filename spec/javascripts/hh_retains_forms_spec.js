@@ -1,4 +1,4 @@
-// zdescribe("Health History Retain Forms", function() {
+// describe("Health History Retain Forms", function() {
 // 	var initContactState = new kwMassageHealthHistory.hHrun({}, {action: "init"});
 // 	var currentContactState, lastContactState;
 //     var contact = {
