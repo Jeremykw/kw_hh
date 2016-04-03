@@ -25,7 +25,7 @@ function init(){
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.hHrun = function(state, action, fullForm){
-	var newState = new kwMassageHealthHistory.hhState(state, action);
+	newState = new kwMassageHealthHistory.hhState(state, action);
 	// this.hhRenderForm(newState, fullForm);
 	return newState;
 }

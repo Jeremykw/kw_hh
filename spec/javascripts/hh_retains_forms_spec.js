@@ -121,7 +121,7 @@ describe("Health History Retain Forms", function() {
 		expect(currentContactState.complaintsForm.data).toEqual(complaints);
 		expect(currentContactState.checkboxesForm.data).toEqual(checkBoxes);
 		expect(currentContactState.painsForm.data).toEqual(pains);
-		expect(currentContactState.currentPage.data).toEqual(4);
+		expect(currentContactState.currentPage).toEqual(4);
 
 	})	
 
@@ -138,7 +138,7 @@ describe("Health History Retain Forms", function() {
 		expect(currentContactState.checkboxesForm.data).toEqual(checkBoxes);
 		expect(currentContactState.painsForm.data).toEqual(pains);
 		expect(currentContactState.otherForm.data).toEqual(other);
-		expect(currentContactState.currentPage.data).toEqual(5);
+		expect(currentContactState.currentPage).toEqual(5);
 
 	})	
 
@@ -156,7 +156,7 @@ describe("Health History Retain Forms", function() {
 		expect(currentContactState.painsForm.data).toEqual(pains);
 		expect(currentContactState.otherForm.data).toEqual(other);
 		expect(currentContactState.concentForm.data).toEqual(concent);
-		expect(currentContactState.currentPage.data).toEqual(4);
+		expect(currentContactState.currentPage).toEqual(4);
 
 	})
 

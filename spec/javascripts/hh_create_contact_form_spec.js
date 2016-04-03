@@ -29,9 +29,9 @@ describe("Health History Form Contact", function() {
 		expect(currentContactState.contactForm.data).toEqual(actionSetUp);
 	})
 
-	// it("Returns true if contact form is valid", function() {
-	// 	expect(currentContactState.contactForm.isValid).toEqual(true);
-	// })
+	it("Returns true if contact form is valid", function() {
+		expect(currentContactState.contactForm.isValid).toEqual(true);
+	})
 
 	// it("Returns false if first_name is missing and adds corect message", function() {
 	// 	var action = {
