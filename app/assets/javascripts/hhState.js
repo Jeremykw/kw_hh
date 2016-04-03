@@ -4,11 +4,11 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.hhState = function(lastState, action){
 
 	this.contactForm	= new kwMassageHealthHistory.createContactForm(lastState, action);
-	this.complaintsForm	= Object.create(kwMassageHealthHistory.formPrototype);
-	this.checkboxesForm	= Object.create(kwMassageHealthHistory.formPrototype);
-	this.painsForm		= Object.create(kwMassageHealthHistory.formPrototype);
-	this.otherForm		= Object.create(kwMassageHealthHistory.formPrototype);
-	this.concentForm	= Object.create(kwMassageHealthHistory.formPrototype);
+	this.complaintsForm	= new kwMassageHealthHistory.createComplaintsForm(lastState, action);
+	this.checkboxesForm	= new kwMassageHealthHistory.createCheckboxesForm(lastState, action);
+	this.painsForm		= new kwMassageHealthHistory.createPainsForm(lastState, action);
+	this.otherForm		= new kwMassageHealthHistory.createOtherForm(lastState, action);
+	this.concentForm	= new kwMassageHealthHistory.createConcentForm(lastState, action);
 
 
 	this.lastPage = pastPage(lastState, action);
