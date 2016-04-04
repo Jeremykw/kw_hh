@@ -10,24 +10,23 @@ kwMassageHealthHistory.hhState = function(lastState, action){
 	this.otherForm		= new kwMassageHealthHistory.createOtherForm(lastState, action);
 	this.concentForm	= new kwMassageHealthHistory.createConcentForm(lastState, action);
 
+	this.isStateValid = stateValid(this);
 
 	this.lastPage = pastPage(lastState, action);
-	this.currentPage = thisPage(lastState, action);
+	this.currentPage = thisPage(lastState, action, this.stateIsValid);
 
-	this.isStateValid = checkStateValidity(this, lastState, action);
 
-	function checkStateValidity(state, lastState, action){
-		if ( action.action === "init" ){
-			return true;
-		}
-		// else{
-		// 	switch ( state.lastPage ){
-		// 		case 0:
-		// 			return form.contact.isValid;					
-		// 		default:
-		// 			return true;
-		// 	}
-		// }
+	function stateValid(that){
+		return kwMassageHealthHistory.validate.isFormValid(
+			kwMassageHealthHistory.validate.mergeErrors(
+				that.contactForm.errors,
+				that.complaintsForm.errors,
+				that.checkboxesForm.errors,
+				that.painsForm.errors,
+				that.otherForm.errors,
+				that.concentForm.errors
+			)
+		)
 	}
 
 	function pastPage(){
@@ -38,9 +37,11 @@ kwMassageHealthHistory.hhState = function(lastState, action){
 		}
 	}
 
-	function thisPage(lastState, action){
+	function thisPage(lastState, action, stateIsValid){
 		if ( action.action === "init" ){
 			return 0;
+		}else if( !stateIsValid ){
+			return lastState.currentPage;
 		}else if( action.action === "next" ){
 			return lastState.currentPage + 1;
 		}else if ( action.action === "back"){

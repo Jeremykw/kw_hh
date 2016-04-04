@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-// window.onload = init;
+window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
@@ -26,6 +26,6 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.hHrun = function(state, action, fullForm){
 	newState = new kwMassageHealthHistory.hhState(state, action);
-	// this.hhRenderForm(newState, fullForm);
+	this.hhRenderForm(newState, fullForm);
 	return newState;
 }

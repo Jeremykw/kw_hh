@@ -4,7 +4,7 @@ kwMassageHealthHistory.formData = function(state, action, page){
 	if ( action.action === "init" ){
 		return {};
 	}else if( state.currentPage === page ){
-		return action.newFormData;
+		return action.newFormData || {};
 	}else{
 		switch ( page ){
 			case 0:
@@ -26,11 +26,7 @@ kwMassageHealthHistory.formData = function(state, action, page){
 kwMassageHealthHistory.createContactForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 0);
 	this.errors = formErrors(this.data); 
-	this.isValid = valid("this.errors");
-
-	function valid(data){
-		return true
-	}
+	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errors);
 
 	function formErrors(form){
 		return kwMassageHealthHistory.validate.mergeErrors(
@@ -49,13 +45,13 @@ kwMassageHealthHistory.createContactForm = function(state, action){
 					"physician",
 					"physician_address"
 				], 
-				50, form)
-			// kwMassageHealthHistory.validate.validatePresenceOf([
-			// 	"first_name", 
-			// 	"last_name", 
-			// 	"email", 
-			// 	"phone"
-			// ], form)
+				50, form),
+			kwMassageHealthHistory.validate.validatePresenceOf([
+				"first_name", 
+				"last_name", 
+				"email", 
+				"phone"
+			], form)
 		)
 	}
 
@@ -63,25 +59,30 @@ kwMassageHealthHistory.createContactForm = function(state, action){
 
 kwMassageHealthHistory.createComplaintsForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 1);
+	this.errors = {};
 	this.isValid = true;
 }
 
 kwMassageHealthHistory.createCheckboxesForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 2);
+	this.errors = {};
 	this.isValid = true;
 }
 
 kwMassageHealthHistory.createPainsForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 3);
+	this.errors = {};
 	this.isValid = true;
 }
 
 kwMassageHealthHistory.createOtherForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 4);
+	this.errors = {};
 	this.isValid = true;
 }
 
 kwMassageHealthHistory.createConcentForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 5);
+	this.errors = {};
 	this.isValid = true;
 }
