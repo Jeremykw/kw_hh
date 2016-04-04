@@ -1,11 +1,13 @@
 describe("Health History Form Navagation", function() {
+	
 	var initState = new kwMassageHealthHistory.hHrun({}, {action: "init"});
-
 	var currentState, lastState;
+	
 
 	it("initState responds with new state current page 1 with 'next action' and last page to 0", function() {
 		var action = {action: "next"};
 		currentState = new kwMassageHealthHistory.hHrun(initState, action);
+	spyOn(kwMassageHealthHistory.hhState, "isStateValid").and.returnValue(true);
 		expect(currentState.currentPage).toEqual(1);
 		expect(currentState.lastPage).toEqual(0);
 	})

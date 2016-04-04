@@ -3,18 +3,18 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.hhState = function(lastState, action){
 
-	this.contactForm	= new kwMassageHealthHistory.createContactForm(lastState, action);
-	this.complaintsForm	= new kwMassageHealthHistory.createComplaintsForm(lastState, action);
-	this.checkboxesForm	= new kwMassageHealthHistory.createCheckboxesForm(lastState, action);
-	this.painsForm		= new kwMassageHealthHistory.createPainsForm(lastState, action);
-	this.otherForm		= new kwMassageHealthHistory.createOtherForm(lastState, action);
-	this.concentForm	= new kwMassageHealthHistory.createConcentForm(lastState, action);
+	this.contactForm	= new kwMassageHealthHistory.contactForm(lastState, action);
+	this.complaintsForm	= new kwMassageHealthHistory.complaintsForm(lastState, action);
+	this.checkboxesForm	= new kwMassageHealthHistory.checkboxesForm(lastState, action);
+	this.painsForm		= new kwMassageHealthHistory.painsForm(lastState, action);
+	this.otherForm		= new kwMassageHealthHistory.otherForm(lastState, action);
+	this.concentForm	= new kwMassageHealthHistory.concentForm(lastState, action);
 
 	this.errorMessages = errorMessages(this) || {};
-	this.isStateValid = stateValid(this.errorMessages);
+	this.isStateValid = stateValid(this.errorMessages, action);
 
 	this.lastPage = pastPage(lastState, action);
-	this.currentPage = thisPage(lastState, action, this.stateIsValid);
+	this.currentPage = thisPage(lastState, action, this.isStateValid);
 
 	function errorMessages(that){
 		return kwMassageHealthHistory.validate.mergeErrors(
@@ -27,8 +27,12 @@ kwMassageHealthHistory.hhState = function(lastState, action){
 		)
 	}
 
-	function stateValid(errors){
-		return kwMassageHealthHistory.validate.isFormValid(errors)
+	function stateValid(errors, action){
+		if ( action.action === "init" ){
+			return true;
+		}else{
+			return kwMassageHealthHistory.validate.isFormValid(errors)
+		}
 	}
 
 	function pastPage(){
@@ -42,6 +46,8 @@ kwMassageHealthHistory.hhState = function(lastState, action){
 	function thisPage(lastState, action, stateIsValid){
 		if ( action.action === "init" ){
 			return 0;
+		}else if( !stateIsValid ){
+			return lastState.currentPage;
 		}else if( action.action === "next" ){
 			return lastState.currentPage + 1;
 		}else if ( action.action === "back"){

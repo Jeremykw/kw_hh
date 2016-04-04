@@ -23,9 +23,9 @@ kwMassageHealthHistory.formData = function(state, action, page){
 	}
 }
 
-kwMassageHealthHistory.createContactForm = function(state, action){
+kwMassageHealthHistory.contactForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 0);
-	this.errors = formErrors(this.data); 
+	this.errors = formErrors(this.data) || {}; 
 	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errors);
 
 	function formErrors(form){
@@ -57,31 +57,31 @@ kwMassageHealthHistory.createContactForm = function(state, action){
 
 }
 
-kwMassageHealthHistory.createComplaintsForm = function(state, action){
+kwMassageHealthHistory.complaintsForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 1);
 	this.errors = {};
 	this.isValid = true;
 }
 
-kwMassageHealthHistory.createCheckboxesForm = function(state, action){
+kwMassageHealthHistory.checkboxesForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 2);
 	this.errors = {};
 	this.isValid = true;
 }
 
-kwMassageHealthHistory.createPainsForm = function(state, action){
+kwMassageHealthHistory.painsForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 3);
 	this.errors = {};
 	this.isValid = true;
 }
 
-kwMassageHealthHistory.createOtherForm = function(state, action){
+kwMassageHealthHistory.otherForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 4);
 	this.errors = {};
 	this.isValid = true;
 }
 
-kwMassageHealthHistory.createConcentForm = function(state, action){
+kwMassageHealthHistory.concentForm = function(state, action){
 	this.data = kwMassageHealthHistory.formData(state, action, 5);
 	this.errors = {};
 	this.isValid = true;
