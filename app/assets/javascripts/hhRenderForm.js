@@ -1,11 +1,12 @@
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
-kwMassageHealthHistory.hhRenderForm = function(state, fullForm){
+kwMassageHealthHistory.hhRenderForm = function(){
+	var state = kwMassageHealthHistory.hhState;
 
 	if ( state.lastPage !== state.currentPage ){
-		renderNewForm(state, fullForm);
+		renderNewForm(state, kwMassageHealthHistory.fullForm);
 	}else if( state.lastPage === 0 && state.currentPage === 0 ){
-		renderNewForm(state, fullForm);
+		renderNewForm(state, kwMassageHealthHistory.fullForm);
 	}else{
 		addErrorMessagesToForm(state);
 	}
@@ -16,6 +17,7 @@ kwMassageHealthHistory.hhRenderForm = function(state, fullForm){
 		emptyFormSection("form_partials");
 		// add form section corresponding to state number
 		var formSection = fullForm[state.currentPage]; // form section that needs to be shown
+		debugger
 		var form = document.getElementById('form_partials'); // section to insert section above
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
@@ -55,7 +57,7 @@ kwMassageHealthHistory.hhRenderForm = function(state, fullForm){
 				return newDataHash;
 			})()
 	   		// 	
-	    	kwMassageHealthHistory.hHrun(state, nextAction, fullForm);
+	    	kwMassageHealthHistory.hHrun(nextAction);
 	    })
 	    buttonPlaceHolder.appendChild(button);
     	

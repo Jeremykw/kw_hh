@@ -1,3 +1,5 @@
+var kwMassageHealthHistory = kwMassageHealthHistory || {};
+
 kwMassageHealthHistory.getFullForm = function(){
 	var initFullForm = {
 		0: document.getElementById("contact"),

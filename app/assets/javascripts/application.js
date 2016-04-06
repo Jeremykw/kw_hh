@@ -16,21 +16,20 @@
 //= require_tree .
 
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
-// window.onload = init;
+window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
 		kwMassageHealthHistory.hhState = new kwMassageHealthHistory.baseState();
 		kwMassageHealthHistory.fullForm = kwMassageHealthHistory.getFullForm();
-		kwMassageHealthHistory.hHrun(kwMassageHealthHistory.hhState, {}, kwMassageHealthHistory.fullForm);
+		kwMassageHealthHistory.hHrun({});
 	}
 }
 
-kwMassageHealthHistory.hHrun = function(state, action, fullForm){
-	state.update(action)
-	// newState = new kwMassageHealthHistory.hhState(state, action);
-	// this.hhRenderForm(newState, fullForm);
-	return state;
+kwMassageHealthHistory.hHrun = function(action){
+	kwMassageHealthHistory.hhState.update(action)
+	kwMassageHealthHistory.hhRenderForm();
+
 }
 
 kwMassageHealthHistory.page = function(currentPage) {

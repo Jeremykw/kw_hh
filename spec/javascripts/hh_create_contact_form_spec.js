@@ -1,9 +1,8 @@
 describe("Health History Form Contact", function() {
-	kwMassageHealthHistory.hhState = new kwMassageHealthHistory.baseState();	
-	var initContactState = kwMassageHealthHistory.hHrun(kwMassageHealthHistory.hhState, {});
+	beforeEach(function(){
+		kwMassageHealthHistory.contactState = new kwMassageHealthHistory.baseState();	
+	})
 
-
-	var currentContactState, lastContactState;	
     var actionSetUp;
     beforeEach(function() {
 		actionSetUp = {
@@ -23,17 +22,16 @@ describe("Health History Form Contact", function() {
 		}
 	})  
 
+
 	it("Create form", function() {
 		var action = {
 			action: "next",
 			newFormData: actionSetUp
 		}
-		currentContactState = kwMassageHealthHistory.hHrun(initContactState, action);
-		expect(currentContactState.contactForm).toEqual(actionSetUp);
-	})
-
-	it("Returns true if contact form is valid", function() {
-		expect(currentContactState.isValid).toEqual(true);
+		kwMassageHealthHistory.contactState.update(action);
+		expect(kwMassageHealthHistory.contactState.contactForm).toEqual(actionSetUp);
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(1);
 	})
 
 	it("Returns false if first_name is missing and adds corect message", function() {
@@ -42,69 +40,72 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_first_name = ""
-		currentContactState = kwMassageHealthHistory.hHrun(initContactState, action);
-		expect(currentContactState.isValid).toEqual(false);
-		expect(currentContactState.errorMessages).toEqual("First Name Must Be Present");
+		kwMassageHealthHistory.contactState.update(action);
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_first_name).toEqual("First Name Must Be Present");
+		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(0);
+
 	})
 
 
-	// it("Returns false if last_name is missing and adds corect message", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: actionSetUp
-	// 	}
-	// 	action.newFormData.hh_form_last_name = ""
-	// 	currentContactState = new kwMassageHealthHistory.hHrun(initContactState, action);
-	// 	expect(currentContactState.contactForm.isValid).toEqual(false);
-	// 	expect(currentContactState.contactForm.errors.hh_form_last_name).toEqual("Last Name Must Be Present");
-	// })
+	it("Returns false if last_name is missing and adds corect message", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_last_name = ""
+		kwMassageHealthHistory.contactState.update(action);
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_last_name).toEqual("Last Name Must Be Present");
+		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(0);
 
-	// it("Returns false if phone is missing and adds corect message", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: actionSetUp
-	// 	}
-	// 	action.newFormData.hh_form_phone = ""
-	// 	currentContactState = new kwMassageHealthHistory.hHrun(initContactState, action);
-	// 	expect(currentContactState.contactForm.isValid).toEqual(false);
-	// 	expect(currentContactState.contactForm.errors.hh_form_phone).toEqual("Phone Must Be Present");
-	// })
+	})
 
-	// it("Returns true if referral_source is missing and doesn't add error message", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: actionSetUp
-	// 	}
-	// 	action.newFormData.hh_form_referral_source = ""
-	// 	currentContactState = new kwMassageHealthHistory.hHrun(initContactState, action);
-	// 	expect(currentContactState.contactForm.isValid).toEqual(true);
-	// 	expect(currentContactState.contactForm.errors.hh_form_referral_source).toEqual(undefined);
-	// })
+	it("Returns false if phone is missing and adds corect message", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_phone = ""
+		kwMassageHealthHistory.contactState.update(action);
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must Be Present");
+	})
 
-	// it("Returns false if first_name longer than 50 and adds corect message", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: actionSetUp
-	// 	}
-	// 	action.newFormData.hh_form_first_name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-	// 	currentContactState = new kwMassageHealthHistory.hHrun(initContactState, action);
-	// 	expect(currentContactState.contactForm.isValid).toEqual(false);
-	// 	expect(currentContactState.contactForm.errors.hh_form_first_name).toEqual("First Name must be less than 50 characters");
-	// })
+	it("Returns true if referral_source is missing and doesn't add error message", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_referral_source = ""
+		kwMassageHealthHistory.contactState.update(action);
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_referral_source).toEqual(undefined);
+		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(1);
 
-	// it("Returns false if last_name longer than 50 and adds corect message", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: actionSetUp
-	// 	}
-	// 	action.newFormData.hh_form_last_name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-	// 	currentContactState = new kwMassageHealthHistory.hHrun(initContactState, action);
+	})
 
-	// 	expect(currentContactState.contactForm.isValid).toEqual(false);
-	// 	expect(currentContactState.contactForm.errors.hh_form_last_name).toEqual("Last Name must be less than 50 characters");
-	// })
+	it("Returns false if first_name is longer than 50 and adds corect message", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_first_name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		kwMassageHealthHistory.contactState.update(action);
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_first_name).toEqual("First Name must be less than 50 characters");
+	})
 
-	// it("State.isStateValid should return false if their is and error", function() {
-	// 	expect(currentContactState.isStateValid).toEqual(false);
-	// })	
+	it("Returns false if last_name is longer than 50 and adds corect message", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_last_name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_last_name).toEqual("Last Name must be less than 50 characters");
+	})
+
 })

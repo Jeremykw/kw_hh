@@ -31,10 +31,7 @@ kwMassageHealthHistory.contactForm = {
 
 }
 
-kwMassageHealthHistory.complaintsForm = {
 
-	errors: function(form){},
-}
 
 kwMassageHealthHistory.checkboxesForm = {
 

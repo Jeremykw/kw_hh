@@ -22,25 +22,31 @@ kwMassageHealthHistory.baseState.prototype.update = function(action){
 	var page = kwMassageHealthHistory.page(this.currentPage);
 	this[page] = action.newFormData || {};
 
-	this.errorMessages = kwMassageHealthHistory[lastPage].errors(action.newFormData);
-	this.isValid = kwMassageHealthHistory.validate.isFormValid({});
+	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData) || {};
+	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
 	
 	this.lastPage = this._lastPage(this);
-	this.currentPage = this._nextPage(action, this.isValid)
+	this.currentPage = this._nextPage(action, this)
 }
 
 kwMassageHealthHistory.baseState.prototype._lastPage = function(that){
-		return that.currentPage;
+		if( that.isValid ){
+			return that.currentPage;
+		}else{
+			return that.lastPage
+		}
 }
 
-kwMassageHealthHistory.baseState.prototype._nextPage = function(action, isStateValid){
-	if( !isStateValid ){
-		return this.currentPage;
-	}else if( action.action === "next" ){
-		return this.currentPage + 1;
-	}else if ( action.action === "back"){
-		return this.currentPage - 1;
+kwMassageHealthHistory.baseState.prototype._nextPage = function(action, that){
+	if( that.isValid ){
+		if( action.action === "next" ){
+			return that.currentPage + 1;
+		}else if ( action.action === "back"){
+			return that.currentPage - 1;
+		}else{
+			return that.currentPage;
+		}
 	}else{
-		return this.currentPage
+		return that.currentPage;
 	}
 }
