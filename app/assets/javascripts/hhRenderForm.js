@@ -3,13 +3,15 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.hhRenderForm = function(){
 	var state = kwMassageHealthHistory.hhState;
 
-	if ( state.isValid ){
-		renderNewForm(state, kwMassageHealthHistory.fullForm);
-	}else{
-		addErrorMessagesToForm(state);
-	}
-
-	document.getElementById("hh_form").scrollIntoView();
+	(function(){
+		if ( state.isValid ){
+			renderNewForm(state, kwMassageHealthHistory.fullForm);
+		}else{
+			addErrorMessagesToForm(state);
+		}
+	
+		document.getElementById("hh_form").scrollIntoView();
+	})()
 
 	function renderNewForm(state, fullForm){
 		emptyFormSection("form_partials");
