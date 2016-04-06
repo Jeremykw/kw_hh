@@ -1,0 +1,51 @@
+(function() {
+	var Form = function(options) {
+		this.name = options.name;
+	};
+
+	Base.prototype.getName = function() {
+		return this.name;
+
+
+	}
+
+	Base.prototype._calculateFoo = 
+
+	var foo = new Base({name: 'contact'});
+	foo.getName(); // contact
+
+	var ContactForm = function(options) {
+
+	};
+
+	Object.assign(ContactForm.prototype, Form.prototype); // _.extends underscore.js
+
+
+
+})();
+
+
+(
+	
+	var Form = (function(options) {
+
+		this.name = options.name
+
+		function _foo() {
+
+			this.name
+		}
+
+		return {
+			getName: function() {
+				return this.name;
+
+			}
+
+		};
+
+	})();
+
+	var cpmtactF = new Form()
+
+)

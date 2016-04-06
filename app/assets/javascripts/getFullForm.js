@@ -1,4 +1,4 @@
-function getFullForm(){
+kwMassageHealthHistory.getFullForm = function(){
 	var initFullForm = {
 		0: document.getElementById("contact"),
 		1: document.getElementById("complaints"),

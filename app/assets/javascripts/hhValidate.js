@@ -5,29 +5,29 @@ kwMassageHealthHistory.validate = {
 
 	validatePresenceOf: function(fieldsArray, form){
 		var presanceErrors = {};
-		for (var field in fieldsArray) {
-			var testField = "hh_form_" + fieldsArray[field];
-			if ( !form[testField] ){
-				presanceErrors["hh_form_" + fieldsArray[field]] = 
-					fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + 
-					" Must Be Present";
-			}
-		}
-		return presanceErrors;
+		// for (var field in fieldsArray) {
+		// 	var testField = "hh_form_" + fieldsArray[field];
+		// 	if ( !form[testField] ){
+		// 		presanceErrors["hh_form_" + fieldsArray[field]] = 
+		// 			fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + 
+		// 			" Must Be Present";
+		// 	}
+		// }
+		return form;
 	},
 	
 	validateLengthOf: function(fieldsArray, maxLength, form){
 		var lengthErrors = {};
-		for (var field in fieldsArray) {
-			var testField = "hh_form_" + fieldsArray[field];
-			if ( form[testField] && form[testField].length > maxLength ){
-				lengthErrors["hh_form_" + fieldsArray[field]] = 
-					fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + // capitalization needs to be fixed
-					" must be less than " + maxLength + 
-					" characters";
-			}
-		}
-		return lengthErrors;
+		// for (var field in fieldsArray) {
+		// 	var testField = "hh_form_" + fieldsArray[field];
+		// 	if ( form[testField] && form[testField].length > maxLength ){
+		// 		lengthErrors["hh_form_" + fieldsArray[field]] = 
+		// 			fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + // capitalization needs to be fixed
+		// 			" must be less than " + maxLength + 
+		// 			" characters";
+		// 	}
+		// }
+		return form;
 	},
 
 	mergeErrors: function(){

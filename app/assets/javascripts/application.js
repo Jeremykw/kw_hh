@@ -15,17 +15,37 @@
 //= require turbolinks
 //= require_tree .
 
+var kwMassageHealthHistory = kwMassageHealthHistory || {};
 // window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
-		kwMassageHealthHistory.hHrun({}, {action: "init"}, getFullForm());
+		kwMassageHealthHistory.hhState = new kwMassageHealthHistory.baseState();
+		kwMassageHealthHistory.fullForm = kwMassageHealthHistory.getFullForm();
+		kwMassageHealthHistory.hHrun(kwMassageHealthHistory.hhState, {}, kwMassageHealthHistory.fullForm);
 	}
 }
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.hHrun = function(state, action, fullForm){
-	newState = new kwMassageHealthHistory.hhState(state, action);
+	state.update(action)
+	// newState = new kwMassageHealthHistory.hhState(state, action);
 	// this.hhRenderForm(newState, fullForm);
-	return newState;
+	return state;
 }
+
+kwMassageHealthHistory.page = function(currentPage) {
+	switch ( currentPage ){
+		case 0:
+			return "contactForm"
+		case 1:
+			return "complaintsForm"
+		case 2:
+			return "checkboxesForm"
+		case 3:
+			return "painsForm"
+		case 4:
+			return "otherForm"
+		case 5:
+			return "concentForm"
+	}
+};
