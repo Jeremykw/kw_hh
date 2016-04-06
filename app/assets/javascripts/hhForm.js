@@ -3,8 +3,7 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.contactForm = {
 
 	errors: function(form){
-		return 
-		kwMassageHealthHistory.validate.mergeErrors(
+		return kwMassageHealthHistory.validate.mergeErrors(
 			kwMassageHealthHistory.validate.validateLengthOf([
 					"first_name",
 					"last_name",

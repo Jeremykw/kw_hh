@@ -18,10 +18,11 @@ kwMassageHealthHistory.baseState = function(){
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){
+	var lastPage = kwMassageHealthHistory.page(this.lastPage);
 	var page = kwMassageHealthHistory.page(this.currentPage);
 	this[page] = action.newFormData || {};
 
-	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData);
+	this.errorMessages = kwMassageHealthHistory[lastPage].errors(action.newFormData);
 	this.isValid = kwMassageHealthHistory.validate.isFormValid({});
 	
 	this.lastPage = this._lastPage(this);
