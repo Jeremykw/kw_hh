@@ -3,9 +3,7 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.hhRenderForm = function(){
 	var state = kwMassageHealthHistory.hhState;
 
-	if ( state.lastPage !== state.currentPage ){
-		renderNewForm(state, kwMassageHealthHistory.fullForm);
-	}else if( state.lastPage === 0 && state.currentPage === 0 ){
+	if ( state.isValid ){
 		renderNewForm(state, kwMassageHealthHistory.fullForm);
 	}else{
 		addErrorMessagesToForm(state);
@@ -17,7 +15,6 @@ kwMassageHealthHistory.hhRenderForm = function(){
 		emptyFormSection("form_partials");
 		// add form section corresponding to state number
 		var formSection = fullForm[state.currentPage]; // form section that needs to be shown
-		debugger
 		var form = document.getElementById('form_partials'); // section to insert section above
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
