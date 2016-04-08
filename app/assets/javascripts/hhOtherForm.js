@@ -14,7 +14,7 @@ kwMassageHealthHistory.otherForm = {
 					"other_medical_conditions",
 					"special_notes"
 				], 
-				50, form)
+				500, form)
 		)
 	}
 }

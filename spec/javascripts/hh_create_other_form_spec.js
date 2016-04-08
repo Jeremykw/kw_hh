@@ -1,8 +1,8 @@
 describe("Health History Form other", function() {
 	beforeEach(function(){
 		kwMassageHealthHistory.otherState = new kwMassageHealthHistory.baseState();
-		kwMassageHealthHistory.otherState.lastPage = 0;
-		kwMassageHealthHistory.otherState.currentPage = 1;
+		kwMassageHealthHistory.otherState.lastPage = 3;
+		kwMassageHealthHistory.otherState.currentPage = 4;
 	})
 
     var otherSetUp;
@@ -17,7 +17,7 @@ describe("Health History Form other", function() {
 		}
 		kwMassageHealthHistory.otherState.update(action);
 		expect(kwMassageHealthHistory.otherState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.otherState.othersForm).toEqual(otherSetUp);
+		expect(kwMassageHealthHistory.otherState.otherForm).toEqual(otherSetUp);
 	})
 
 	// it("returns inValid if hh_form_primary_other is blank", function() {
