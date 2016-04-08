@@ -3,6 +3,19 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.validate = {
 
+	validateBoolean: function(fieldsArray, form){
+		var presanceErrors = {};
+		if ( form ){
+			for (var field in fieldsArray) {
+				var testField = "hh_form_" + fieldsArray[field];
+				if ( form[testField] && !(form[testField] === true || form[testField] === false) ){
+					presanceErrors["hh_form_" + fieldsArray[field]] = "Don't be an asshole";
+				}
+			}
+		}
+		return presanceErrors;
+	},
+
 	validatePresenceOf: function(fieldsArray, form){
 		var presanceErrors = {};
 		if ( form ){
