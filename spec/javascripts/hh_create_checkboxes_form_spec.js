@@ -20,27 +20,15 @@ describe("Health History Form Checkboxes", function() {
 		expect(kwMassageHealthHistory.checkboxesState.complaintsForm).toEqual(checkboxesSetUp);
 	})
 
-	// it("returns inValid if hh_form_primary_complaint is blank", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: checkboxesSetUp
-	// 	}
-	// 	action.newFormData.hh_form_primary_complaint = "";
-	// 	kwMassageHealthHistory.checkboxesState.update(action);
-	// 	expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
-	// 	expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint Must Be Present");
-	// })
-
-	// it("returns Valid if hh_form_secondary_complaint is blank", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: checkboxesSetUp
-	// 	}
-	// 	action.newFormData.hh_form_secondary_complaint = "";
-	// 	kwMassageHealthHistory.checkboxesState.update(action);
-	// 	expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(true);
-	// 	expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_secondary_complaint).toEqual(undefined);
-	// })	
-
+	it("returns inValid if hh_form_loss_of_sensation is longer than 500 characters", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_loss_of_sensation = "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp";
+		kwMassageHealthHistory.checkboxesState.update(action);
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_loss_of_sensation).toEqual("Loss Of Sensation must be less than 500 characters");
+	})
 	
 })

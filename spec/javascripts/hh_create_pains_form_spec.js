@@ -20,27 +20,15 @@ describe("Health History Form Pains", function() {
 		expect(kwMassageHealthHistory.painsState.complaintsForm).toEqual(painsSetUp);
 	})
 
-	// it("returns inValid if hh_form_primary_complaint is blank", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: painsSetUp
-	// 	}
-	// 	action.newFormData.hh_form_primary_complaint = "";
-	// 	kwMassageHealthHistory.painsState.update(action);
-	// 	expect(kwMassageHealthHistory.painsState.isValid).toEqual(false);
-	// 	expect(kwMassageHealthHistory.painsState.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint Must Be Present");
-	// })
+	it("returns inValid if hh_form_lowback_note longer than 500 characters", function() {
+		var action = {
+			action: "next",
+			newFormData: painsSetUp
+		}
+		action.newFormData.hh_form_low_back_note = "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp";
+		kwMassageHealthHistory.painsState.update(action);
+		expect(kwMassageHealthHistory.painsState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.painsState.errorMessages.hh_form_low_back_note).toEqual("Low Back Note must be less than 500 characters");
+	})
 
-	// it("returns Valid if hh_form_secondary_complaint is blank", function() {
-	// 	var action = {
-	// 		action: "next",
-	// 		newFormData: painsSetUp
-	// 	}
-	// 	action.newFormData.hh_form_secondary_complaint = "";
-	// 	kwMassageHealthHistory.painsState.update(action);
-	// 	expect(kwMassageHealthHistory.painsState.isValid).toEqual(true);
-	// 	expect(kwMassageHealthHistory.painsState.errorMessages.hh_form_secondary_complaint).toEqual(undefined);
-	// })	
-
-	
 })

@@ -15,7 +15,7 @@ kwMassageHealthHistory.painsForm = {
 					"knees_note",
 					"other_note"
 				], 
-				50, form)
+				500, form)
 		)
 	}
 }
