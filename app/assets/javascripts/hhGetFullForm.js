@@ -9,7 +9,7 @@ kwMassageHealthHistory.getFullForm = function(){
 		4: document.getElementById("other"),
 		5: document.getElementById("concent")
 	};
-	(function(){
+	(function(){ // Empty form_partial div 
 		var array = [0, 1, 2, 3, 4, 5]
 		var form = document.getElementById("form_partials");
 		array.forEach(function(f) {

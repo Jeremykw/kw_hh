@@ -1,17 +1,17 @@
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
-kwMassageHealthHistory.complaintsForm = {
+kwMassageHealthHistory.concentForm = {
 
 	errors: function(form){
 		return kwMassageHealthHistory.validate.mergeErrors(
 			kwMassageHealthHistory.validate.validateLengthOf([
-				"primary_complaint",
-				"secondary_complaint",
-				"sports",
-				"previous_massage_note"
-			], 500, form),
+					"confirm_name",
+					"confirm_email"
+				], 
+				50, form),
 			kwMassageHealthHistory.validate.validatePresenceOf([
-				"primary_complaint"
+				"confirm_name",
+				"confirm_email"
 			], form)
 		)
 	}

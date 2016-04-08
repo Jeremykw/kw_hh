@@ -18,7 +18,6 @@ kwMassageHealthHistory.baseState = function(){
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){
-	var lastPage = kwMassageHealthHistory.page(this.lastPage);
 	var page = kwMassageHealthHistory.page(this.currentPage);
 	this[page] = action.newFormData || {};
 

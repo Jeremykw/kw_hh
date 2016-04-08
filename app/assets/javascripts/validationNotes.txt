@@ -1,0 +1,56 @@
+contact:
+	Phone: /\(?[0-9]{3}\)?-[0-9]{3}-[0-9]{4}/, "numbers must be in xxx-xxx-xxxx format."
+	email: with /.+@.+\..+/i
+	postal_code: /[a-z, A-Z][0-9][a-z, A-Z]\ ?[0-9][a-z, A-Z][0-9]/, must be in format HOH OHO
+	DOB: presence, date priot to current
+complaints:
+
+checkboxes:
+	Diabetes_onset: date prior to current
+	Pregnant: date prior to current
+pains:
+
+other:
+
+concent: first_name + last_name = confirm_name (.downcase)
+		 email = confrim_email
+
+BooleanOfields: 		[:smoke,
+		:chronic_cough,
+		:shortness_of_breath,
+		:bronchitis,
+		:asthma,
+		:emphysema,
+		:high_bp,
+		:low_bp,
+		:cchf,
+		:heat_attack,
+		:phlebitis,
+		:stroke_CVA,
+		:pacemaker,
+		:heart_disease,
+		:diabetes,
+		:epilepsy,
+		:cancer,
+		:arthritis,
+		:digestive_conditions,
+		:osteoporosis,
+		:vision_problems,
+		:vision_loss,
+		:ear_problems,
+		:hearing_loss,
+		:hepatitis,
+		:infectious_skin_condition,
+		:tb,
+		:hiv,
+		:pregnant,
+		:neck,
+		:low_back,
+		:mid_back,
+		:upper_back,
+		:shoulders,
+		:arms,
+		:legs,
+		:knees,
+		:other,
+		:previous_massage_therapy]

@@ -25,7 +25,7 @@ class HhForm < ActiveRecord::Base
     end
 
     def validate_concent_email
-    	if self.email.downcase != self.confirm_email.downcase
+    	if self.email != self.confirm_email
     		errors.add(:confirm_email, "should match your email address.")
     	else 
     		return true
@@ -60,7 +60,7 @@ class HhForm < ActiveRecord::Base
 	def validate_string_fields
 		string_fields.each do |field|
 			unless self[field] == nil or self[field] == ""
-				errors.add(field, "should be less than 25 characters.") unless self[field].length < 25
+				errors.add(field, "should be less than 50 characters.") unless self[field].length < 50
 			end
 		end
 	end
@@ -68,7 +68,7 @@ class HhForm < ActiveRecord::Base
 	def validate_text_fields
 		text_fields.each do |field|
 			unless self[field] == nil or self[field] == ""
-				error.add(field, "should be less than 250 characters.") unless field.length < 500
+				error.add(field, "should be less than 500 characters.") unless field.length < 500
 			end
 		end
 	end
