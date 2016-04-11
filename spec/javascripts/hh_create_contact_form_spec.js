@@ -168,4 +168,101 @@ describe("Health History Form Contact", function() {
 		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
 		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
 	})
+
+	it("Returns false if Postal Code if postal code is all numbers", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_postal_code = "7454112"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual("Postal Code Must be in the H0H 0H0 format");
+	})
+
+	it("Returns false if Postal Code if postal code is all letters", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_postal_code = "hohoho"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual("Postal Code Must be in the H0H 0H0 format");
+	})
+
+	it("Returns true if Postal Code if postal code correct with space", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_postal_code = "N0K 1N0"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
+	})
+
+	it("Returns true if Postal Code if postal code correct without space", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_postal_code = "N0K1N0"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
+	})	
+
+	it("Returns true if Postal Code if postal code correct with lowercase", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_postal_code = "h0h0h0"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
+	})
+
+
+	it("Returns true if Email is valid", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_email = "jeremy@kwmassage.com"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual(undefined);
+	})
+
+	it("Returns true if Email has no @", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_email = "jeremykwmassage.com"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
+	})	
+
+	it("Returns true if Email has no .", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_email = "jeremy@kwmassagecom"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
+	})	
 })

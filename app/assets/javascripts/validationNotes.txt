@@ -1,7 +1,4 @@
 contact:
-	Phone: /\(?[0-9]{3}\)?-[0-9]{3}-[0-9]{4}/, "numbers must be in xxx-xxx-xxxx format."
-	email: with /.+@.+\..+/i
-	postal_code: /[a-z, A-Z][0-9][a-z, A-Z]\ ?[0-9][a-z, A-Z][0-9]/, must be in format HOH OHO
 	DOB: presence, date prior to current
 
 checkboxes:

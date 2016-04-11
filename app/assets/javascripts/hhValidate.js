@@ -2,7 +2,27 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 
 kwMassageHealthHistory.validate = {
-
+	
+	validateEmail: function(form){
+		var emailErrors = {};
+		if ( form && form["hh_form_email"] ){
+			var reg = /.+@.+\..+/;
+			if ( !(reg.test(form["hh_form_email"]))  ){
+				emailErrors["hh_form_email"] = "Email must be valid";
+			}
+		}
+		return emailErrors;
+	},	
+	validatePostalCode: function(form){
+		var postalCodeErrors = {};
+		if ( form && form["hh_form_postal_code"] ){
+			var reg = /[a-z, A-Z][0-9][a-z, A-Z]\ ?[0-9][a-z, A-Z][0-9]/;
+			if ( !(reg.test(form["hh_form_postal_code"]))  ){
+				postalCodeErrors["hh_form_postal_code"] = "Postal Code Must be in the H0H 0H0 format";
+			}
+		}
+		return postalCodeErrors;
+	},
 	validatePhoneNumber: function(form){
 		var phoneErrors = {};
 		if ( form && form["hh_form_phone"] ){
