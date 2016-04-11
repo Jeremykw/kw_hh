@@ -12,6 +12,9 @@ kwMassageHealthHistory.complaintsForm = {
 			], 500, form),
 			kwMassageHealthHistory.validate.validatePresenceOf([
 				"primary_complaint"
+			], form),
+			kwMassageHealthHistory.validate.validateBoolean([
+				"smoke"
 			], form)
 		)
 	}

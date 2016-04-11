@@ -3,17 +3,28 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.validate = {
 
+	validatePhoneNumber: function(form){
+		var phoneErrors = {};
+		if ( form && form["hh_form_phone"] ){
+			var reg = /\(?[0-9]{3}\)?-?[0-9]{3}-?[0-9]{4}/;
+			if ( !(reg.test(form["hh_form_phone"]))  ){
+				phoneErrors["hh_form_phone"] = "Phone Must be in the xxx-xxx-xxxx format";
+			}
+		}
+		return phoneErrors;
+	},
+
 	validateBoolean: function(fieldsArray, form){
-		var presanceErrors = {};
+		var boolErrors = {};
 		if ( form ){
 			for (var field in fieldsArray) {
 				var testField = "hh_form_" + fieldsArray[field];
-				if ( form[testField] && !(form[testField] === true || form[testField] === false) ){
-					presanceErrors["hh_form_" + fieldsArray[field]] = "Don't be an asshole";
+				if ( form[testField] && !(form[testField] == true || form[testField] == false) ){
+					boolErrors["hh_form_" + fieldsArray[field]] = "Don't be an asshole";
 				}
 			}
 		}
-		return presanceErrors;
+		return boolErrors;
 	},
 
 	validatePresenceOf: function(fieldsArray, form){

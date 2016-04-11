@@ -15,7 +15,18 @@ kwMassageHealthHistory.painsForm = {
 					"knees_note",
 					"other_note"
 				], 
-				500, form)
+				500, form),
+			kwMassageHealthHistory.validate.validateBoolean([
+				"neck",
+				"low_back",
+				"mid_back",
+				"upper_back",
+				"shoulders",
+				"arms",
+				"legs",
+				"knees",
+				"other"
+			], form)
 		)
 	}
 }

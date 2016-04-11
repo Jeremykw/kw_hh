@@ -48,5 +48,37 @@ describe("Health History Form Complaint", function() {
 		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_secondary_complaint).toEqual(undefined);
 	})	
 
-	
+	it("returns Valid if hh_form_smoke true", function() {
+		var action = {
+			action: "next",
+			newFormData: complaintSetUp
+		}
+		action.newFormData.hh_form_smoke = true;
+		kwMassageHealthHistory.complaintState.update(action);
+		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_smoke).toEqual(undefined);
+	})
+
+	it("returns Valid if hh_form_smoke false", function() {
+		var action = {
+			action: "next",
+			newFormData: complaintSetUp
+		}
+		action.newFormData.hh_form_smoke = false;
+		kwMassageHealthHistory.complaintState.update(action);
+		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_smoke).toEqual(undefined);
+	})
+
+	it("returns inValid if hh_form_smoke a string", function() {
+		var action = {
+			action: "next",
+			newFormData: complaintSetUp
+		}
+		action.newFormData.hh_form_smoke = "Anything other than boolean";
+		kwMassageHealthHistory.complaintState.update(action);
+		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_smoke).toEqual("Don't be an asshole");	
+
+	})	
 })

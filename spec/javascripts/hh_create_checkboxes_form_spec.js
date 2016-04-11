@@ -30,6 +30,7 @@ describe("Health History Form Checkboxes", function() {
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
 		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_loss_of_sensation).toEqual("Loss Of Sensation must be less than 500 characters");
 	})
+
 	it("returns Valid if hh_form_asthma true", function() {
 		var action = {
 			action: "next",

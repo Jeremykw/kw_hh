@@ -108,4 +108,64 @@ describe("Health History Form Contact", function() {
 		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_last_name).toEqual("Last Name must be less than 50 characters");
 	})
 
+	it("Returns false if phone is has letters", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_phone = "sss"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
+	})
+
+
+	it("Returns true if phone has barakets", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_phone = "(519)7454112"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual(undefined);
+	})
+
+	it("Returns true if phone has dashes", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_phone = "519-745-4112"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual(undefined);
+	})
+
+	it("Returns true if phone has barackets and dashes", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_phone = "(519)-745-4112"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual(undefined);
+	})
+
+	it("Returns false if phone dashes in the wrong place", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_phone = "(519)-74-54112"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
+	})
 })
