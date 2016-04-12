@@ -39,7 +39,9 @@ kwMassageHealthHistory.checkboxesForm = {
 				"tb",
 				"hiv",
 				"pregnant"
-			], form)
+			], form),
+			kwMassageHealthHistory.validate.validateDate("diabetes_onset", form)
+
 		)
 	}
 }

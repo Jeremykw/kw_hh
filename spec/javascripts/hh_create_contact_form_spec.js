@@ -242,7 +242,7 @@ describe("Health History Form Contact", function() {
 		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual(undefined);
 	})
 
-	it("Returns true if Email has no @", function() {
+	it("Returns false if Email has no @", function() {
 		var action = {
 			action: "next",
 			newFormData: actionSetUp
@@ -254,7 +254,7 @@ describe("Health History Form Contact", function() {
 		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
 	})	
 
-	it("Returns true if Email has no .", function() {
+	it("Returns false if Email has no .", function() {
 		var action = {
 			action: "next",
 			newFormData: actionSetUp
@@ -265,4 +265,152 @@ describe("Health History Form Contact", function() {
 		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
 		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
 	})	
+
+	it("Returns true if DOB year is valid", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_1i = "1976"
+		action.newFormData.hh_form_date_of_birth_2i = "12"
+		action.newFormData.hh_form_date_of_birth_3i = "20"
+		
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual(undefined);
+	})
+
+	it("Returns false if DOB year is greater than presant year", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_1i = "2020"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
+	})
+
+	it("Returns false if DOB year is less than presant year", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_1i = "1890"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
+	})
+	
+	it("Returns false if DOB year not a numbetr", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_1i = "Bacon"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
+	})	
+
+	//
+
+	it("Returns false if DOB month is greater than 12", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_2i = "13"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+	})
+
+	it("Returns false if DOB month is less than 1", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_2i = "0"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+	})
+	it("Returns false if DOB month is negitive", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_2i = "-5"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+	})
+		
+	it("Returns false if DOB month not a numbetr", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_2i = "Bacon"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+	})	
+
+	it("Returns false if DOB day is greater than presant day", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_3i = "32"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+	})
+
+	it("Returns false if DOB day is less than presant day", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_3i = "0"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+	})
+	
+	it("Returns false if DOB day is negitive", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_3i = "-16"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+	})
+
+	it("Returns false if DOB day not a numbetr", function() {
+		var action = {
+			action: "next",
+			newFormData: actionSetUp
+		}
+		action.newFormData.hh_form_date_of_birth_3i = "Bacon"
+		kwMassageHealthHistory.contactState.update(action);
+
+		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+	})		
 })

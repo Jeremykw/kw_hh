@@ -3,6 +3,32 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.validate = {
 	
+	validateDate: function(dateField, form){
+		var dobErrors  = {};
+		var today      = new Date();
+		var yearField  = "hh_form_" + dateField + "_1i";
+		var monthField = "hh_form_" + dateField + "_2i";
+		var dayField   = "hh_form_" + dateField + "_3i";
+		if ( form && form[yearField] ){
+			var year  = parseInt(form[yearField], 10);
+			if ( year > today.getFullYear() - 1 || year < today.getFullYear() - 120 || isNaN(year) ){
+				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", year must be valid";
+			}
+		}
+		if ( form && form[monthField] ){
+			var month = parseInt(form[monthField])
+			if ( month > 12 || month < 1 || isNaN(month) ){
+				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", month must be valid";
+			}
+		}
+		if ( form && form[dayField] ){
+			var day   = parseInt(form[dayField])
+			if ( day > 31 || day < 1 || isNaN(day) ){
+				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", day must be valid";
+			}
+		}
+		return dobErrors;
+	},	
 	validateEmail: function(form){
 		var emailErrors = {};
 		if ( form && form["hh_form_email"] ){

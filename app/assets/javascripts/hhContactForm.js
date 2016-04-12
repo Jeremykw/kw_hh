@@ -28,7 +28,8 @@ kwMassageHealthHistory.contactForm = {
 			], form),
 			kwMassageHealthHistory.validate.validatePhoneNumber(form),
 			kwMassageHealthHistory.validate.validatePostalCode(form),
-			kwMassageHealthHistory.validate.validateEmail(form)
+			kwMassageHealthHistory.validate.validateEmail(form),
+			kwMassageHealthHistory.validate.validateDate("date_of_birth", form)
 		)
 	}
 
