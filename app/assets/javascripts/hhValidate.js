@@ -3,6 +3,15 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.validate = {
 	
+	_yearIsInvalid: function(year, today){
+		return ( year > today.getFullYear() - 1 || year < today.getFullYear() - 120 || isNaN(year) );
+	},
+	_monthIsInvalid: function(month){
+		return ( month > 12 || month < 1 || isNaN(month) );
+	},
+	_dayIsInvalid: function(day){
+		return ( day > 31 || day < 1 || isNaN(day) );
+	},
 	validateDate: function(dateField, form){
 		var dobErrors  = {};
 		var today      = new Date();
@@ -11,19 +20,19 @@ kwMassageHealthHistory.validate = {
 		var dayField   = "hh_form_" + dateField + "_3i";
 		if ( form && form[yearField] ){
 			var year  = parseInt(form[yearField], 10);
-			if ( year > today.getFullYear() - 1 || year < today.getFullYear() - 120 || isNaN(year) ){
+			if ( this._yearIsInvalid(year, today) ){
 				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", year must be valid";
 			}
 		}
 		if ( form && form[monthField] ){
 			var month = parseInt(form[monthField])
-			if ( month > 12 || month < 1 || isNaN(month) ){
+			if ( this._monthIsInvalid(month) ){
 				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", month must be valid";
 			}
 		}
 		if ( form && form[dayField] ){
 			var day   = parseInt(form[dayField])
-			if ( day > 31 || day < 1 || isNaN(day) ){
+			if ( this._dayIsInvalid(day) ){
 				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", day must be valid";
 			}
 		}
@@ -103,7 +112,6 @@ kwMassageHealthHistory.validate = {
 		}
 		return lengthErrors;
 	},
-
 	mergeErrors: function(){
 		var errors = {};
 		for ( i = 0; i < arguments.length; i ++){
@@ -113,7 +121,6 @@ kwMassageHealthHistory.validate = {
 		}
 		return errors;
 	},
-
 	isFormValid: function(errorMessages){
 		if ( errorMessages ){
 			if( Object.keys(errorMessages).length > 0 ){
@@ -123,7 +130,6 @@ kwMassageHealthHistory.validate = {
 			}
 		}
 	},
-
 }
 String.prototype.capitalize = function(){
    return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );

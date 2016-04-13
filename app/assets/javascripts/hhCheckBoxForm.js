@@ -41,6 +41,7 @@ kwMassageHealthHistory.checkboxesForm = {
 				"pregnant"
 			], form),
 			kwMassageHealthHistory.validate.validateDate("diabetes_onset", form)
+			// kwMassageHealthHistory.validate.validateDate("pregnant_due_date", form)
 
 		)
 	}
