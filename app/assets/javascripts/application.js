@@ -16,7 +16,7 @@
 //= require_tree .
 
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
-// window.onload = init;
+window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
