@@ -71,9 +71,9 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_1i = "1976"
-		action.newFormData.hh_form_diabetes_onset_2i = "12"
-		action.newFormData.hh_form_diabetes_onset_3i = "20"
+		action.newFormData.hh_form_diabetes_onset_1i = "1976";
+		action.newFormData.hh_form_diabetes_onset_2i = "12";
+		action.newFormData.hh_form_diabetes_onset_3i = "20";
 		
 		kwMassageHealthHistory.checkboxesState.update(action);
 
@@ -86,7 +86,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_1i = "2020"
+		action.newFormData.hh_form_diabetes_onset_1i = "2020";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -98,19 +98,19 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_1i = "1890"
+		action.newFormData.hh_form_diabetes_onset_1i = "1890";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
 		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_diabetes_onset).toEqual("Diabetes Onset, year must be valid");
 	})
 	
-	it("Returns false if diabetes_onset year not a numbetr", function() {
+	it("Returns false if diabetes_onset year not a number", function() {
 		var action = {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_1i = "Bacon"
+		action.newFormData.hh_form_diabetes_onset_1i = "Bacon";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -124,7 +124,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_2i = "13"
+		action.newFormData.hh_form_diabetes_onset_2i = "13";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -136,7 +136,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_2i = "0"
+		action.newFormData.hh_form_diabetes_onset_2i = "0";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -147,7 +147,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_2i = "-5"
+		action.newFormData.hh_form_diabetes_onset_2i = "-5";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -159,7 +159,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_2i = "Bacon"
+		action.newFormData.hh_form_diabetes_onset_2i = "Bacon";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -171,7 +171,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_3i = "32"
+		action.newFormData.hh_form_diabetes_onset_3i = "32";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -183,7 +183,7 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_3i = "0"
+		action.newFormData.hh_form_diabetes_onset_3i = "0";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
@@ -195,22 +195,235 @@ describe("Health History Form Checkboxes", function() {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_3i = "-16"
+		action.newFormData.hh_form_diabetes_onset_3i = "-16";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
 		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_diabetes_onset).toEqual("Diabetes Onset, day must be valid");
 	})
 
-	it("Returns false if diabetes_onset day not a numbetr", function() {
+	it("Returns false if diabetes_onset day not a number", function() {
 		var action = {
 			action: "next",
 			newFormData: checkboxesSetUp
 		}
-		action.newFormData.hh_form_diabetes_onset_3i = "Bacon"
+		action.newFormData.hh_form_diabetes_onset_3i = "Bacon";
 		kwMassageHealthHistory.checkboxesState.update(action);
 
 		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
 		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_diabetes_onset).toEqual("Diabetes Onset, day must be valid");
 	})	
+	// pregnancy due_date
+	it("Returns true if pregnant_due_date is valid", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_1i = "2016";
+		action.newFormData.hh_form_pregnant_due_date_2i = "10";
+		action.newFormData.hh_form_pregnant_due_date_3i = "20";
+		
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(true);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual(undefined);
+	})
+
+	it("Returns false if pregnant_due_date year is less than presant year", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_1i = "2015";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, year must be valid");
+	})
+
+	it("Returns false if pregnant_due_date year is less than presant year", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_1i = "1976";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, year must be valid");
+	})
+	
+	it("Returns false if pregnant_due_date year not a number", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_1i = "Bacon"
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, year must be valid");
+	})	
+
+	//
+
+	it("Returns false if pregnant_due_date month is greater than 12", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_2i = "13";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, month must be valid");
+	})
+
+	it("Returns false if pregnant_due_date month is less than 1", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_2i = "0";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, month must be valid");
+	})
+	it("Returns false if pregnant_due_date month is negitive", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_2i = "-5";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, month must be valid");
+	})
+		
+	it("Returns false if pregnant_due_date month not a number", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_2i = "Bacon";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, month must be valid");
+	})	
+
+	it("Returns false if pregnant_due_date day is greater 31", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_3i = "32";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})
+
+	it("Returns false if pregnant_due_date day is less 1", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_3i = "0";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})
+	
+	it("Returns false if pregnant_due_date day is negitive", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_3i = "-16";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})
+
+	it("Returns false if pregnant_due_date day not a number", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_3i = "Bacon";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})	
+	
+	it("Returns false if pregnant_due_date is greater than 10 months away", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		action.newFormData.hh_form_pregnant_due_date_1i = "2017";
+		action.newFormData.hh_form_pregnant_due_date_2i = "02";
+		action.newFormData.hh_form_pregnant_due_date_3i = "15";
+		action.newFormData.pregnant = "1";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})
+	
+	it("Returns false if pregnant_due_date is today", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		var today = new Date()
+		action.newFormData.hh_form_pregnant_due_date_1i = today.getFullYear();
+		action.newFormData.hh_form_pregnant_due_date_2i = today.getMonth();
+		action.newFormData.hh_form_pregnant_due_date_3i = today.getDay();
+		action.newFormData.pregnant = "1";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})	
+	
+	it("Returns false if pregnant_due_date is yesterday", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		var today = new Date()
+		var yesterday = new Date(today.setDate( today.getDate() - 1 )) 
+		action.newFormData.hh_form_pregnant_due_date_1i = yesterday.getFullYear();
+		action.newFormData.hh_form_pregnant_due_date_2i = yesterday.getMonth();
+		action.newFormData.hh_form_pregnant_due_date_3i = yesterday.getDay();
+		action.newFormData.pregnant = "1";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})
+	
+	it("Returns false if pregnant_due_date is last month", function() {
+		var action = {
+			action: "next",
+			newFormData: checkboxesSetUp
+		}
+		var today = new Date()
+		var yesterday = new Date(today.setMonth( today.getMonth() - 1 )) 
+		action.newFormData.hh_form_pregnant_due_date_1i = yesterday.getFullYear();
+		action.newFormData.hh_form_pregnant_due_date_2i = yesterday.getMonth();
+		action.newFormData.hh_form_pregnant_due_date_3i = new Date().getDay();
+		action.newFormData.pregnant = "1";
+		kwMassageHealthHistory.checkboxesState.update(action);
+
+		expect(kwMassageHealthHistory.checkboxesState.isValid).toEqual(false);
+		expect(kwMassageHealthHistory.checkboxesState.errorMessages.hh_form_pregnant_due_date).toEqual("Pregnant Due Date, day must be valid");
+	})
 })

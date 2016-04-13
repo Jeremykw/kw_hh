@@ -12,7 +12,10 @@ kwMassageHealthHistory.concentForm = {
 			kwMassageHealthHistory.validate.validatePresenceOf([
 				"confirm_name",
 				"confirm_email"
-			], form)
+			], form),
+			kwMassageHealthHistory.validate.validateConfirmName(form),
+			kwMassageHealthHistory.validate.validateConfirmEmail(form)
+
 		)
 	}
 }

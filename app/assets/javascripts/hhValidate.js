@@ -2,42 +2,61 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 
 kwMassageHealthHistory.validate = {
-	
-	_yearIsInvalid: function(year, today){
-		return ( year > today.getFullYear() - 1 || year < today.getFullYear() - 120 || isNaN(year) );
+
+	validateConfirmName: function(form){
+		var confirmNameErrors = {};
+		if ( form && form["hh_form_confirm_name"] && form["hh_form_first_name"] && form["hh_form_last_name"] ){
+			var confirmName = form["hh_form_confirm_name"].toLowerCase();
+			var name = form["hh_form_first_name"].toLowerCase() + " " + form["hh_form_last_name"].toLowerCase();
+			if ( name !== confirmName ){
+				confirmNameErrors["hh_form_confirm_name"] = "Confirm Name must be equal to First Name plus Last Name";
+			}
+		}
+		return confirmNameErrors;
 	},
-	_monthIsInvalid: function(month){
-		return ( month > 12 || month < 1 || isNaN(month) );
-	},
-	_dayIsInvalid: function(day){
-		return ( day > 31 || day < 1 || isNaN(day) );
+	validateConfirmEmail: function(form){
+		var confirmEmailErrors = {};
+		if ( form && form["hh_form_confirm_email"] && form["hh_form_email"] ){
+			var confirmEmail = form["hh_form_confirm_email"].toLowerCase();
+			var email = form["hh_form_email"].toLowerCase();
+			if ( email !== confirmEmail ){
+				confirmEmailErrors["hh_form_confirm_email"] = "Confirm Email must match Email";
+			}
+		}
+		return confirmEmailErrors;
 	},
 	validateDate: function(dateField, form){
 		var dobErrors  = {};
-		var today      = new Date();
 		var yearField  = "hh_form_" + dateField + "_1i";
 		var monthField = "hh_form_" + dateField + "_2i";
 		var dayField   = "hh_form_" + dateField + "_3i";
 		if ( form && form[yearField] ){
 			var year  = parseInt(form[yearField], 10);
-			if ( this._yearIsInvalid(year, today) ){
-				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", year must be valid";
+			if ( this._yearIsInvalid(dateField, year) ){
+				dobErrors["hh_form_" + dateField] = this._formatErrorField(dateField) + ", year must be valid";
 			}
 		}
 		if ( form && form[monthField] ){
 			var month = parseInt(form[monthField])
-			if ( this._monthIsInvalid(month) ){
-				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", month must be valid";
+			if ( this._monthIsInvalid(dateField, month) ){
+				dobErrors["hh_form_" + dateField] = this._formatErrorField(dateField) + ", month must be valid";
 			}
 		}
 		if ( form && form[dayField] ){
 			var day   = parseInt(form[dayField])
-			if ( this._dayIsInvalid(day) ){
-				dobErrors["hh_form_" + dateField] = dateField.replace(/_/g, ' ').toLowerCase().capitalize() + ", day must be valid";
+			if ( this._dayIsInvalid(dateField, day) ){
+				dobErrors["hh_form_" + dateField] = this._formatErrorField(dateField) + ", day must be valid";
+			}
+		}
+		if ( form && dateField === "pregnant_due_date" && form["pregnant"] == true ){
+			var date = new Date( form[yearField] + "-" + form[monthField] + "-" + form[dayField] ).getTime();
+			var tenMonthsAway = new Date(new Date().setMonth(new Date().getMonth() + 8 )).getTime();
+			if ( date > tenMonthsAway || date <= new Date().getTime() ){
+				dobErrors["hh_form_" + dateField] = this._formatErrorField(dateField) + ", day must be valid";
 			}
 		}
 		return dobErrors;
-	},	
+	},
 	validateEmail: function(form){
 		var emailErrors = {};
 		if ( form && form["hh_form_email"] ){
@@ -104,7 +123,7 @@ kwMassageHealthHistory.validate = {
 				var testField = "hh_form_" + fieldsArray[field];
 				if ( form[testField] && form[testField].length > maxLength ){
 					lengthErrors["hh_form_" + fieldsArray[field]] = 
-						fieldsArray[field].replace(/_/g, ' ').toLowerCase().capitalize() + // capitalization needs to be fixed
+						this._formatErrorField(fieldsArray[field]) + // capitalization needs to be fixed
 						" must be less than " + maxLength + 
 						" characters";
 				}
@@ -130,6 +149,22 @@ kwMassageHealthHistory.validate = {
 			}
 		}
 	},
+	_formatErrorField: function(field){
+		return field.replace(/_/g, ' ').toLowerCase().capitalize();
+	},
+	_yearIsInvalid: function(field, year){
+		if ( field === "pregnant_due_date" ){
+			return ( year < new Date().getFullYear() || year > new Date().getFullYear() + 1 || isNaN(year))
+		}else{
+			return ( year > new Date().getFullYear() || year < new Date().getFullYear() - 120 || isNaN(year) );
+		}
+	},
+	_monthIsInvalid: function(field, month){
+		return ( month > 12 || month < 1 || isNaN(month) );
+	},
+	_dayIsInvalid: function(field, day){
+		return ( day > 31 || day < 1 || isNaN(day) );
+	}
 }
 String.prototype.capitalize = function(){
    return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );

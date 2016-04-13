@@ -1,7 +1,0 @@
-checkboxes:
-	Pregnant: date prior to current
-
-concent: first_name + last_name = confirm_name (.downcase)
-		 email = confrim_email
-
-	
