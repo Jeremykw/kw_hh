@@ -2,6 +2,28 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.checkboxesForm = {
 
+	domManipulation: function(){
+		var diabetesCheckbox = document.getElementById('hh_form_diabetes');
+		var pregnantCheckbox = document.getElementById('hh_form_pregnant');
+		var diabetes = document.getElementById('diabetes_onset');
+		var pregnant = document.getElementById('pregnant_due_date');
+		pregnant.style.display = 'none';
+		diabetes.style.display = 'none';
+		kwMassageHealthHistory.hhState.diabetesToggle = "hidden";
+		diabetesCheckbox.addEventListener('change', function(){
+			toggle('diabetes_onset')
+		});
+
+		function toggle(element){
+			if ( kwMassageHealthHistory.hhState.diabetesToggle === "hidden" ){
+				document.getElementById(element).style.display = 'inline';
+				kwMassageHealthHistory.hhState.diabetesToggle = "visable";
+			}else{
+				document.getElementById(element).style.display = 'none';
+				kwMassageHealthHistory.hhState.diabetesToggle = "hidden";
+			}
+		}
+	},
 	errors: function(form){
 		return kwMassageHealthHistory.validate.mergeErrors(
 			kwMassageHealthHistory.validate.validateLengthOf([

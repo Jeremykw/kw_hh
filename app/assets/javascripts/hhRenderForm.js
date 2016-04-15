@@ -1,20 +1,19 @@
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
-kwMassageHealthHistory.hhRenderForm = function(){
-	var state = kwMassageHealthHistory.hhState;
-
-	(function(){
-		if ( state.isValid ){
-			renderNewForm(state, kwMassageHealthHistory.fullForm);
-		}else{
-			addErrorMessagesToForm(state);
-		}
+kwMassageHealthHistory.hhRender = {
 	
-		document.getElementById("hh_form").scrollIntoView();
-	})()
+	form : function(state){
+		if ( state.isValid ){
+			this._renderNewForm(state, kwMassageHealthHistory.fullForm);
+		}else{
+			this._addErrorMessagesToForm(state);
+		}
+		kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation();
 
-	function renderNewForm(state, fullForm){
-		emptyFormSection("form_partials");
+		document.getElementById("hh_form").scrollIntoView();
+	},
+	_renderNewForm: function(state, fullForm){
+		this._emptyFormSection("form_partials");
 		// add form section corresponding to state number
 		var formSection = fullForm[state.currentPage]; // form section that needs to be shown
 		var form = document.getElementById('form_partials'); // section to insert section above
@@ -22,17 +21,16 @@ kwMassageHealthHistory.hhRenderForm = function(){
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
 	    if ( buttonPlaceHolder.children.length < 1 ){		
 			if ( state.currentPage === 0 ){
-				addButton(state, "next", fullForm);				
+				this._addButton(state, "next", fullForm);				
 			}else if ( state.currentPage === 5 ){
-				addButton(state, "back", fullForm);
+				this._addButton(state, "back", fullForm);
 			}else {
-				addButton(state, "back", fullForm);
-				addButton(state, "next", fullForm);				
+				this._addButton(state, "back", fullForm);
+				this._addButton(state, "next", fullForm);				
 			}
 		}
-	}
-
-	function addButton(state, action, fullForm){
+	},
+	_addButton: function(state, action, fullForm){
 		var nextAction = {};
 		nextAction.action = action;
 		var buttonPlaceHolder = document.getElementById("put_button_here"); // this is where buttons go
@@ -60,10 +58,9 @@ kwMassageHealthHistory.hhRenderForm = function(){
 	    })
 	    buttonPlaceHolder.appendChild(button);
     	
-	}
-
-	function addErrorMessagesToForm(){
-		emptyFormSection("hh_error_message_place_holder")
+	},
+	_addErrorMessagesToForm: function(state){
+		this._emptyFormSection("hh_error_message_place_holder")
 		var errorPlaceHolder = document.getElementById("hh_error_message_place_holder");
 		var p = document.createElement("p");
 		p.setAttribute( "class", "t600 color center" )		
@@ -83,9 +80,8 @@ kwMassageHealthHistory.hhRenderForm = function(){
 			i++;
 		}
 		errorPlaceHolder.appendChild(p);
-	}
-
-	function emptyFormSection(section){
+	},
+	_emptyFormSection: function(section){
 		var formPartials = document.getElementById(section);
 		while (formPartials.firstChild) { 
 		    formPartials.removeChild(formPartials.firstChild);

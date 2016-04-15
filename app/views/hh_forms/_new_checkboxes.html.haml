@@ -42,11 +42,12 @@
 				= f.check_box :diabetes
 				= f.label :diabetes, "diabetes"
 				%br
-				= f.label :diabetes_onset, "Diabetes onset"
-				%br
-				= f.date_select :diabetes_onset, :start_year => 1925, :html_options => {:class => "form-control"}					
-				%br
-				%br
+				#diabetes_onset
+					= f.label :diabetes_onset, "Diabetes onset"
+					%br
+					= f.date_select :diabetes_onset, :start_year => 1925, :html_options => {:class => "form-control"}					
+					%br
+					%br
 				= f.check_box :allergies
 				= f.label :allergies, "allergies"
 				%br
@@ -114,9 +115,10 @@
 				%h4 Women
 				= f.check_box :pregnant
 				= f.label :pregnant, "pregnant"
-				%br
-				= f.label :pregnant_due_date, "Due Date"
-				%br
-				= f.date_select :pregnant_due_date, :start_year => 2016, :class => "form-control"
+				#pregnant_due_date
+					%br
+					= f.label :pregnant_due_date, "Due Date"
+					%br
+					= f.date_select :pregnant_due_date, :start_year => 2016, :class => "form-control"
 				%br
 				#put_button_here

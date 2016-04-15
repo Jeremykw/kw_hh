@@ -28,7 +28,7 @@ function init(){
 
 kwMassageHealthHistory.hHrun = function(action){
 	kwMassageHealthHistory.hhState.update(action)
-	kwMassageHealthHistory.hhRenderForm();
+	kwMassageHealthHistory.hhRender.form(kwMassageHealthHistory.hhState);
 
 }
 

@@ -15,6 +15,7 @@ kwMassageHealthHistory.baseState = function(){
 
 	this.lastPage = 0;
 	this.currentPage = 0;
+
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){
@@ -22,7 +23,7 @@ kwMassageHealthHistory.baseState.prototype.update = function(action){
 	this[page] = action.newFormData;
 
 	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData) || {};
-	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
+	this.isValid = true;//kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
 	
 	this.lastPage = this._lastPage(this);
 	this.currentPage = this._nextPage(action, this)
