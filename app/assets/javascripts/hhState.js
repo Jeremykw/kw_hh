@@ -16,6 +16,8 @@ kwMassageHealthHistory.baseState = function(){
 	this.lastPage = 0;
 	this.currentPage = 0;
 
+	this.diabetes_onset = "none";
+	this.pregnant_due_date = "none";
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){
