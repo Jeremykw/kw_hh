@@ -8,8 +8,8 @@ kwMassageHealthHistory.hhRender = {
 		if ( !kwMassageHealthHistory.hhState[checkboxID] ){
 			checkbox.addEventListener('change', function(){
 				kwMassageHealthHistory.hhRender._toggle(dateID);
-				kwMassageHealthHistory.hhState[checkboxID] = true;
 			})
+			kwMassageHealthHistory.hhState[checkboxID] = true;
 		}
 	},
 	form : function(state){
