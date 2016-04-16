@@ -3,31 +3,8 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.checkboxesForm = {
 
 	domManipulation: function(){
-		var diabetesCheckbox = document.getElementById('hh_form_diabetes');
-		var pregnantCheckbox = document.getElementById('hh_form_pregnant');
-		document.getElementById('diabetes_onset').style.display = kwMassageHealthHistory.hhState.diabetes_onset;
-		document.getElementById('pregnant_due_date').style.display = kwMassageHealthHistory.hhState.pregnant_due_date;
-		if ( !kwMassageHealthHistory.hhState.prenantHandeler ){
-			pregnantCheckbox.addEventListener('change', function(){
-				toggle('pregnant_due_date');
-				kwMassageHealthHistory.hhState.prenantHandeler = true;
-			})
-		}
-		if ( !kwMassageHealthHistory.hhState.diabetesHandeler ){
-			diabetesCheckbox.addEventListener('change', function(){
-				toggle('diabetes_onset');
-				kwMassageHealthHistory.hhState.diabetesHandeler = true;
-			})
-		}
-		function toggle(element){
-			if ( kwMassageHealthHistory.hhState[element] === "none" ){
-				document.getElementById(element).style.display = 'block';
-				kwMassageHealthHistory.hhState[element] = "block";
-			}else{
-				document.getElementById(element).style.display = 'none';
-				kwMassageHealthHistory.hhState[element] = "none";
-			}
-		}
+		kwMassageHealthHistory.hhRender.dateCheckboxToggle('hh_form_diabetes', 'diabetes_onset');
+		kwMassageHealthHistory.hhRender.dateCheckboxToggle('hh_form_pregnant', 'pregnant_due_date');
 	},
 	errors: function(form){
 		return kwMassageHealthHistory.validate.mergeErrors(

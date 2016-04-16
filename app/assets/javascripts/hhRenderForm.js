@@ -2,6 +2,27 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.hhRender = {
 	
+	dateCheckboxToggle: function(checkboxID, dateID){
+
+		var checkbox = document.getElementById(checkboxID);
+		document.getElementById(dateID).style.display = kwMassageHealthHistory.hhState[dateID];
+
+		if ( !kwMassageHealthHistory.hhState[checkboxID] ){
+			checkbox.addEventListener('change', function(){
+				kwMassageHealthHistory.hhRender._toggle(dateID);
+				kwMassageHealthHistory.hhState[checkboxID] = true;
+			})
+		}
+	},
+	_toggle: function toggle(element){
+		if ( kwMassageHealthHistory.hhState[element] === "none" ){
+			document.getElementById(element).style.display = 'block';
+			kwMassageHealthHistory.hhState[element] = "block";
+		}else{
+			document.getElementById(element).style.display = 'none';
+			kwMassageHealthHistory.hhState[element] = "none";
+		}
+	},
 	form : function(state){
 		if ( state.isValid ){
 			this._renderNewForm(state, kwMassageHealthHistory.fullForm);
