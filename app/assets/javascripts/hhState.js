@@ -18,6 +18,15 @@ kwMassageHealthHistory.baseState = function(){
 
 	this.diabetes_onset = "none";
 	this.pregnant_due_date = "none";
+	this.hh_form_neck_note = "none";
+	this.hh_form_low_back_note = "none";
+	this.hh_form_mid_back_note = "none";
+	this.hh_form_upper_back_note = "none";
+	this.hh_form_shoulders_note = "none";
+	this.hh_form_arms_note = "none";
+	this.hh_form_legs_note = "none";
+	this.hh_form_knees_note = "none";
+	this.hh_form_other_note = "none";
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){
