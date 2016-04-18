@@ -1,45 +1,72 @@
 #pains	
 	.row
 		.col_two_third.testimonial
-			%h4.nobottommargin Describe any pains or discomforts you are currently experiencing:
+			%h4.nobottommargin Check any areas you are experiencing pain or discomfort:
 			#hh_error_message_place_holder
 	-# Head Neck and shoulders
 	.row
 		.col_one_third.testimonial
 			= f.check_box :neck
-			= f.label :neck, "neck"
-			= f.text_area :neck_note, :class => "form-control"
+			= f.label :neck, "Neck"
+			%br
+			#neck_pain
+				%p.nobottommargin (Describe the neck pain you are having)
+				= f.text_area :neck_note, :class => "form-control"
 
 			= f.check_box :low_back
-			= f.label :low_back, "low_back"	
-			= f.text_area :low_back_note, :class => "form-control"
+			= f.label :low_back, "Low Back"	
+			%br
+			#low_back_pain
+				%p.nobottommargin (Describe the low back pain you are having)
+				= f.text_area :low_back_note, :class => "form-control"
 
 			= f.check_box :mid_back
-			= f.label :mid_back, "mid_back"		
-			= f.text_area :mid_back_note, :class => "form-control"
+			= f.label :mid_back, "Mid Back"		
+			%br
+			#mid_back_pain
+				%p.nobottommargin (Describe the mid back pain you are having)
+				= f.text_area :mid_back_note, :class => "form-control"
 			= f.check_box :upper_back
-			= f.label :upper_back, "upper_back"
-			= f.text_area :upper_back_note, :class => "form-control"
+			= f.label :upper_back, "Upper Back"
+			%br
+			#upper_back_pain
+				%p.nobottommargin (Describe the upper back pain you are having)
+				= f.text_area :upper_back_note, :class => "form-control"
 
 			= f.check_box :shoulders
-			= f.label :shoulders, "shoulders"
-			= f.text_area :shoulders_note, :class => "form-control"
+			= f.label :shoulders, "Shoulders"
+			%br
+			#shoulders_pain
+				%p.nobottommargin (Describe the shoulder pain you are having)
+				= f.text_area :shoulders_note, :class => "form-control"
 
 		.col_one_third.testimonial 	 
 			= f.check_box :arms
-			= f.label :arms, "arms"
-			= f.text_area :arms_note, :class => "form-control"
+			= f.label :arms, "Arms"
+			%br
+			#arms_pain
+				%p.nobottommargin (Describe the arm pain you are having)
+				= f.text_area :arms_note, :class => "form-control"
 
 			= f.check_box :legs
-			= f.label :legs, "legs"
-			= f.text_area :legs_note, :class => "form-control"
+			= f.label :legs, "Legs"
+			%br
+			#legs_pain
+				%p.nobottommargin (Describe the leg pain you are having)
+				= f.text_area :legs_note, :class => "form-control"
 
 			= f.check_box :knees
-			= f.label :knees, "knees"
-			= f.text_area :knees_note, :class => "form-control"
+			= f.label :knees, "Knees"
+			%br
+			#knees_pain
+				%p.nobottommargin (Describe the knee pain you are having)
+				= f.text_area :knees_note, :class => "form-control"
 
 			= f.check_box :other
-			= f.label :other, "other"
-			= f.text_area :other_note, :class => "form-control"
+			= f.label :other, "Other"
+			%br
+			#other_pain
+				%p.nobottommargin (Describe any other pain you are having)
+				= f.text_area :other_note, :class => "form-control"
 			%br
 			#put_button_here

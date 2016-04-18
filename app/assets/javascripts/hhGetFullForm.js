@@ -7,7 +7,7 @@ kwMassageHealthHistory.getFullForm = function(){
 		2: document.getElementById("checkboxes"),
 		3: document.getElementById("pains"),
 		4: document.getElementById("other"),
-		5: document.getElementById("concent")
+		5: document.getElementById("concent"),
 	};
 	(function(){ // Empty form_partial div 
 		var array = [0, 1, 2, 3, 4, 5]
@@ -18,3 +18,7 @@ kwMassageHealthHistory.getFullForm = function(){
 	});
 	return initFullForm;
 };
+
+kwMassageHealthHistory.getFullForm.prototype._addConfimSubmit = function(){
+
+}

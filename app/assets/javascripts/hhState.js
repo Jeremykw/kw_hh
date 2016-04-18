@@ -18,15 +18,15 @@ kwMassageHealthHistory.baseState = function(){
 
 	this.diabetes_onset = "none";
 	this.pregnant_due_date = "none";
-	this.hh_form_neck_note = "none";
-	this.hh_form_low_back_note = "none";
-	this.hh_form_mid_back_note = "none";
-	this.hh_form_upper_back_note = "none";
-	this.hh_form_shoulders_note = "none";
-	this.hh_form_arms_note = "none";
-	this.hh_form_legs_note = "none";
-	this.hh_form_knees_note = "none";
-	this.hh_form_other_note = "none";
+	this.neck_pain = "none";
+	this.low_back_pain = "none";
+	this.mid_back_pain = "none";
+	this.upper_back_pain = "none";
+	this.shoulders_pain = "none";
+	this.arms_pain = "none";
+	this.legs_pain = "none";
+	this.knees_pain = "none";
+	this.other_pain = "none";
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){
@@ -34,7 +34,7 @@ kwMassageHealthHistory.baseState.prototype.update = function(action){
 	this[page] = action.newFormData;
 
 	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData) || {};
-	this.isValid = true;//kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
+	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
 	
 	this.lastPage = this._lastPage(this);
 	this.currentPage = this._nextPage(action, this)
@@ -50,7 +50,7 @@ kwMassageHealthHistory.baseState.prototype._lastPage = function(that){
 
 kwMassageHealthHistory.baseState.prototype._nextPage = function(action, that){
 	if( that.isValid ){
-		if( action.action === "next" ){
+		if( action.action === "next" || action.action === "submit"){
 			return that.currentPage + 1;
 		}else if ( action.action === "back"){
 			return that.currentPage - 1;

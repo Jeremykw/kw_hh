@@ -46,5 +46,7 @@ kwMassageHealthHistory.page = function(currentPage) {
 			return "otherForm"
 		case 5:
 			return "concentForm"
+		case 6:
+			return "confirmSubmit"
 	}
 };

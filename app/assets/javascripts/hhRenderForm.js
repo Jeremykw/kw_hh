@@ -29,11 +29,13 @@ kwMassageHealthHistory.hhRender = {
 		var form = document.getElementById('form_partials'); // section to insert section above
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
+		this._emptyFormSection('put_button_here');
 	    if ( buttonPlaceHolder.children.length < 1 ){		
 			if ( state.currentPage === 0 ){
 				this._addButton(state, "next", fullForm);				
 			}else if ( state.currentPage === 5 ){
 				this._addButton(state, "back", fullForm);
+				this._addButton(state, "submit", fullForm)
 			}else {
 				this._addButton(state, "back", fullForm);
 				this._addButton(state, "next", fullForm);				
@@ -42,14 +44,16 @@ kwMassageHealthHistory.hhRender = {
 	},
 	_addButton: function(state, action, fullForm){
 		var nextAction = {};
-		nextAction.action = action;
 		var buttonPlaceHolder = document.getElementById("put_button_here"); // this is where buttons go
 	    var button = document.createElement("input"); // create button (type: input)
+		nextAction.action = action;
 	    button.type = "button";
 	    if ( action === "back" ){
-	    	button.setAttribute( 'value', 'Back');
+	    	button.setAttribute( 'value', 'Back' );
 	    }else if( action === "next" ){
-	    	button.setAttribute( 'value', 'Save and Contunue');
+	    	button.setAttribute( 'value', 'Save and Contunue' );
+	    }else if( action === 'submit' ){
+	    	button.setAttribute( 'value', 'Submit Form' );
 	    }
 	    button.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
 	    button.addEventListener('click', function(){
