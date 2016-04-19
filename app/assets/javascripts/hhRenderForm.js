@@ -19,8 +19,11 @@ kwMassageHealthHistory.hhRender = {
 			this._addErrorMessagesToForm(state);
 		}
 		kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation();
-
-		document.getElementById("hh_form").scrollIntoView();
+		if ( !state.isValid ){
+			document.getElementById("hh_error_message_place_holder").scrollIntoView();
+		}else{
+			document.getElementById("page-title").scrollIntoView();
+		}
 	},
 	_renderNewForm: function(state, fullForm){
 		this._emptyFormSection("form_partials");
@@ -30,7 +33,7 @@ kwMassageHealthHistory.hhRender = {
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
 		this._emptyFormSection('put_button_here');
-	    if ( buttonPlaceHolder.children.length < 1 ){		
+	    if ( buttonPlaceHolder && buttonPlaceHolder.children.length < 1 ){		
 			if ( state.currentPage === 0 ){
 				this._addButton(state, "next", fullForm);				
 			}else if ( state.currentPage === 5 ){
@@ -106,8 +109,10 @@ kwMassageHealthHistory.hhRender = {
 	},
 	_emptyFormSection: function(section){
 		var formPartials = document.getElementById(section);
-		while (formPartials.firstChild) { 
-		    formPartials.removeChild(formPartials.firstChild);
+		if( formPartials ){
+			while (formPartials.firstChild) { 
+			    formPartials.removeChild(formPartials.firstChild);
+			}
 		}
 	}
 

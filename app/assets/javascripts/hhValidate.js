@@ -3,22 +3,22 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.validate = {
 
-	validateConfirmName: function(form){
+	validateConfirmName: function(form, state){
 		var confirmNameErrors = {};
-		if ( form && form["hh_form_confirm_name"] && form["hh_form_first_name"] && form["hh_form_last_name"] ){
+		if ( form && form["hh_form_confirm_name"] ){
 			var confirmName = form["hh_form_confirm_name"].toLowerCase();
-			var name = form["hh_form_first_name"].toLowerCase() + " " + form["hh_form_last_name"].toLowerCase();
+			var name = state.contactForm.hh_form_first_name.toLowerCase() + " " + state.contactForm.hh_form_last_name.toLowerCase();
 			if ( name !== confirmName ){
 				confirmNameErrors["hh_form_confirm_name"] = "Confirm Name must be equal to First Name plus Last Name";
 			}
 		}
 		return confirmNameErrors;
 	},
-	validateConfirmEmail: function(form){
+	validateConfirmEmail: function(form, state){
 		var confirmEmailErrors = {};
-		if ( form && form["hh_form_confirm_email"] && form["hh_form_email"] ){
+		if ( form && form["hh_form_confirm_email"] ){
 			var confirmEmail = form["hh_form_confirm_email"].toLowerCase();
-			var email = form["hh_form_email"].toLowerCase();
+			var email = state.contactForm.hh_form_email.toLowerCase();
 			if ( email !== confirmEmail ){
 				confirmEmailErrors["hh_form_confirm_email"] = "Confirm Email must match Email";
 			}

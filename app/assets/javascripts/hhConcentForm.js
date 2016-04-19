@@ -5,7 +5,7 @@ kwMassageHealthHistory.concentForm = {
 	domManipulation: function(){
 		
 	},
-	errors: function(form){
+	errors: function(form, state){
 		return kwMassageHealthHistory.validate.mergeErrors(
 			kwMassageHealthHistory.validate.validateLengthOf([
 					"confirm_name",
@@ -16,8 +16,8 @@ kwMassageHealthHistory.concentForm = {
 				"confirm_name",
 				"confirm_email"
 			], form),
-			kwMassageHealthHistory.validate.validateConfirmName(form),
-			kwMassageHealthHistory.validate.validateConfirmEmail(form)
+			kwMassageHealthHistory.validate.validateConfirmName(form, state),
+			kwMassageHealthHistory.validate.validateConfirmEmail(form, state)
 
 		)
 	}

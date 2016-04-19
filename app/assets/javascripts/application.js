@@ -21,7 +21,7 @@ function init(){
 	var isNewHhForm = document.getElementById("hh_form");
 	if (isNewHhForm) {
 		kwMassageHealthHistory.hhState = new kwMassageHealthHistory.baseState();
-		kwMassageHealthHistory.fullForm = kwMassageHealthHistory.getFullForm();
+		kwMassageHealthHistory.fullForm = new kwMassageHealthHistory.baseFullForm();
 		kwMassageHealthHistory.hHrun({});
 	}
 }
