@@ -15,14 +15,12 @@ kwMassageHealthHistory.hhRender = {
 	form : function(state){
 		if ( state.isValid ){
 			this._renderNewForm(state, kwMassageHealthHistory.fullForm);
+			kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation();
+			document.getElementById("page-title").scrollIntoView(true);
 		}else{
 			this._addErrorMessagesToForm(state);
-		}
-		kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation();
-		if ( !state.isValid ){
-			document.getElementById("hh_error_message_place_holder").scrollIntoView();
-		}else{
-			document.getElementById("page-title").scrollIntoView();
+			document.getElementById("hh_error_message_place_holder").scrollIntoView(true);
+			window.scrollBy(0, -60);
 		}
 	},
 	_renderNewForm: function(state, fullForm){
