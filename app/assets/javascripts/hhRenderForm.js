@@ -15,7 +15,7 @@ kwMassageHealthHistory.hhRender = {
 	form : function(state){
 		if ( state.isValid ){
 			this._renderNewForm(state, kwMassageHealthHistory.fullForm);
-			kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation();
+			kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation(state);
 			document.getElementById("page-title").scrollIntoView(true);
 		}else{
 			this._addErrorMessagesToForm(state);

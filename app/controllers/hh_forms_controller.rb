@@ -16,14 +16,21 @@ class HhFormsController < ApplicationController
 	end
 
 	def create
-		@hhform = HhForm.new(hhform_params)
-		if @hhform.save
-			redirect_to hh_form_path(@hhform)
-		else
-			flash[:notice] = @hhform.errors.full_messages	
-			@hhform = HhForm.new(hhform_params)
-			params[:hh_form] = []
-			render :new
+		respond_to do |format|
+			format.html {
+				@hhform = HhForm.new(hhform_params)
+				if @hhform.save
+					redirect_to hh_form_path(@hhform)
+				else
+					flash[:notice] = @hhform.errors.full_messages	
+					@hhform = HhForm.new(hhform_params)
+					params[:hh_form] = []
+					render :new
+				end
+			}
+			format.js{
+				@hhform = HhForm.new(hhform_params)
+			}
 		end
 	end
 

@@ -12,12 +12,6 @@ kwMassageHealthHistory.baseFullForm = function(){
 };
 
 kwMassageHealthHistory.baseFullForm.prototype._addConfimSubmit = function(){
-	var confirmSubmit = document.createElement('div');
-	var title = document.createElement('h4');
-	confirmSubmit.setAttribute('id', 'hh_form');
-	confirmSubmit.setAttribute('class', 'row col_two_third testimonial');
-	title.innerHTML = 'Your health History Form has been submitted';
-	confirmSubmit.appendChild(title);
-
-	return confirmSubmit;
+	var div = document.createElement('div');
+	return div;
 }
