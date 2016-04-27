@@ -17,17 +17,7 @@ kwMassageHealthHistory.confirmSubmit = {
 			}
 		}	
 		$.ajax("/hh_forms.json", {
-			data: { 
-				"hh_form": { 
-					"first_name": "jeremy", 
-					"last_name": "bissonentte", 
-					"email": "jeremy@kwmassage.com", 
-					"phone": "5555555555", 
-					"primary_complaint": "nothing", 
-					"confirm_name": "jeremy bissonnette",
-					"confirm_email": "jeremy@kwmassage.com"
-				}
-			},
+			data: kwMassageHealthHistory.hhState.createJsonObjectFromState(),
 			type: 'POST',
 			// dataType: 'json',
 			// contentType: 'application/json',

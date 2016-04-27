@@ -18,7 +18,7 @@ class HhFormsController < ApplicationController
 	def create
 
 		respond_to do |format|
-			# @hhform = HhForm.new(hhform_params)
+			@hhform = HhForm.new(hhform_params)
 			
 			format.html {
 				# @hhform = HhForm.new(hhform_params)
@@ -34,7 +34,7 @@ class HhFormsController < ApplicationController
 			format.json{
 				# form = JSON.parse(hhform_params)
 				logger.debug "params = #{params}"
-				# @hhform.save
+				@hhform.save
 
 				# @hhform = HhForm.new(hhform_params)
 				# redirect_to hh_form_path(@hhform)
