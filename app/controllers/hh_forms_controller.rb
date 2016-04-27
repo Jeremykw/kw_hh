@@ -1,7 +1,7 @@
 class HhFormsController < ApplicationController
 	
 	# skip_before_action :verify_authenticity_token
-	
+	protect_from_forgery except: :new
 	def new
 		@hhform = HhForm.new
 
@@ -16,9 +16,12 @@ class HhFormsController < ApplicationController
 	end
 
 	def create
+
 		respond_to do |format|
+			# @hhform = HhForm.new(hhform_params)
+			
 			format.html {
-				@hhform = HhForm.new(hhform_params)
+				# @hhform = HhForm.new(hhform_params)
 				if @hhform.save
 					redirect_to hh_form_path(@hhform)
 				else
@@ -28,8 +31,14 @@ class HhFormsController < ApplicationController
 					render :new
 				end
 			}
-			format.js{
-				@hhform = HhForm.new(hhform_params)
+			format.json{
+				# form = JSON.parse(hhform_params)
+				logger.debug "params = #{params}"
+				# @hhform.save
+
+				# @hhform = HhForm.new(hhform_params)
+				# redirect_to hh_form_path(@hhform)
+
 			}
 		end
 	end

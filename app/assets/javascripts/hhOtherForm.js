@@ -6,7 +6,7 @@ kwMassageHealthHistory.otherForm = {
 		
 	},
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeErrors(
+		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([
 					"current_medications",
 					"surgery",

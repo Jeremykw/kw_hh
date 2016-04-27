@@ -131,7 +131,7 @@ kwMassageHealthHistory.validate = {
 		}
 		return lengthErrors;
 	},
-	mergeErrors: function(){
+	mergeObjects: function(){
 		var errors = {};
 		for ( i = 0; i < arguments.length; i ++){
 			for ( errorr in arguments[i]){

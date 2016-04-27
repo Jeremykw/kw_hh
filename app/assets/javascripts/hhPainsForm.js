@@ -15,7 +15,7 @@ kwMassageHealthHistory.painsForm = {
 		
 	},
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeErrors(
+		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([
 					"neck_note",
 					"low_back_note",

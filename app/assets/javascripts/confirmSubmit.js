@@ -3,25 +3,34 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.confirmSubmit = {
 
 	domManipulation: function(data){
-		var hh_from = kwMassageHealthHistory.validate.mergeErrors(
-			kwMassageHealthHistory.hhState.contactForm,
-			kwMassageHealthHistory.hhState.complaintsForm,
-			kwMassageHealthHistory.hhState.checkboxesForm,
-			kwMassageHealthHistory.hhState.painsForm,
-			kwMassageHealthHistory.hhState.otherForm,
-			kwMassageHealthHistory.hhState.concentForm
-		)
-
-		var container = document.getElementById('hh_form')
+		var messageBox = this._createBox();
 		var title = document.createElement('h4');
-		var messageBox = document.createElement('div');
-		messageBox.setAttribute('id', 'submit_message');
-		messageBox.setAttribute('class', 'row col_two_third testimonial');
-		container.appendChild(messageBox)
-		debugger
-		$.ajax(this.href + "/..", {
-			date: hh_form,
+		var hhObj = { 
+			"hh_form": { 
+				"first_name": "jeremy", 
+				"last_name": "bissonentte", 
+				"email": "jeremy@kwmassage.com", 
+				"phone": "5555555555", 
+				"primary_complaint": "nothing", 
+				"confirm_name": "jeremy bissonnette",
+				"confirm_email": "jeremy@kwmassage.com"
+			}
+		}	
+		$.ajax("/hh_forms.json", {
+			data: { 
+				"hh_form": { 
+					"first_name": "jeremy", 
+					"last_name": "bissonentte", 
+					"email": "jeremy@kwmassage.com", 
+					"phone": "5555555555", 
+					"primary_complaint": "nothing", 
+					"confirm_name": "jeremy bissonnette",
+					"confirm_email": "jeremy@kwmassage.com"
+				}
+			},
 			type: 'POST',
+			// dataType: 'json',
+			// contentType: 'application/json',
 			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 
 			success: function() {
@@ -29,6 +38,7 @@ kwMassageHealthHistory.confirmSubmit = {
 				messageBox.appendChild(title);		     
 			},
 			error: function() {
+				// console.log(data.createJsonObjectFromState())
 				title.textContent = 'Their was a problem submitting your form, please try again.';
 				messageBox.appendChild(title);
 			}
@@ -37,6 +47,15 @@ kwMassageHealthHistory.confirmSubmit = {
 	},
 	errors: function(form){
 
+	},
+	_createBox: function(){
+		var container = document.getElementById('hh_form');
+		var box = document.createElement('div');
+		box.setAttribute('id', 'submit_message');
+		box.setAttribute('class', 'row col_two_third testimonial');
+		container.appendChild(box);
+		return box;
 	}
+	
 }
 

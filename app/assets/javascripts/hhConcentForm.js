@@ -6,7 +6,7 @@ kwMassageHealthHistory.concentForm = {
 		
 	},
 	errors: function(form, state){
-		return kwMassageHealthHistory.validate.mergeErrors(
+		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([
 					"confirm_name",
 					"confirm_email"

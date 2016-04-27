@@ -7,7 +7,7 @@ kwMassageHealthHistory.checkboxesForm = {
 		kwMassageHealthHistory.hhRender.dateCheckboxToggle('hh_form_pregnant', 'pregnant_due_date');
 	},
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeErrors(
+		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([
 				"skin_condition",
 				"loss_of_sensation",

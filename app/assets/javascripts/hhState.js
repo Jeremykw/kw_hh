@@ -14,7 +14,7 @@ kwMassageHealthHistory.baseState = function(){
 	this.isValid = true;
 
 	this.lastPage = 0;
-	this.currentPage = 0;
+	this.currentPage = 5;
 
 	this.diabetes_onset = "none";
 	this.pregnant_due_date = "none";
@@ -29,12 +29,24 @@ kwMassageHealthHistory.baseState = function(){
 	this.other_pain = "none";
 }
 
+kwMassageHealthHistory.baseState.prototype.createJsonObjectFromState = function(){
+	var jsonForm = { hh_from: kwMassageHealthHistory.validate.mergeObjects(
+		this.contactForm,
+		this.complaintsForm,
+		this.checkboxesForm,
+		this.painsForm,
+		this.otherForm,
+		this.concentForm
+	)}
+	return jsonForm;
+}
+
 kwMassageHealthHistory.baseState.prototype.update = function(action){
 	var page = kwMassageHealthHistory.page(this.currentPage);
 	this[page] = action.newFormData;
 
 	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData, this) || {};
-	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
+	this.isValid = true;//kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
 	
 	this.lastPage = this._lastPage(this);
 	this.currentPage = this._nextPage(action, this);
@@ -61,3 +73,4 @@ kwMassageHealthHistory.baseState.prototype._nextPage = function(action, that){
 		return that.currentPage;
 	}
 }
+

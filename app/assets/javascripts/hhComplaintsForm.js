@@ -6,7 +6,7 @@ kwMassageHealthHistory.complaintsForm = {
 		
 	},
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeErrors(
+		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([
 				"primary_complaint",
 				"secondary_complaint",
