@@ -33,8 +33,11 @@ class HhFormsController < ApplicationController
 			}
 			format.json{
 				# form = JSON.parse(hhform_params)
-				logger.debug "params = #{params}"
-				@hhform.save
+				if @hhform.save
+					redirect_to hh_form_path(@hhform)
+				else
+					render :show
+				end
 
 				# @hhform = HhForm.new(hhform_params)
 				# redirect_to hh_form_path(@hhform)

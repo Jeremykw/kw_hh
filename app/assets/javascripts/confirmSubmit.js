@@ -3,8 +3,7 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 kwMassageHealthHistory.confirmSubmit = {
 
 	domManipulation: function(data){
-		var messageBox = this._createBox();
-		var title = document.createElement('h4');
+
 		var hhObj = { 
 			"hh_form": { 
 				"first_name": "jeremy", 
@@ -23,11 +22,10 @@ kwMassageHealthHistory.confirmSubmit = {
 			// contentType: 'application/json',
 			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 
-			success: function() {
-				title.textContent = 'Your Health History form was submited.';
-				messageBox.appendChild(title);		     
-			},
+\
 			error: function() {
+				var messageBox = this._createBox();
+				var title = document.createElement('h4');
 				// console.log(data.createJsonObjectFromState())
 				title.textContent = 'Their was a problem submitting your form, please try again.';
 				messageBox.appendChild(title);

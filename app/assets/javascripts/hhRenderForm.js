@@ -13,7 +13,10 @@ kwMassageHealthHistory.hhRender = {
 		}
 	},
 	form : function(state){
-		if ( state.isValid ){
+		if( state.currentPage === 6 ){
+			return null;
+		}
+		else if( state.isValid ){
 			this._renderNewForm(state, kwMassageHealthHistory.fullForm);
 			kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation(state);
 			document.getElementById("page-title").scrollIntoView(true);

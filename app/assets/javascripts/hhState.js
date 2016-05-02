@@ -30,7 +30,7 @@ kwMassageHealthHistory.baseState = function(){
 }
 
 kwMassageHealthHistory.baseState.prototype.createJsonObjectFromState = function(){
-	var jsonForm,
+	var jsonForm = {};
 	combindedForms = kwMassageHealthHistory.validate.mergeObjects(
 		this.contactForm,
 		this.complaintsForm,
@@ -40,10 +40,35 @@ kwMassageHealthHistory.baseState.prototype.createJsonObjectFromState = function(
 		this.concentForm
 	)
 	for( field in combindedForms ){
-		field
+		var key = Object.keys(field);
+		var reg = /^hh_form_/;
+		var newKey = field.replace(reg, "");
+		var dateString, dateField;
+		if (this._isADateField(newKey)){
+			dateString = newKey.match(/[1-3]i$/);
+			dateField = newKey.replace(/_[1-3]i$/, "");
+			newKey = dateField + "(" + dateString[0] + ")";
+		}
+		jsonForm[newKey] = combindedForms[field];
 	}
 
-	return jsonForm;
+	return {hh_form: jsonForm};
+}
+
+kwMassageHealthHistory.baseState.prototype._isADateField = function(field){
+	if ( field === "date_of_birth_1i" || 
+		 field === "date_of_birth_2i" || 
+		 field === "date_of_birth_3i" ||
+		 field === "diabetes_onset_1i" ||
+		 field === "diabetes_onset_2i" ||
+		 field === "diabetes_onset_3i" ||
+		 field === "pregnant_due_date_1i" ||
+		 field === "pregnant_due_date_2i" ||
+		 field === "pregnant_due_date_3i" ){
+		return true
+	}else{
+		return false
+	}
 }
 
 kwMassageHealthHistory.baseState.prototype.update = function(action){

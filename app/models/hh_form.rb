@@ -8,7 +8,7 @@ class HhForm < ActiveRecord::Base
 		:with => /[a-z, A-Z][0-9][a-z, A-Z]\ ?[0-9][a-z, A-Z][0-9]/,
 		:message => "must be in the H0H 0H0 format"
 	validates_format_of :phone,
-		:with => /\(?[0-9]{3}\)?-[0-9]{3}-[0-9]{4}/,
+		:with => /\(?[0-9]{3}\)?-?[0-9]{3}-?[0-9]{4}/,
 		:message => "numbers must be in xxx-xxx-xxxx format."
 	validate :validate_mandatory_fields, :validate_boolean_fields, :validate_string_fields, :validate_text_fields, :validate_concent
 	
