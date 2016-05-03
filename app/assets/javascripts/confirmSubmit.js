@@ -22,7 +22,7 @@ kwMassageHealthHistory.confirmSubmit = {
 			// contentType: 'application/json',
 			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 
-\
+
 			error: function() {
 				var messageBox = this._createBox();
 				var title = document.createElement('h4');
