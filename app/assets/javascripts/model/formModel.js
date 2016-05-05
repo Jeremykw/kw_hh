@@ -1,7 +1,6 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formModel = formModel || {};
 
-
-kwMassageHealthHistory.baseState = function(){
+formModel.baseState = function(){
 
 	this.contactForm	= {};
 	this.complaintsForm	= {};
@@ -29,9 +28,20 @@ kwMassageHealthHistory.baseState = function(){
 	this.other_pain = "none";
 }
 
-kwMassageHealthHistory.baseState.prototype.createJsonObjectFromState = function(){
+formModel.baseState.prototype.update = function(action){
+	var page = formController.page(this.currentPage); 
+	this[page] = action.newFormData;
+
+	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData, this) || {};
+	this.isValid = true;//kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
+	
+	this.lastPage = this._lastPage(this);
+	this.currentPage = this._nextPage(action, this);
+}
+
+formModel.baseState.prototype.createJsonObjectFromState = function(){
 	var jsonForm = {};
-	combindedForms = kwMassageHealthHistory.validate.mergeObjects(
+	combindedForms = formModel.validate.mergeObjects(
 		this.contactForm,
 		this.complaintsForm,
 		this.checkboxesForm,
@@ -55,7 +65,7 @@ kwMassageHealthHistory.baseState.prototype.createJsonObjectFromState = function(
 	return {hh_form: jsonForm};
 }
 
-kwMassageHealthHistory.baseState.prototype._isADateField = function(field){
+formModel.baseState.prototype._isADateField = function(field){
 	if ( field === "date_of_birth_1i" || 
 		 field === "date_of_birth_2i" || 
 		 field === "date_of_birth_3i" ||
@@ -71,18 +81,8 @@ kwMassageHealthHistory.baseState.prototype._isADateField = function(field){
 	}
 }
 
-kwMassageHealthHistory.baseState.prototype.update = function(action){
-	var page = kwMassageHealthHistory.page(this.currentPage);
-	this[page] = action.newFormData;
 
-	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData, this) || {};
-	this.isValid = kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
-	
-	this.lastPage = this._lastPage(this);
-	this.currentPage = this._nextPage(action, this);
-}
-
-kwMassageHealthHistory.baseState.prototype._lastPage = function(that){
+formModel.baseState.prototype._lastPage = function(that){
 		if( that.isValid ){
 			return that.currentPage;
 		}else{
@@ -90,7 +90,7 @@ kwMassageHealthHistory.baseState.prototype._lastPage = function(that){
 		}
 }
 
-kwMassageHealthHistory.baseState.prototype._nextPage = function(action, that){
+formModel.baseState.prototype._nextPage = function(action, that){
 	if( that.isValid ){
 		if( action.action === "next" || action.action === "submit"){
 			return that.currentPage + 1;

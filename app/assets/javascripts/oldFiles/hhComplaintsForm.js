@@ -1,10 +1,7 @@
 var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.complaintsForm = {
-	
-	domManipulation: function(){
-		
-	},
+
 	errors: function(form){
 		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([

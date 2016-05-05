@@ -1,35 +1,39 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formView = formView || {};
 
-kwMassageHealthHistory.hhRender = {
+formView.render = {
 	
-	dateCheckboxToggle: function(checkboxID, dateID){
+	dateCheckboxToggle: function(state, checkboxID, dateID){
 		var checkbox = document.getElementById(checkboxID);
-		document.getElementById(dateID).style.display = kwMassageHealthHistory.hhState[dateID];
-		if ( !kwMassageHealthHistory.hhState[checkboxID] ){
-			checkbox.addEventListener('change', function(){
-				kwMassageHealthHistory.hhRender._toggle(dateID);
-			})
-			kwMassageHealthHistory.hhState[checkboxID] = true;
+		document.getElementById(dateID).style.display = state[dateID];
+		if ( !state[checkboxID] ){
+			checkbox.addEventListener('change', (function(){
+				return function(){formView.render._toggle(state, dateID)};
+			})(state, dateID))
+			state[checkboxID] = true;
+		}
+	},
+	_toggle: function toggle(state, element){
+		if ( state[element] === "none" ){
+			document.getElementById(element).style.display = 'block';
+			state[element] = "block";
+		}else{
+			document.getElementById(element).style.display = 'none';
+			state[element] = "none";
 		}
 	},
 	form : function(state){
-		if( state.currentPage === 6 ){
-			return null;
-		}
-		else if( state.isValid ){
-			this._renderNewForm(state, kwMassageHealthHistory.fullForm);
-			kwMassageHealthHistory[kwMassageHealthHistory.page(state.currentPage)].domManipulation(state);
-			document.getElementById("page-title").scrollIntoView(true);
-		}else{
-			this._addErrorMessagesToForm(state);
-			document.getElementById("hh_error_message_place_holder").scrollIntoView(true);
-			window.scrollBy(0, -60);
-		}
+		this._renderNewForm(state);
+		document.getElementById("page-title").scrollIntoView(true);
+	},
+	errors: function(state){
+		this._addErrorMessagesToForm(state);
+		document.getElementById("hh_error_message_place_holder").scrollIntoView(true);
+		window.scrollBy(0, -60);
 	},
 	_renderNewForm: function(state, fullForm){
 		this._emptyFormSection("form_partials");
 		// add form section corresponding to state number
-		var formSection = fullForm[state.currentPage]; // form section that needs to be shown
+		var formSection = formView.fullForm[state.currentPage]; // form section that needs to be shown
 		var form = document.getElementById('form_partials'); // section to insert section above
 		form.appendChild(formSection); 
 	    var buttonPlaceHolder = document.getElementById("put_button_here");
@@ -60,20 +64,21 @@ kwMassageHealthHistory.hhRender = {
 	    	button.setAttribute( 'value', 'Submit Form' );
 	    }
 	    button.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
-	    button.addEventListener('click', function(){
+	    button.addEventListener('click', (function(){
 	   		// gets form data
-			nextAction.newFormData = (function(){
-				var newDataHash = {};
-				var formPartial = document.getElementById("form_partials");
-				var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
-				for (i  = 0; i < formFields.length; i ++ ){
-					newDataHash[formFields[i].id] = formFields[i].value; 
-				}
-				return newDataHash;
-			})()
-	   		// 	
-	    	kwMassageHealthHistory.hHrun(nextAction);
-	    })
+			return	function(){
+				nextAction.newFormData = (function(){
+					var newDataHash = {};
+					var formPartial = document.getElementById("form_partials");
+					var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
+					for (i  = 0; i < formFields.length; i ++ ){
+						newDataHash[formFields[i].id] = formFields[i].value; 
+					}
+					return newDataHash;
+				})();	
+		    	formController.update(nextAction);
+		    }
+	    })())
 	    buttonPlaceHolder.appendChild(button);
     	
 	},
@@ -98,15 +103,6 @@ kwMassageHealthHistory.hhRender = {
 			i++;
 		}
 		errorPlaceHolder.appendChild(p);
-	},
-	_toggle: function toggle(element){
-		if ( kwMassageHealthHistory.hhState[element] === "none" ){
-			document.getElementById(element).style.display = 'block';
-			kwMassageHealthHistory.hhState[element] = "block";
-		}else{
-			document.getElementById(element).style.display = 'none';
-			kwMassageHealthHistory.hhState[element] = "none";
-		}
 	},
 	_emptyFormSection: function(section){
 		var formPartials = document.getElementById(section);

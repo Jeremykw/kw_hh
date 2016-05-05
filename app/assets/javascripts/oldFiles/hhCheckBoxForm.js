@@ -2,10 +2,6 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.checkboxesForm = {
 
-	domManipulation: function(){
-		kwMassageHealthHistory.hhRender.dateCheckboxToggle('hh_form_diabetes', 'diabetes_onset');
-		kwMassageHealthHistory.hhRender.dateCheckboxToggle('hh_form_pregnant', 'pregnant_due_date');
-	},
 	errors: function(form){
 		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([

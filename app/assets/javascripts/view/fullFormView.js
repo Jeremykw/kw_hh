@@ -1,6 +1,6 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formView = formView || {};
 
-kwMassageHealthHistory.baseFullForm = function(){
+formView.baseFullForm = function(){
 	this[0] = document.getElementById("contact"),
 	this[1] = document.getElementById("complaints"),
 	this[2] = document.getElementById("checkboxes"),
@@ -11,7 +11,7 @@ kwMassageHealthHistory.baseFullForm = function(){
 
 };
 
-kwMassageHealthHistory.baseFullForm.prototype._addConfimSubmit = function(){
+formView.baseFullForm.prototype._addConfimSubmit = function(){
 	var div = document.createElement('div');
 	return div;
 }

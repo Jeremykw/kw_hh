@@ -2,9 +2,6 @@ var kwMassageHealthHistory = kwMassageHealthHistory || {};
 
 kwMassageHealthHistory.concentForm = {
 
-	domManipulation: function(){
-		
-	},
 	errors: function(form, state){
 		return kwMassageHealthHistory.validate.mergeObjects(
 			kwMassageHealthHistory.validate.validateLengthOf([

@@ -18,19 +18,11 @@
 //= require_tree ./controller
 //= require_tree ./view
 
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
 window.onload = init;
 function init(){
 	var isNewHhForm = document.getElementById("hh_form");
-	if (isNewHhForm) {
-		kwMassageHealthHistory.hhState = new kwMassageHealthHistory.baseState();
-		kwMassageHealthHistory.fullForm = new kwMassageHealthHistory.baseFullForm();
-		kwMassageHealthHistory.hHrun({});
+	if ( isNewHhForm ) {
+		formController.init();
 	}
 }
 
-kwMassageHealthHistory.hHrun = function(action){
-	kwMassageHealthHistory.hhState.update(action)
-	kwMassageHealthHistory.hhRender.form(kwMassageHealthHistory.hhState);
-
-}
