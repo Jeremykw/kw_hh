@@ -54,11 +54,11 @@ module HhFormsHelper
 		form_section = []
 		hhform.attributes.each do |field, data|
 			if count > 15 && count < 54 && field_has_data(field, data, hhform[:pregnant])
-				unless field == "diabetes_onset"	
+				unless field == "diabetes_onset" || field == "smoke"
 					form_section << [field, data]
 				end
 			end
-		count += 1
+			count += 1
 		end
 		return_form_unless_nil(form_section)
 	end
@@ -100,7 +100,6 @@ module HhFormsHelper
 	def field_has_data(title, field, pregnant)
 		if field_data_is_true(field) && title_should_be_shown(title, pregnant)
 			
-
 			if title == "pregnant" && !pregnant || title == "pregnant_due_date" && !pregnant
 				return false
 			end

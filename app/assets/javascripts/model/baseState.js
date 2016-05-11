@@ -31,9 +31,8 @@ formModel.baseState = function(){
 formModel.baseState.prototype.update = function(action){
 	var page = formController.page(this.currentPage); 
 	this[page] = action.newFormData;
-
-	this.errorMessages = kwMassageHealthHistory[page].errors(action.newFormData, this) || {};
-	this.isValid = true;//kwMassageHealthHistory.validate.isFormValid(this.errorMessages);
+	this.errorMessages = formModel[page].errors(action.newFormData, this) || {};
+	this.isValid = true;//formModel.validate.isFormValid(this.errorMessages);
 	
 	this.lastPage = this._lastPage(this);
 	this.currentPage = this._nextPage(action, this);

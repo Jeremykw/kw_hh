@@ -1,26 +1,26 @@
 describe("Health History init state", function() {
-	kwMassageHealthHistory.hhState = new kwMassageHealthHistory.baseState();	
-	// var initState = kwMassageHealthHistory.hHrun(kwMassageHealthHistory.hhState, {});
+	var intiState = new formModel.baseState();	
+	// var initState = kwMassageHealthHistory.hHrun(intiState, {});
   
 	var currentPageForm, lastPageForm;
 
 	it("should set lastPage and currentPage to 0 on init", function() {
-	expect(kwMassageHealthHistory.hhState.lastPage).toEqual(0);
-	expect(kwMassageHealthHistory.hhState.currentPage).toEqual(0);
+	expect(intiState.lastPage).toEqual(0);
+	expect(intiState.currentPage).toEqual(0);
 	})
 
 	it("should respond with true to isValid", function() {
-	  expect(kwMassageHealthHistory.hhState.isValid).toEqual(true);
+	  expect(intiState.isValid).toEqual(true);
 
 	})
 
 	it("should respond with {} to all form calls", function() {
-	  expect(kwMassageHealthHistory.hhState.contactForm).toEqual({});
-	  expect(kwMassageHealthHistory.hhState.complaintsForm).toEqual({});
-	  expect(kwMassageHealthHistory.hhState.checkboxesForm).toEqual({});
-	  expect(kwMassageHealthHistory.hhState.painsForm).toEqual({});
-	  expect(kwMassageHealthHistory.hhState.otherForm).toEqual({});
-	  expect(kwMassageHealthHistory.hhState.concentForm).toEqual({});
+	  expect(intiState.contactForm).toEqual({});
+	  expect(intiState.complaintsForm).toEqual({});
+	  expect(intiState.checkboxesForm).toEqual({});
+	  expect(intiState.painsForm).toEqual({});
+	  expect(intiState.otherForm).toEqual({});
+	  expect(intiState.concentForm).toEqual({});
 
 	})
 		

@@ -1,7 +1,7 @@
 describe("Health History Retain Forms", function() {
-	kwMassageHealthHistory.retainState = new kwMassageHealthHistory.baseState();	
+	retainState = new formModel.baseState();	
     beforeEach(function() {	
-		spyOn(kwMassageHealthHistory.validate, "isFormValid").and.returnValue(true);
+		spyOn(formModel.validate, "isFormValid").and.returnValue(true);
 	})
 	var currentRetainState, lastRetainState;
 
@@ -82,9 +82,9 @@ describe("Health History Retain Forms", function() {
 			action: "next",
 			newFormData: contact
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
+		expect(retainState.contactForm).toEqual(contact);
 	})
 
 	it("retains Contact form after Complaints form is created", function() {
@@ -92,10 +92,10 @@ describe("Health History Retain Forms", function() {
 			action: "next",
 			newFormData: complaints
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 		
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
 	})
 
 	it("retains Contact and Complaints form after checkBoxes form is created", function() {
@@ -103,11 +103,11 @@ describe("Health History Retain Forms", function() {
 			action: "next",
 			newFormData: checkBoxes
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
 	})
 
 
@@ -116,13 +116,13 @@ describe("Health History Retain Forms", function() {
 			action: "next",
 			newFormData: pains
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.currentPage).toEqual(4);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.currentPage).toEqual(4);
 
 	})	
 
@@ -131,14 +131,14 @@ describe("Health History Retain Forms", function() {
 			action: "next",
 			newFormData: other
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.currentPage).toEqual(5);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.currentPage).toEqual(5);
 
 	})	
 
@@ -147,15 +147,15 @@ describe("Health History Retain Forms", function() {
 			action: "back",
 			newFormData: concent
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.concentForm).toEqual(concent);
-		expect(kwMassageHealthHistory.retainState.currentPage).toEqual(4);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.concentForm).toEqual(concent);
+		expect(retainState.currentPage).toEqual(4);
 
 	})
 
@@ -164,14 +164,14 @@ describe("Health History Retain Forms", function() {
 			action: "back",
 			newFormData: other
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.concentForm).toEqual(concent);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.concentForm).toEqual(concent);
 
 	})
 
@@ -180,14 +180,14 @@ describe("Health History Retain Forms", function() {
 			action: "back",
 			newFormData: pains
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.concentForm).toEqual(concent);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.concentForm).toEqual(concent);
 
 	})
 
@@ -196,14 +196,14 @@ describe("Health History Retain Forms", function() {
 			action: "back",
 			newFormData: checkBoxes
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.concentForm).toEqual(concent);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.concentForm).toEqual(concent);
 	})	
 
 	it("retains Contact, Complaints, CheckBoxes, Pains, Other, Concent form when Navigation back to complaints", function() {
@@ -211,14 +211,14 @@ describe("Health History Retain Forms", function() {
 			action: "back",
 			newFormData: complaints
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.concentForm).toEqual(concent);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.concentForm).toEqual(concent);
 	})	
 
 	it("retains Contact, Complaints, CheckBoxes, Pains, Other, Concent form when Navigation back to contact", function() {
@@ -226,13 +226,13 @@ describe("Health History Retain Forms", function() {
 			action: "back",
 			newFormData: contact
 		}
-		kwMassageHealthHistory.retainState.update(action);
+		retainState.update(action);
 
-		expect(kwMassageHealthHistory.retainState.contactForm).toEqual(contact);
-		expect(kwMassageHealthHistory.retainState.complaintsForm).toEqual(complaints);
-		expect(kwMassageHealthHistory.retainState.checkboxesForm).toEqual(checkBoxes);
-		expect(kwMassageHealthHistory.retainState.painsForm).toEqual(pains);
-		expect(kwMassageHealthHistory.retainState.otherForm).toEqual(other);
-		expect(kwMassageHealthHistory.retainState.concentForm).toEqual(concent);
+		expect(retainState.contactForm).toEqual(contact);
+		expect(retainState.complaintsForm).toEqual(complaints);
+		expect(retainState.checkboxesForm).toEqual(checkBoxes);
+		expect(retainState.painsForm).toEqual(pains);
+		expect(retainState.otherForm).toEqual(other);
+		expect(retainState.concentForm).toEqual(concent);
 	})	
 })

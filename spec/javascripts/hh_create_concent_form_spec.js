@@ -1,11 +1,11 @@
 describe("Health History Form concent", function() {
 	beforeEach(function(){
-		kwMassageHealthHistory.concentState = new kwMassageHealthHistory.baseState();
-		kwMassageHealthHistory.concentState.lastPage = 4;
-		kwMassageHealthHistory.concentState.currentPage = 5;
-		kwMassageHealthHistory.concentState.contactForm.hh_form_first_name = 'jeremy';
-		kwMassageHealthHistory.concentState.contactForm.hh_form_last_name = 'bissonnette';
-		kwMassageHealthHistory.concentState.contactForm.hh_form_email = 'jeremy@kwmassage.com';
+		concentState = new formModel.baseState();
+		concentState.lastPage = 4;
+		concentState.currentPage = 5;
+		concentState.contactForm.hh_form_first_name = 'jeremy';
+		concentState.contactForm.hh_form_last_name = 'bissonnette';
+		concentState.contactForm.hh_form_email = 'jeremy@kwmassage.com';
 	})
 
     var concentSetUp;
@@ -23,9 +23,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.concentState.concentForm).toEqual(concentSetUp);
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(true);
+		expect(concentState.concentForm).toEqual(concentSetUp);
 	})
 
 	it("returns inValid if hh_form_confirm_name is blank", function() {
@@ -34,9 +34,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_name = "";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_name).toEqual("Confirm Name Must Be Present");
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(false);
+		expect(concentState.errorMessages.hh_form_confirm_name).toEqual("Confirm Name Must Be Present");
 	})
 
 	it("returns inValid if hh_form_confirm_email is blank", function() {
@@ -45,9 +45,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_email = "";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_email).toEqual("Confirm Email Must Be Present");
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(false);
+		expect(concentState.errorMessages.hh_form_confirm_email).toEqual("Confirm Email Must Be Present");
 	})
 
 
@@ -57,9 +57,9 @@ describe("Health History Form concent", function() {
 	// 		newFormData: concentSetUp
 	// 	}
 	// 	action.newFormData.hh_form_confirm_email = "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp";
-	// 	kwMassageHealthHistory.concentState.update(action);
-	// 	expect(kwMassageHealthHistory.concentState.isValid).toEqual(false);
-	// 	expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_email).toEqual("Confirm Email must be less than 50 characters");
+	// 	concentState.update(action);
+	// 	expect(concentState.isValid).toEqual(false);
+	// 	expect(concentState.errorMessages.hh_form_confirm_email).toEqual("Confirm Email must be less than 50 characters");
 	// })
 
 	it("returns Valid if confirm_name matches first_name + last name", function() {
@@ -68,9 +68,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_name = "Jeremy Bissonnette";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_name).toEqual(undefined);
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(true);
+		expect(concentState.errorMessages.hh_form_confirm_name).toEqual(undefined);
 	})
 	
 	it("returns Valid if confirm_name matches first_name + last name with verious capitals", function() {
@@ -79,9 +79,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_name = "JeremY BIssonnette";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_name).toEqual(undefined);
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(true);
+		expect(concentState.errorMessages.hh_form_confirm_name).toEqual(undefined);
 	})
 
 	it("returns inValid if confirm_name does not matches first_name + last", function() {
@@ -90,9 +90,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_name = "JeremY BInette";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_name).toEqual("Confirm Name must be equal to First Name plus Last Name");
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(false);
+		expect(concentState.errorMessages.hh_form_confirm_name).toEqual("Confirm Name must be equal to First Name plus Last Name");
 	})	
 	
 	it("returns inValid if confirm_name does not matches first_name + last, 2", function() {
@@ -101,9 +101,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_name = "JemY BIssonnette";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_name).toEqual("Confirm Name must be equal to First Name plus Last Name");
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(false);
+		expect(concentState.errorMessages.hh_form_confirm_name).toEqual("Confirm Name must be equal to First Name plus Last Name");
 	})
 	
 	it("returns Valid if confirm_email matches email", function() {
@@ -112,9 +112,9 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_email = "jeremy@kwmassage.com";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_email).toEqual(undefined);
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(true);
+		expect(concentState.errorMessages.hh_form_confirm_email).toEqual(undefined);
 	})
 	
 	it("returns inValid if confirm_email doesnot match email", function() {
@@ -123,8 +123,8 @@ describe("Health History Form concent", function() {
 			newFormData: concentSetUp
 		}
 		action.newFormData.hh_form_confirm_email = "jerem@kwmassage.com";
-		kwMassageHealthHistory.concentState.update(action);
-		expect(kwMassageHealthHistory.concentState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.concentState.errorMessages.hh_form_confirm_email).toEqual("Confirm Email must match Email");
+		concentState.update(action);
+		expect(concentState.isValid).toEqual(false);
+		expect(concentState.errorMessages.hh_form_confirm_email).toEqual("Confirm Email must match Email");
 	})
 })

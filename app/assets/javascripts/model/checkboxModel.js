@@ -1,16 +1,16 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formModel = formModel || {};
 
-kwMassageHealthHistory.checkboxesForm = {
+formModel.checkboxesForm = {
 
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeObjects(
-			kwMassageHealthHistory.validate.validateLengthOf([
+		return formModel.validate.mergeObjects(
+			formModel.validate.validateLengthOf([
 				"skin_condition",
 				"loss_of_sensation",
 				"allergies"
 			], 
 			500, form),
-			kwMassageHealthHistory.validate.validateBoolean([
+			formModel.validate.validateBoolean([
 				"chronic_cough",
 				"shortness_of_breath",
 				"bronchitis",
@@ -40,8 +40,8 @@ kwMassageHealthHistory.checkboxesForm = {
 				"hiv",
 				"pregnant"
 			], form),
-			kwMassageHealthHistory.validate.validateDate("diabetes_onset", form),
-			kwMassageHealthHistory.validate.validateDate("pregnant_due_date", form)
+			formModel.validate.validateDate("diabetes_onset", form),
+			formModel.validate.validateDate("pregnant_due_date", form)
 
 		)
 	}

@@ -1,7 +1,6 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formModel = formModel || {};
 
-
-kwMassageHealthHistory.validate = {
+formModel.validate = {
 
 	validateConfirmName: function(form, state){
 		var confirmNameErrors = {};

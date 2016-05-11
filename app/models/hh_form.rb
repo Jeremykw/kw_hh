@@ -6,7 +6,8 @@ class HhForm < ActiveRecord::Base
     validates_format_of :email, :with => /.+@.+\..+/i
 	validates_format_of :postal_code, 
 		:with => /[a-z, A-Z][0-9][a-z, A-Z]\ ?[0-9][a-z, A-Z][0-9]/,
-		:message => "must be in the H0H 0H0 format"
+		:message => "must be in the H0H 0H0 format",
+		:allow_blank => true
 	validates_format_of :phone,
 		:with => /\(?[0-9]{3}\)?-?[0-9]{3}-?[0-9]{4}/,
 		:message => "numbers must be in xxx-xxx-xxxx format."
@@ -74,7 +75,6 @@ class HhForm < ActiveRecord::Base
 	end
 
 	def format_mandatory_fields
-		format_postal_code
 		format_name
 	end
 

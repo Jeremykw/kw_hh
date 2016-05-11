@@ -1,6 +1,6 @@
 describe("Health History Form Contact", function() {
 	beforeEach(function(){
-		kwMassageHealthHistory.contactState = new kwMassageHealthHistory.baseState();	
+		contactState = new formModel.baseState();	
 	})
 
     var actionSetUp;
@@ -28,10 +28,10 @@ describe("Health History Form Contact", function() {
 			action: "next",
 			newFormData: actionSetUp
 		}
-		kwMassageHealthHistory.contactState.update(action);
-		expect(kwMassageHealthHistory.contactState.contactForm).toEqual(actionSetUp);
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(1);
+		contactState.update(action);
+		expect(contactState.contactForm).toEqual(actionSetUp);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.currentPage).toEqual(1);
 	})
 
 	it("Returns false if first_name is missing and adds corect message", function() {
@@ -40,10 +40,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_first_name = ""
-		kwMassageHealthHistory.contactState.update(action);
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_first_name).toEqual("First Name Must Be Present");
-		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(0);
+		contactState.update(action);
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_first_name).toEqual("First Name Must Be Present");
+		expect(contactState.currentPage).toEqual(0);
 
 	})
 
@@ -54,10 +54,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_last_name = ""
-		kwMassageHealthHistory.contactState.update(action);
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_last_name).toEqual("Last Name Must Be Present");
-		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(0);
+		contactState.update(action);
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_last_name).toEqual("Last Name Must Be Present");
+		expect(contactState.currentPage).toEqual(0);
 
 	})
 
@@ -67,9 +67,9 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_phone = ""
-		kwMassageHealthHistory.contactState.update(action);
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must Be Present");
+		contactState.update(action);
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_phone).toEqual("Phone Must Be Present");
 	})
 
 	it("Returns true if referral_source is missing and doesn't add error message", function() {
@@ -78,10 +78,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_referral_source = ""
-		kwMassageHealthHistory.contactState.update(action);
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_referral_source).toEqual(undefined);
-		expect(kwMassageHealthHistory.contactState.currentPage).toEqual(1);
+		contactState.update(action);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_referral_source).toEqual(undefined);
+		expect(contactState.currentPage).toEqual(1);
 
 	})
 
@@ -91,9 +91,9 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_first_name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-		kwMassageHealthHistory.contactState.update(action);
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_first_name).toEqual("First Name must be less than 50 characters");
+		contactState.update(action);
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_first_name).toEqual("First Name must be less than 50 characters");
 	})
 
 	it("Returns false if last_name is longer than 50 and adds corect message", function() {
@@ -102,10 +102,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_last_name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_last_name).toEqual("Last Name must be less than 50 characters");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_last_name).toEqual("Last Name must be less than 50 characters");
 	})
 
 	it("Returns false if phone is has letters", function() {
@@ -114,10 +114,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_phone = "sss"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
 	})
 
 
@@ -127,10 +127,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_phone = "(519)7454112"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_phone).toEqual(undefined);
 	})
 
 	it("Returns true if phone has dashes", function() {
@@ -139,10 +139,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_phone = "519-745-4112"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_phone).toEqual(undefined);
 	})
 
 	it("Returns true if phone has barackets and dashes", function() {
@@ -151,10 +151,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_phone = "(519)-745-4112"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_phone).toEqual(undefined);
 	})
 
 	it("Returns false if phone dashes in the wrong place", function() {
@@ -163,10 +163,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_phone = "(519)-74-54112"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_phone).toEqual("Phone Must be in the xxx-xxx-xxxx format");
 	})
 
 	it("Returns false if Postal Code if postal code is all numbers", function() {
@@ -175,10 +175,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_postal_code = "7454112"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual("Postal Code Must be in the H0H 0H0 format");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_postal_code).toEqual("Postal Code Must be in the H0H 0H0 format");
 	})
 
 	it("Returns false if Postal Code if postal code is all letters", function() {
@@ -187,10 +187,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_postal_code = "hohoho"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual("Postal Code Must be in the H0H 0H0 format");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_postal_code).toEqual("Postal Code Must be in the H0H 0H0 format");
 	})
 
 	it("Returns true if Postal Code if postal code correct with space", function() {
@@ -199,10 +199,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_postal_code = "N0K 1N0"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
 	})
 
 	it("Returns true if Postal Code if postal code correct without space", function() {
@@ -211,10 +211,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_postal_code = "N0K1N0"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
 	})	
 
 	it("Returns true if Postal Code if postal code correct with lowercase", function() {
@@ -223,10 +223,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_postal_code = "h0h0h0"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_postal_code).toEqual(undefined);
 	})
 
 
@@ -236,10 +236,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_email = "jeremy@kwmassage.com"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_email).toEqual(undefined);
 	})
 
 	it("Returns false if Email has no @", function() {
@@ -248,10 +248,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_email = "jeremykwmassage.com"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
 	})	
 
 	it("Returns false if Email has no .", function() {
@@ -260,10 +260,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_email = "jeremy@kwmassagecom"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_email).toEqual("Email must be valid");
 	})	
 
 	it("Returns true if DOB year is valid", function() {
@@ -275,10 +275,10 @@ describe("Health History Form Contact", function() {
 		action.newFormData.hh_form_date_of_birth_2i = "12"
 		action.newFormData.hh_form_date_of_birth_3i = "20"
 		
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual(undefined);
+		expect(contactState.isValid).toEqual(true);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual(undefined);
 	})
 
 	it("Returns false if DOB year is greater than presant year", function() {
@@ -287,10 +287,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_1i = "2020"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
 	})
 
 	it("Returns false if DOB year is less than presant year", function() {
@@ -299,10 +299,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_1i = "1890"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
 	})
 	
 	it("Returns false if DOB year not a numbetr", function() {
@@ -311,10 +311,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_1i = "Bacon"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, year must be valid");
 	})	
 
 	//
@@ -325,10 +325,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_2i = "13"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
 	})
 
 	it("Returns false if DOB month is less than 1", function() {
@@ -337,10 +337,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_2i = "0"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
 	})
 	it("Returns false if DOB month is negitive", function() {
 		var action = {
@@ -348,10 +348,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_2i = "-5"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
 	})
 		
 	it("Returns false if DOB month not a numbetr", function() {
@@ -360,10 +360,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_2i = "Bacon"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, month must be valid");
 	})	
 
 	it("Returns false if DOB day is greater than presant day", function() {
@@ -372,10 +372,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_3i = "32"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
 	})
 
 	it("Returns false if DOB day is less than presant day", function() {
@@ -384,10 +384,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_3i = "0"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
 	})
 	
 	it("Returns false if DOB day is negitive", function() {
@@ -396,10 +396,10 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_3i = "-16"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
 	})
 
 	it("Returns false if DOB day not a numbetr", function() {
@@ -408,9 +408,9 @@ describe("Health History Form Contact", function() {
 			newFormData: actionSetUp
 		}
 		action.newFormData.hh_form_date_of_birth_3i = "Bacon"
-		kwMassageHealthHistory.contactState.update(action);
+		contactState.update(action);
 
-		expect(kwMassageHealthHistory.contactState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
+		expect(contactState.isValid).toEqual(false);
+		expect(contactState.errorMessages.hh_form_date_of_birth).toEqual("Date Of Birth, day must be valid");
 	})		
 })

@@ -32,16 +32,15 @@ class HhFormsController < ApplicationController
 				end
 			}
 			format.json{
-				# form = JSON.parse(hhform_params)
 				if @hhform.save
-					redirect_to hh_form_path(@hhform)
+					content = view_context.render 'preview_or_show'
+					render :json => content
 				else
-					render :show
+					flash[:notice] = @hhform.errors.full_messages	
+					@hhform = HhForm.new(hhform_params)
+					params[:hh_form] = []
+					render :new
 				end
-
-				# @hhform = HhForm.new(hhform_params)
-				# redirect_to hh_form_path(@hhform)
-
 			}
 		end
 	end

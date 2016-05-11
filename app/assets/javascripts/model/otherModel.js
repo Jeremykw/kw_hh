@@ -1,10 +1,10 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formModel = formModel || {};
 
-kwMassageHealthHistory.otherForm = {
+formModel.otherForm = {
 
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeObjects(
-			kwMassageHealthHistory.validate.validateLengthOf([
+		return formModel.validate.mergeObjects(
+			formModel.validate.validateLengthOf([
 					"current_medications",
 					"surgery",
 					"general_health_status",

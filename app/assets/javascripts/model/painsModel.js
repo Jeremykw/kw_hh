@@ -1,10 +1,10 @@
-var kwMassageHealthHistory = kwMassageHealthHistory || {};
+var formModel = formModel || {};
 
-kwMassageHealthHistory.painsForm = {
+formModel.painsForm = {
 
 	errors: function(form){
-		return kwMassageHealthHistory.validate.mergeObjects(
-			kwMassageHealthHistory.validate.validateLengthOf([
+		return formModel.validate.mergeObjects(
+			formModel.validate.validateLengthOf([
 					"neck_note",
 					"low_back_note",
 					"mid_back_note",
@@ -16,7 +16,7 @@ kwMassageHealthHistory.painsForm = {
 					"other_note"
 				], 
 				500, form),
-			kwMassageHealthHistory.validate.validateBoolean([
+			formModel.validate.validateBoolean([
 				"neck",
 				"low_back",
 				"mid_back",

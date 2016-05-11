@@ -6,12 +6,6 @@ formView.baseFullForm = function(){
 	this[2] = document.getElementById("checkboxes"),
 	this[3] = document.getElementById("pains"),
 	this[4] = document.getElementById("other"),
-	this[5] = document.getElementById("concent"),
-	this[6] = this._addConfimSubmit();
+	this[5] = document.getElementById("concent")
 
 };
-
-formView.baseFullForm.prototype._addConfimSubmit = function(){
-	var div = document.createElement('div');
-	return div;
-}

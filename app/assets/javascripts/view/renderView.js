@@ -65,22 +65,32 @@ formView.render = {
 	    }
 	    button.setAttribute('class', "btn btn-danger topmargin-sm rightmargin-sm");
 	    button.addEventListener('click', (function(){
-	   		// gets form data
-			return	function(){
-				nextAction.newFormData = (function(){
-					var newDataHash = {};
-					var formPartial = document.getElementById("form_partials");
-					var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
-					for (i  = 0; i < formFields.length; i ++ ){
-						newDataHash[formFields[i].id] = formFields[i].value; 
-					}
-					return newDataHash;
-				})();	
-		    	formController.update(nextAction);
-		    }
-	    })())
+	   		return formView.render._addEventToButton(button, nextAction);
+	    })(button, nextAction))
 	    buttonPlaceHolder.appendChild(button);
     	
+	},
+	_addEventToButton: function(button, nextAction){
+		return	function(){
+			nextAction.newFormData = (function(){
+				var newDataHash = {};
+				var formPartial = document.getElementById("form_partials");
+				var formFields = formPartial.querySelectorAll('[id^="hh_form_"]');
+				for (i  = 0; i < formFields.length; i ++ ){
+					if ( formFields[i].type === 'checkbox' ){
+						newDataHash[formFields[i].id] = formFields[i].checked; 
+					}else{
+						newDataHash[formFields[i].id] = formFields[i].value; 
+					}
+				}
+				return newDataHash;
+			})();	
+			if ( nextAction.action === 'submit' ){
+				formController.submit(nextAction)
+			}else{
+		    	formController.update(nextAction);
+		    }
+		}
 	},
 	_addErrorMessagesToForm: function(state){
 		this._emptyFormSection("hh_error_message_place_holder")

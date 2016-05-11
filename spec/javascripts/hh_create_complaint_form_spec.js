@@ -1,8 +1,8 @@
 describe("Health History Form Complaint", function() {
 	beforeEach(function(){
-		kwMassageHealthHistory.complaintState = new kwMassageHealthHistory.baseState();
-		kwMassageHealthHistory.complaintState.lastPage = 0;
-		kwMassageHealthHistory.complaintState.currentPage = 1;
+		complaintState = new formModel.baseState();
+		complaintState.lastPage = 0;
+		complaintState.currentPage = 1;
 	})
 
     var complaintSetUp;
@@ -21,9 +21,9 @@ describe("Health History Form Complaint", function() {
 			action: "next",
 			newFormData: complaintSetUp
 		}
-		kwMassageHealthHistory.complaintState.update(action);
-		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.complaintState.complaintsForm).toEqual(complaintSetUp);
+		complaintState.update(action);
+		expect(complaintState.isValid).toEqual(true);
+		expect(complaintState.complaintsForm).toEqual(complaintSetUp);
 	})
 
 	it("returns inValid if hh_form_primary_complaint is blank", function() {
@@ -32,9 +32,9 @@ describe("Health History Form Complaint", function() {
 			newFormData: complaintSetUp
 		}
 		action.newFormData.hh_form_primary_complaint = "";
-		kwMassageHealthHistory.complaintState.update(action);
-		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint Must Be Present");
+		complaintState.update(action);
+		expect(complaintState.isValid).toEqual(false);
+		expect(complaintState.errorMessages.hh_form_primary_complaint).toEqual("Primary Complaint Must Be Present");
 	})
 
 	it("returns Valid if hh_form_secondary_complaint is blank", function() {
@@ -43,9 +43,9 @@ describe("Health History Form Complaint", function() {
 			newFormData: complaintSetUp
 		}
 		action.newFormData.hh_form_secondary_complaint = "";
-		kwMassageHealthHistory.complaintState.update(action);
-		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_secondary_complaint).toEqual(undefined);
+		complaintState.update(action);
+		expect(complaintState.isValid).toEqual(true);
+		expect(complaintState.errorMessages.hh_form_secondary_complaint).toEqual(undefined);
 	})	
 
 	it("returns Valid if hh_form_smoke true", function() {
@@ -54,9 +54,9 @@ describe("Health History Form Complaint", function() {
 			newFormData: complaintSetUp
 		}
 		action.newFormData.hh_form_smoke = true;
-		kwMassageHealthHistory.complaintState.update(action);
-		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_smoke).toEqual(undefined);
+		complaintState.update(action);
+		expect(complaintState.isValid).toEqual(true);
+		expect(complaintState.errorMessages.hh_form_smoke).toEqual(undefined);
 	})
 
 	it("returns Valid if hh_form_smoke false", function() {
@@ -65,9 +65,9 @@ describe("Health History Form Complaint", function() {
 			newFormData: complaintSetUp
 		}
 		action.newFormData.hh_form_smoke = false;
-		kwMassageHealthHistory.complaintState.update(action);
-		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(true);
-		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_smoke).toEqual(undefined);
+		complaintState.update(action);
+		expect(complaintState.isValid).toEqual(true);
+		expect(complaintState.errorMessages.hh_form_smoke).toEqual(undefined);
 	})
 
 	it("returns inValid if hh_form_smoke a string", function() {
@@ -76,9 +76,9 @@ describe("Health History Form Complaint", function() {
 			newFormData: complaintSetUp
 		}
 		action.newFormData.hh_form_smoke = "Anything other than boolean";
-		kwMassageHealthHistory.complaintState.update(action);
-		expect(kwMassageHealthHistory.complaintState.isValid).toEqual(false);
-		expect(kwMassageHealthHistory.complaintState.errorMessages.hh_form_smoke).toEqual("Don't be an asshole");	
+		complaintState.update(action);
+		expect(complaintState.isValid).toEqual(false);
+		expect(complaintState.errorMessages.hh_form_smoke).toEqual("Don't be an asshole");	
 
 	})	
 })
