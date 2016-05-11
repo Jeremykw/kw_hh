@@ -33,11 +33,20 @@
 				= f.label :hiv, "hiv"
 			.testimonial	
 				%h4 Other Conditions
+				= f.check_box :loss_of_sensation
 				= f.label :loss_of_sensation, "loss of sensation"
-				= f.text_field :loss_of_sensation
+				#loss_of_sensation_description
+					%p.nobottommargin (Describe any loss of or altered sensation)
+					= f.text_field :loss_of_sensation_discriotion, :class => "form-control"
 				%br
-				= f.label :diabetes, "diabetes"
+				= f.check_box :allergies
+				= f.label :allergies, "allergies"
+				#allergies_description
+					%p.nobottommargin (Describe any allergies)
+					= f.text_field :allergies_description, :class => "form-control"
+				%br
 				= f.check_box :diabetes
+				= f.label :diabetes, "diabetes"
 				%br
 				#diabetes_onset
 					= f.label :diabetes_onset, "Diabetes onset"
@@ -45,9 +54,6 @@
 					= f.date_select :diabetes_onset, :start_year => 1925, :html_options => {:class => "form-control"}					
 					%br
 					%br
-				= f.text_field :allergies
-				= f.label :allergies, "allergies"
-				%br
 				= f.check_box :epilepsy
 				= f.label :epilepsy, "epilepsy"
 				%br
@@ -107,10 +113,11 @@
 			.testimonial
 				%h4.nobottommargin Skin
 				= f.check_box :infectious_skin_condition
-				= f.label :infectious_skin_condition, "infectious skin condition"
+				= f.label :infectious_skin_condition, "skin conditions"
 				%br
-				= f.text_field :skin_condition
-				= f.label :skin_condition, "skin condition"					
+				#skin_conditions_description
+					%p.nobottommargin (Describe any infections skin conditions)					
+					= f.text_field :skin_condition, :class => "form-control"
 			.testimonial
 				%h4 Women
 				= f.check_box :pregnant

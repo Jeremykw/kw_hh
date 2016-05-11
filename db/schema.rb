@@ -48,10 +48,12 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "pacemaker"
     t.boolean  "heart_disease"
     t.text     "skin_condition"
+    t.boolean  "loss_of_sensation_discriotion"
     t.text     "loss_of_sensation"
     t.boolean  "diabetes"
     t.date     "diabetes_onset"
-    t.text     "allergies"
+    t.boolean  "allergies"
+    t.text     "allergies_description"
     t.boolean  "epilepsy"
     t.boolean  "cancer"
     t.boolean  "arthritis"
@@ -96,8 +98,8 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "confirm"
     t.string   "confirm_name"
     t.string   "confirm_email"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end
