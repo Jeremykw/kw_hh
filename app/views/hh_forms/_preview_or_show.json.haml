@@ -15,13 +15,17 @@
 				.testimonial
 					%h4 Conditions
 					- hh_form_fields(@hhform, :conditions).each do |title, data|
-						- if title == "pregnant_due_date"
-							%strong Due Date: 
-							= data
-						- elsif title == "diabetes"
-							%strong Diabetes: 
-							= time_tag(@hhform[:diabetes_onset])
+						- if title == "Pregnant: "
+							%strong Pregnancy Due Date: 
+							= time_tag(data)
+						- elsif title == "Diabetes: "
+							%strong Diabetes onset: 
+							= time_tag(data)
 							%br
+						- elsif title == "Skin Condition: " || title == "Loss of Sensation: " || title == "Allergies: "
+							%strong= title.humanize
+							= data
+							%br	
 						- elsif
 							%strong= title.humanize
 							%br

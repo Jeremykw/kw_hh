@@ -38,8 +38,8 @@ class CreateHhForms < ActiveRecord::Migration
         t.boolean :pacemaker
         t.boolean :heart_disease
         t.text    :skin_condition
-        t.boolean :loss_of_sensation_discriotion
-        t.text    :loss_of_sensation
+        t.boolean :loss_of_sensation
+        t.text    :loss_of_sensation_description
         t.boolean :diabetes
         t.date    :diabetes_onset
         t.boolean :allergies

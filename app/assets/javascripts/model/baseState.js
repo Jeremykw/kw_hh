@@ -13,7 +13,7 @@ formModel.baseState = function(){
 	this.isValid = true;
 
 	this.lastPage = 0;
-	this.currentPage = 0;
+	this.currentPage = 5;
 
 	this.diabetes_onset = "none";
 	this.pregnant_due_date = "none";
@@ -35,8 +35,7 @@ formModel.baseState.prototype.update = function(action){
 	var page = formController.page(this.currentPage); 
 	this[page] = action.newFormData;
 	this.errorMessages = formModel[page].errors(action.newFormData, this) || {};
-	this.isValid = formModel.validate.isFormValid(this.errorMessages);
-	
+	this.isValid = true;//formModel.validate.isFormValid(this.errorMessages);
 	this.lastPage = this._lastPage(this);
 	this.currentPage = this._nextPage(action, this);
 }
