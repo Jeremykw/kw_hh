@@ -12,7 +12,8 @@ formView.confirmSubmit = {
 		formView.render._emptyFormSection('concent');
 		var box = document.getElementById('concent');
 		box.innerHTML = formPreview;
-
+		document.getElementById("page-title").scrollIntoView(true);
+		
 		// box.appendChild(form);
 	},
 	_createBox: function(){

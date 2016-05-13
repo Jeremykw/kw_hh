@@ -23,7 +23,7 @@ formController.update = function(action){
 formController.submit = function(action){
 	formModel.currentState.update(action)
 	$.ajax("/hh_forms.json", {
-		data: formController.testData,// formModel.currentState.createJsonObjectFromState(),
+		data: formController.testData,//formModel.currentState.createJsonObjectFromState(),//
 		type: 'POST',
 		dataType: 'html',
 		beforeSend: function(xhr) {
@@ -45,7 +45,7 @@ formController.testData = {"hh_form": {
 		"address_2": "",
 		"city": "",
 		"provance": "",
-		"postal_code": "n3n3n3",
+		"postal_code": "",
 		"email": "jeremy@kwmassage.com",
 		"phone": "55555555555",
 		"occupation": "",
