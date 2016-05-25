@@ -2,6 +2,11 @@ var formView = formView || {};
 
 formView.render = {
 	
+	focusForm: function(element){
+		var focus = document.getElementById(element);
+		focus.focus();
+		
+	},
 	dateCheckboxToggle: function(state, checkboxID, dateID){
 		var checkbox = document.getElementById(checkboxID);
 		document.getElementById(dateID).style.display = state[dateID];

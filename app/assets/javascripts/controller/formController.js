@@ -39,7 +39,7 @@ formController.submit = function(action){
 }
 
 formController.testData = {"hh_form": {
-		"first_name": "Jeremy",
+		"first_name": "",
 		"last_name": "Bissonnette",
 		"address_1": "",
 		"address_2": "",
