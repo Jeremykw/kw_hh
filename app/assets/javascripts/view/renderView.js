@@ -101,8 +101,8 @@ formView.render = {
 		this._emptyFormSection("hh_error_message_place_holder")
 		var errorPlaceHolder = document.getElementById("hh_error_message_place_holder");
 		var p = document.createElement("p");
-		p.setAttribute( "class", "t600 color center" )		
-		var br = document.createElement("br")
+		p.setAttribute( "class", "t600 color center" );
+		var br = document.createElement("br");
 		var i = 1;
 		for ( e in state.errorMessages ){
 			var seperation;
