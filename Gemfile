@@ -25,20 +25,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # time validations
 gem 'validates_timeliness', '~> 4.0'
 
-
 gem 'pg'
 
 gem 'heroku'
 
+gem 'rails_12factor', group: :production
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'devise'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+ruby '2.3.0'
 
 group :development, :test do
   gem 'sqlite3'
