@@ -1,4 +1,5 @@
 class HhForm < ActiveRecord::Base
+	belongs_to :therapist
 	before_save :format_mandatory_fields
 	validates_date :date_of_birth, :presence => true, :on_or_before => lambda { Date.current }
     validates_date :diabetes_onset, :allow_blank => true, :on_or_before => lambda { Date.current }
