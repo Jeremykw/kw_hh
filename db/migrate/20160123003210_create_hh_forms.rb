@@ -92,6 +92,8 @@ class CreateHhForms < ActiveRecord::Migration
         t.boolean :confirm
         t.string :confirm_name
         t.string :confirm_email
+
+        t.integer :therapist_id, index: :true
         
       t.timestamps null: false
     end
