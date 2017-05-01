@@ -28,7 +28,9 @@ gem 'validates_timeliness', '~> 4.0'
 
 gem 'pg'
 
+gem 'heroku'
 
+gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

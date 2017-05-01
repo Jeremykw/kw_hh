@@ -23,7 +23,7 @@ formController.update = function(action){
 formController.submit = function(action){
 	formModel.currentState.update(action)
 	$.ajax("/hh_forms.json", {
-		data: formController.testData,//formModel.currentState.createJsonObjectFromState(),//
+		data: formModel.currentState.createJsonObjectFromState(),
 		type: 'POST',
 		dataType: 'html',
 		beforeSend: function(xhr) {
@@ -33,7 +33,7 @@ formController.submit = function(action){
 			formView.confirmSubmit.preview(data);
 		},
 		error: function() {
-			formView.confirmSubmit.error();
+			formView.render.errors(formModel.currentState);
 		}
 	});
 }

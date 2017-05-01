@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 0) do
-=======
-ActiveRecord::Schema.define(version: 20160123003210) do
+ActiveRecord::Schema.define(version: 20170501152937) do
 
   create_table "hh_forms", force: :cascade do |t|
     t.string   "first_name"
@@ -101,9 +98,29 @@ ActiveRecord::Schema.define(version: 20160123003210) do
     t.boolean  "confirm"
     t.string   "confirm_name"
     t.string   "confirm_email"
+    t.integer  "therapist_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
->>>>>>> 5434b411331570e7012f2a05f004fa2c3c0f1cfc
+
+  add_index "hh_forms", ["therapist_id"], name: "index_hh_forms_on_therapist_id"
+
+  create_table "therapists", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "therapists", ["email"], name: "index_therapists_on_email", unique: true
+  add_index "therapists", ["reset_password_token"], name: "index_therapists_on_reset_password_token", unique: true
 
 end
