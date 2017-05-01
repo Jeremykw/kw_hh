@@ -10,7 +10,19 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.js
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require_tree ./model
+//= require_tree ./controller
+//= require_tree ./view
+
+window.onload = init;
+function init(){
+	var isNewHhForm = document.getElementById("hh_form");
+	if ( isNewHhForm ) {
+		formController.init();
+	}
+}
+
