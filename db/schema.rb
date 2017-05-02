@@ -98,12 +98,9 @@ ActiveRecord::Schema.define(version: 20170501152937) do
     t.boolean  "confirm"
     t.string   "confirm_name"
     t.string   "confirm_email"
-    t.integer  "therapist_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
-
-  add_index "hh_forms", ["therapist_id"], name: "index_hh_forms_on_therapist_id"
 
   create_table "therapists", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
