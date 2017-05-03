@@ -1,1 +1,15 @@
-=@therapist.email
+=@therapist.clinic_name
+Health History Forms
+%br
+Welcome Back
+=@therapist.first_name
+%br
+=link_to "Sign Out", destroy_therapist_session_path, :method => :delete
+=link_to "Edit Accout", edit_therapist_registration_path, :method => :get
+%br
+%br
+%br
+-key = encrypt_id(@therapist.id)
+=key
+- data = decrypt_id(key)
+=Therapist.find(data).first_name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501152937) do
+ActiveRecord::Schema.define(version: 20170502152623) do
 
   create_table "hh_forms", force: :cascade do |t|
     t.string   "first_name"
@@ -98,9 +98,12 @@ ActiveRecord::Schema.define(version: 20170501152937) do
     t.boolean  "confirm"
     t.string   "confirm_name"
     t.string   "confirm_email"
+    t.integer  "therapist_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  add_index "hh_forms", ["therapist_id"], name: "index_hh_forms_on_therapist_id"
 
   create_table "therapists", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -115,6 +118,9 @@ ActiveRecord::Schema.define(version: 20170501152937) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "clinic_name"
   end
 
   add_index "therapists", ["email"], name: "index_therapists_on_email", unique: true
