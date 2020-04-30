@@ -1,16 +1,18 @@
 == README
 
-This is a dynamic online Health History form created for the sole use of the 
-KWmassage therapy office. It never went live due to uncertanty of the security 
-and safty of sending and reciving sensitive medical information. 
+This is a dynamic online Health History form created for 
+the sole use of the KWmassage therapy office. It never 
+went live due to uncertanty of the security and safty of 
+sending and reciving sensitive medical information. 
 
-* The static site content stored under /public and is generated with jekyll 
-in /kwmassage--master. You can .git pull from 
-https://github.com/Jeremykw/kwmassage.git to access this code.
+* The static site content stored under /public and is 
+generated with jekyll in /kwmassage--master. You 
+can .git pull from https://github.com/Jeremykw/kwmassage.git 
+to access this code.
 
-* originally buil on rails 4.2 and ruby 2.2 but has been upgraded to rails 6.0.2 
-and ruby 2.7. At the this point in time simple intergration testing shows it is
- running fine.
+* originally buil on rails 4.2 and ruby 2.2 but has been
+ upgraded to rails 6.0.2 and ruby 2.7. At the this point 
+ in time simple intergration testing shows it is running fine.
 
 * Rails version 6.0.2
 * Ruby version = 2.7
@@ -23,7 +25,8 @@ Getting Started - Mac OS
 * gem install bundle
 * bundle install
 * bin/rails db:migrate - initialize database
-* rails serve - Runs the app in the development mode. - [http://localhost:3000] to view it in the browser. 
+* rails serve - Runs the app in the development mode. 
+	- [http://localhost:3000] to view it in the browser. 
 
 
 New Deployment instructions
