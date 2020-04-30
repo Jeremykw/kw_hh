@@ -39,7 +39,7 @@ formController.submit = function(action){
 }
 
 formController.testData = {"hh_form": {
-		"first_name": "",
+		"first_name": "Jeremy",
 		"last_name": "Bissonnette",
 		"address_1": "",
 		"address_2": "",
@@ -121,7 +121,7 @@ formController.testData = {"hh_form": {
 		"other": false,
 		"other_note": "",
 
-		"current_medications": "Lots of drugs",
+		"current_medications": "none",
 		"surgery": "",
 		"general_health_status": "",
 		"other_healthcare_list": "Chiro, physio",

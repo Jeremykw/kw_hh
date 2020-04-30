@@ -12,6 +12,7 @@ formModel.validate = {
 			}
 		}
 		return confirmNameErrors;
+		// return true;
 	},
 	validateConfirmEmail: function(form, state){
 		var confirmEmailErrors = {};
@@ -23,6 +24,7 @@ formModel.validate = {
 			}
 		}
 		return confirmEmailErrors;
+		// return true;
 	},
 	validateDate: function(dateField, form){
 		var dobErrors  = {};

@@ -91,7 +91,7 @@ formView.render = {
 				return newDataHash;
 			})();	
 			if ( nextAction.action === 'submit' ){
-				formController.submit(nextAction)
+				formController.submit(nextAction);
 			}else{
 		    	formController.update(nextAction);
 		    }
