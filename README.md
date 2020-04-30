@@ -1,32 +1,42 @@
 == README
 
-This is the rails app that controls the KWmassage health history form
-The static site content stored under /public and is generated as a 
-jekyll in /kwmassage--master. To update the static content do so with 
-Jekyll and build it with 'jekyll serve --config _config_rails.yml', 
-you should also run 'gulp min' after change const SITE in gulp file to 
-'../kw_hh/public' to compress the static content. 
+This is a dynamic online Health History form created for the sole use of the KWmassage therapoy office. It never went live due to uncertanty of the security and saft of sending and reciving sensitive medical information. 
 
-Things you may want to cover:
+* The static site content stored under /public and is generated with jekyll in /kwmassage--master. 
 
-* Ruby version - 4.2.3
+* originally buil on rails 4.2 and ruby 2.2 but has been upgraded to rails 6.0.2 and ruby 2.7. At the this point in time simple intergration testing shows it is running fine.
 
-* System dependencies - 
+* Rails version 6.0.2
+* Ruby version = 2.7
 
-* Configuration - 
+Getting Started - Mac OS
 
-* Database creation - 
-
-* Database initialization - 
-
-* How to run the test suite - 
-
-* Services (job queues, cache servers, search engines, etc.) - 
-
-* Deployment instructions
+* git clone - https://github.com/Jeremykw/kw_hh.git
+* cd... into prodject dir.
+* brew install ruby 2.7 - optinally us rvm or rbenv to control ruby versions
+* gem install bundle
+* bundle install
+* bin/rails db:migrate - initialize database
+* rails serve - Runs the app in the development mode. - [http://localhost:3000] to view it in the browser. 
 
 
-* ...
+New Deployment instructions
+
+* install - 'brew tap heroku/brew && brew install heroku'
+* create/login - 'heroku login'
+* update master branch of git - 'git add .' - 'git ci *m "last commit before heroku deployment" - 'git push'
+* 'heroku create'
+* deploy - 'git push heroku master'
+* migrate db on heroku server - 'heroku run rake db:migrate'
+* ensure their is at least on dyno running - 'heroku ps:scale web=1' - 'heroku ps' - list running dynos
+* run application - 'heroku open'
 
 
-hh_forms/new
+* create/login - 'heroku login'
+* update master branch of git - 'git add .'' - 'git ci -m "last commit before heroku deployment"' - 'git push heroku'
+* deploy - 'git push heroku master'
+* migrate db on heroku server - 'heroku run rake db:migrate' - if their were any db changesh
+
+their is an existing version of the live app at Update existing live app: https://sleepy-wave-14734.herokuapp.com/hh_forms/new
+
+The 'hh_forms/new' at the end of the url is nessassary to get to the form
