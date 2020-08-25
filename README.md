@@ -26,7 +26,7 @@ Getting Started - Mac OS
 * bundle install
 * bin/rails db:migrate - initialize database
 * rails serve - Runs the app in the development mode. 
-	- [http://localhost:3000] to view it in the browser. 
+	- http://localhost:3000/hh_forms/new to view it in the browser. 
 
 
 New Deployment instructions
